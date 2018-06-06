@@ -994,10 +994,10 @@
             {{/rollGreater() loyaltyroll 11}}
         {{/loyaltyroll}}
         {{#custom}}
+            <tr><td class="sheet-subheader">GM Special</td></tr>
+            <tr><th>{{name}}</th></tr>
             {{#allprops() custom}}
-                <tr><td class="sheet-subheader">GM Special</td></tr>
-                <tr><th>{{name}}</th></tr>
-                <tr class="rowcolor"><td><span class="tcat">{{key}}: </span>{{value}}</td></tr>
+                <tr><td><span class="tcat">{{key}}: </span>{{value}}</td></tr>
             {{/allprops() custom}}
         {{/custom}}
     </table>
