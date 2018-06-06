@@ -1,264 +1,260 @@
 <input class="sheet-is-monster" type="checkbox" name="attr_is_monster" value="1"><span class="sheet-is-monster-tab"></span>
 <div class="sheet-pcinfo">
     <div class="sheet-flex-between">
-        <div class="sheet-col-left sheet-noborder">
-             <div class="sheet-info-row">
-                 <input type="text" class="sheet-info5" name="attr_name">
-                 <input type="text" class="sheet-info1" name="attr_age">
-                 <input type="text" class="sheet-info2" name="attr_sex">
-                 <input type="text" class="sheet-info4" name="attr_race">
-                 <span class="sheet-info5">Name</span>
-                 <span class="sheet-info1">Age</span>
-                 <span class="sheet-info2">Sex</span>
-                 <span class="sheet-info4">Race</span>
-             </div>
-             <div class="sheet-info-row">
-                 <input type="text" class="sheet-info1" name="attr_level">
-                 <input type="text" class="sheet-info6" name="attr_class">
-                 <input type="text" class="sheet-info6" name="attr_title">
-                 <span class="sheet-info1">Level</span>
-                 <span class="sheet-info6">Class</span>
-                 <span class="sheet-info6">Template or Title</span>
-             </div>
-             <div class="sheet-info-row">
-                 <input type="text" class="sheet-info3" name="attr_alignment">
-                 <input type="text" class="sheet-info1" name="attr_xpbonus">
-                 <input type="text" class="sheet-info3" name="attr_xp">
-                 <input type="text" class="sheet-info3" name="attr_nextxp">
-                 <span class="sheet-info3">Alignment</span>
-                 <span class="sheet-info1">+XP%</span>
-                 <span class="sheet-info3">Current XP</span>
-                 <span class="sheet-info3">XP for Level Up</span>
-            </div>
-        </div>
-        <div>
-            <div class="sheet-flex-center">
-                <div class="sheet-topblock">
-                    <span class="sheet-wierdtoptitle">&nbsp;</span>
-                    <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Initiative}} {{initroll=[[1d6+(@{Init})+(?{Modifier|0})&{tracker}]]}}" name="roll_initiative"></button>
-                    <span class="sheet-toptitle">Initiative</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_Init" value="(@{DexMod}+@{mInit})" disabled="true">
-                </div>
-            </div>            
-        </div>
-        <div class="sheet-col-right sheet-noborder">
-            <h2>ADVENTURER CONQUEROR KING</h2>
-            <div class="sheet-flex-center">
-                <div class="sheet-topblock">
-                    <span class="sheet-toptitle">Move</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_combatMV" value="40" readonly>
-                </div>
-                <span class="sheet-toptitle">&nbsp;</span>
-                <div class="sheet-topblock">
-                    <span class="sheet-toptitle">Surprise</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_Surpr" value="(@{mSurp})" disabled="true">
-                </div>
-                <span class="sheet-toptitle">&nbsp;</span>
-                <div class="sheet-topblock">
-                    <span class="sheet-toptitle">Reaction</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_React" value="(@{ChaMod}+@{mReact})" disabled="true">
-                </div>
-                <span class="sheet-toptitle">&nbsp;</span>
-                <div class="sheet-topblock">
-                    <span class="sheet-toptitle">AC</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_AC" value="(@{ArmorAC}+@{mArmor}+@{DexMod})" disabled="true">
-                </div>
-                <span class="sheet-toptitle">&nbsp;</span>
-                <div class="sheet-topblock">
-                    <span class="sheet-toptitle">HP</span>
-                    <input type="number" class="sheet-savingthrow sheet-hp" name="attr_HP">
-                </div>
-                <span class="sheet-toptitle">&nbsp;</span>
-                 <div class="sheet-topblock">
-                    <span class="sheet-toptitle">Max</span>
-                    <input type="number" class="sheet-savingthrow sheet-hp" name="attr_HP_max">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ABILITIES, SAVES, ETC -->
-    <div class="sheet-flex-between">
         <div class="sheet-col-left">
+            <div class="sheet-noborder">
+            <h1>Adventurer Conqueror King</h1>
+                 <div class="sheet-info-row">
+                     <input type="text" class="sheet-info5" name="attr_character_name">
+                     <input type="text" class="sheet-info1" name="attr_age">
+                     <input type="text" class="sheet-info2" name="attr_sex">
+                     <input type="text" class="sheet-info4" name="attr_race">
+                     <span class="sheet-info5">Name</span>
+                     <span class="sheet-info1">Age</span>
+                     <span class="sheet-info2">Sex</span>
+                     <span class="sheet-info4">Race</span>
+                 </div>
+                 <div class="sheet-info-row">
+                     <input type="text" class="sheet-info1" name="attr_level" value="1">
+                     <input type="text" class="sheet-info6" name="attr_class">
+                     <input type="text" class="sheet-info6" name="attr_title">
+                     <span class="sheet-info1">Level</span>
+                     <span class="sheet-info6">Class</span>
+                     <span class="sheet-info6">Template or Title</span>
+                 </div>
+                 <div class="sheet-info-row">
+                     <input type="text" class="sheet-info3" name="attr_alignment">
+                     <input type="text" class="sheet-info1" name="attr_xpbonus">
+                     <input type="text" class="sheet-info3" name="attr_xp">
+                     <input type="text" class="sheet-info3" name="attr_nextxp">
+                     <span class="sheet-info3">Alignment</span>
+                     <span class="sheet-info1">+XP%</span>
+                     <span class="sheet-info3">Current XP</span>
+                     <span class="sheet-info3">XP for Level Up</span>
+                </div>
+            </div>
             <div class="sheet-thick-border">
-                <!-- ABILITIES -->
-                <h3>Abilities</h3>
+                <!-- ABILITY SCORES -->
+                <h2>Ability Scores</h2>
                 <div class="sheet-flex">
                     <div class="sheet-ability-column-value">
                         <span>Strength</span>
-                        <input type="number" class="sheet-ability-value" name="attr_str" value="10">
+                        <input type="number" class="sheet-ability-value" name="attr_strength" value="10">
                     </div>
                     <div class="sheet-ability-column-modifier sheet-flex-between">
-                        <input type="number" class="sheet-ability-modifier" name="attr_StrMod" value="0" readonly>
+                        <input type="number" class="sheet-ability-modifier" name="attr_strengthMod" value="0" readonly>
                         <span class="sheet-subtext">Melee Attack and Damage Throws, Carry Capacity</span>
                     </div>
                 </div>
                 <div class="sheet-flex">
                     <div class="sheet-ability-column-value">
                         <span>Dexterity</span>
-                        <input type="number" class="sheet-ability-value" name="attr_dex" value="10">
+                        <input type="number" class="sheet-ability-value" name="attr_dexterity" value="10">
                     </div>
                     <div class="sheet-ability-column-modifier sheet-flex-between">
-                        <input type="number" class="sheet-ability-modifier" name="attr_DexMod" value="0" readonly>
+                        <input type="number" class="sheet-ability-modifier" name="attr_dexterityMod" value="0" readonly>
                         <span class="sheet-subtext">Missile Attack Throws, Armor Class, Initiative</span>
                     </div>
                 </div>
                 <div class="sheet-flex">
                     <div class="sheet-ability-column-value">
                         <span>Constitution</span>
-                        <input type="number" class="sheet-ability-value" name="attr_con" value="10">
+                        <input type="number" class="sheet-ability-value" name="attr_constitution" value="10">
                     </div>
                     <div class="sheet-ability-column-modifier sheet-flex-between">
-                        <input type="number" class="sheet-ability-modifier" name="attr_ConMod" value="0" readonly>
+                        <input type="number" class="sheet-ability-modifier" name="attr_constitutionMod" value="0" readonly>
                         <span class="sheet-subtext">Hit Points</span>
                     </div>
-
+    
                 </div>
                 <div class="sheet-flex">
                     <div class="sheet-ability-column-value">
                         <span>Intelligence</span>
-                        <input type="number" class="sheet-ability-value" name="attr_int" value="10">
+                        <input type="number" class="sheet-ability-value" name="attr_intelligence" value="10">
                     </div>
                     <div class="sheet-ability-column-modifier sheet-flex-between">
-                        <input type="number" class="sheet-ability-modifier" name="attr_IntMod" value="0" readonly>
+                        <input type="number" class="sheet-ability-modifier" name="attr_intelligenceMod" value="0" readonly>
                         <span class="sheet-subtext">Proficiences, Languages, Spells</span>
                     </div>
                 </div>
                 <div class="sheet-flex">
                     <div class="sheet-ability-column-value">
                         <span>Wisdom</span>
-                        <input type="number" class="sheet-ability-value" name="attr_wis" value="10">
+                        <input type="number" class="sheet-ability-value" name="attr_wisdom" value="10">
                     </div>
                     <div class="sheet-ability-column-modifier sheet-flex-between">
-                        <input type="number" class="sheet-ability-modifier" name="attr_WisMod" value="0" readonly>
+                        <input type="number" class="sheet-ability-modifier" name="attr_wisdomMod" value="0" readonly>
                         <span class="sheet-subtext">Saving Throws</span>
                     </div>
                 </div>
                 <div class="sheet-flex">
                     <div class="sheet-ability-column-value">
                         <span>Charisma</span>
-                        <input type="number" class="sheet-ability-value" name="attr_cha" value="10">
+                        <input type="number" class="sheet-ability-value" name="attr_charisma" value="10">
                     </div>
                     <div class="sheet-ability-column-modifier sheet-flex-between">
-                        <input type="number" class="sheet-ability-modifier" name="attr_ChaMod" value="0" readonly>
+                        <input type="number" class="sheet-ability-modifier" name="attr_charismaMod" value="0" readonly>
                         <span class="sheet-subtext">Reaction Rolls, Morale Rolls, Henchmen</span>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="sheet-col-right sheet-save-col sheet-flex-between">
+        <div class="sheet-col-right">
+            <div class="sheet-noborder">
+                <div class="sheet-flex-between">
+                    <div class="sheet-topblock">
+                        <span class="sheet-toptitle">Move</span>
+                        <div class="sheet-medium-spacer"></div>
+                        <input type="number" class="sheet-numbubble" name="attr_moveCombat" value="40" readonly>
+                    </div>
+                    <div class="sheet-topblock">
+                        <span class="sheet-toptitle">AC</span>
+                        <div class="sheet-medium-spacer"></div>
+                        <input type="number" class="sheet-numbubble" name="attr_armorclass" value="(@{armor}+@{armorMisc}+@{dexterityMod})" disabled="true">
+                    </div>
+                    <div class="sheet-topblock">
+                        <span class="sheet-toptitle">HP</span>
+                        <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{mortalwounds=[[1d20+(?{Modifier|0})]]}} {{rightinthe=[[1d6]]}}" name="roll_mortalwoundsRoll" title="Mortal Wounds Roll"></button>
+                        <input type="number" class="sheet-numbubble sheet-hp" name="attr_hitpoints">
+                    </div>
+                     <div class="sheet-topblock">
+                        <span class="sheet-toptitle">Max</span>
+                        <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{mortality=[[1d20+(?{Modifier|0})]]}} {{rightinthe=[[1d6]]}}" name="roll_mortalityRoll" title="Tampering with Mortality Roll"></button>
+                        <input type="number" class="sheet-numbubble sheet-hp" name="attr_hitpoints_max">
+                    </div>
+                </div>
+                <div class="sheet-flex-between">
+                    <div class="sheet-topblock">
+                        <span class="sheet-toptitle">Initiative</span>
+                        <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{initiativeroll=[[1d6+@{initiative}+(?{Modifier|0})&{tracker}]]}}" name="roll_initiativeRoll" title="Initiative Roll"></button>
+                        <input type="number" class="sheet-numbubble" name="attr_initiative" value="(@{dexterityMod}+@{initiativeMisc})" disabled="true">
+                    </div>
+                    <div class="sheet-topblock">
+                        <span class="sheet-toptitle">Surprise</span>
+                        <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{surpriseroll=[[1d6+@{surprise}+(?{Modifier|0})]]}}" name="roll_supriseRoll" title="Surprise Roll"></button>
+                        <input type="number" class="sheet-numbubble" name="attr_surprise" value="(@{surpriseMisc})" disabled="true">
+                    </div>
+                    <div class="sheet-topblock">
+                        <span class="sheet-toptitle">Reaction</span>
+                        <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{reactionroll=[[2d6+@{reaction}+(?{Modifier|0})]]}}" name="roll_reactionRoll" title="Reaction Roll"></button>
+                        <input type="number" class="sheet-numbubble" name="attr_reaction" value="(@{charismaMod}+@{reactionMisc})" disabled="true">
+                    </div>
+                    <div class="sheet-topblock">
+                        <span class="sheet-toptitle">Morale</span>
+                        <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{moraleroll=[[2d6+@{morale}+(?{Modifier|0})]]}}" name="roll_moraleRoll" title="Morale Roll"></button>
+                        <input type="number" class="sheet-numbubble" name="attr_morale" value="(@{charismaMod}+@{moraleMisc})" disabled="true">
+                    </div>
+                </div>
+            </div>
             <div class="sheet-thick-border">
-                <h3>Combat</h3>
+                <!-- Saving Throws -->
+                <h2>Saving Throws</h2>
+                <div class="sheet-flex">
+                  <div class="sheet-svblock">
+                    <span class="sheet-svbtitle">Petrify & Paralysis</span>
+                    <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{paralyzeSave}]]}}" name="roll_paralyzeSaveThrow" title="Saving Throw vs Petrify & Paralysis"></button>
+                    <input type="number" class="sheet-numbubble" name="attr_paralyzeSave" value="20">
+                    <span class="sheet-svnsubtext">Rendered Immobile</span>
+                  </div>
+                  <div class="sheet-svblock">
+                    <span class="sheet-svbtitle">Poison & Death</span>
+                      <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{poisonSave}]]}}" name="roll_poisonSaveThrow" title="Saving Throw vs Poison & Death"></button>
+                      <input type="number" class="sheet-numbubble" name="attr_poisonSave" value="20">
+                      <span class="sheet-svnsubtext">Death or Incapacitation</span>
+                  </div>
+                  <div class="sheet-svblock">
+                      <span class="sheet-svbtitle">Blast & Breath</span>
+                      <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{breathSave}]]}}" name="roll_breathSaveThrow" title="Saving Throw vs Blast & Breath"></button>
+                      <input type="number" class="sheet-numbubble" name="attr_breathSave" value="20">
+                      <span class="sheet-svnsubtext">Area Effects</span>
+                  </div>
+                  <div class="sheet-svblock">
+                      <span class="sheet-svbtitle">Staffs & Wands</span>
+                      <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{deviceSave}]]}}" name="roll_deviceSaveThrow" title="Saving Throw vs Staffs and Wands"></button>
+                      <input type="number" class="sheet-numbubble" name="attr_deviceSave" value="20">
+                      <span class="sheet-svnsubtext">Effects from Items</span>
+                  </div>
+                  <div class="sheet-svblock">
+                      <span class="sheet-svbtitle">Spells</span>
+                      <button type="roll" value="&{template:acks_template} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{magicSave}]]}}" name="roll_magicSaveThrow" title="Saving Throw vs Spells"></button>
+                      <input type="number" class="sheet-numbubble" name="attr_magicSave" value="20">
+                      <span class="sheet-svnsubtext">Effects from Spells</span>
+                  </div>
+                  <div class="sheet-tiny-spacer"></div>
+                </div>
+                <!-- Combat -->
+                <h2>Combat</h2>
                 <div class="sheet-flex">
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Armor</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_ArmorAC" value="0">
+                        <input type="number" class="sheet-numbubble" name="attr_armor" value="0">
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Atk Throw</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_BaseAT" readonly>
+                        <input type="number" class="sheet-numbubble" name="attr_attackthrow" value="10">
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Melee</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_MeleeAT" value="(@{BaseAT}-(@{StrMod}))" disabled="true">
+                        <input type="number" class="sheet-numbubble" name="attr_attackthrowMelee" value="(@{attackthrow}-@{strengthMod})" disabled="true">
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Missile</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_RangedAT" value="(@{BaseAT}-(@{DexMod}))" disabled="true">
+                        <input type="number" class="sheet-numbubble" name="attr_attackthrowMissile" value="(@{attackthrow}-@{dexterityMod})" disabled="true">
                     </div>
+                    <div class="sheet-tiny-spacer"></div>
                 </div>
-                <span class="sheet-rightsidespacer">&nbsp;</span>
-                <!-- Saving Throws -->
-                <h3>Saving Throws</h3>
-                <div class="sheet-flex">
-                  <div class="sheet-svblock">
-                    <span class="sheet-svbtitle">Petrify & Paralysis</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_Paralyze" readonly>
-                    <span class="sheet-svnsubtext">Rendered Immobile</span>
-                    <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{Paralyze}]]}}" name="roll_ParalyzeCheck"></button>
-                  </div>
-                  <div class="sheet-svblock">
-                      <span class="sheet-svbtitle">Poison & Death</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_Poison" readonly>
-                      <span class="sheet-svnsubtext">Death or Incapacitation</span>
-                      <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{Poison}]]}}" name="roll_PoisonCheck"></button>
-                  </div>
-                  <div class="sheet-svblock">
-                      <span class="sheet-svbtitle">Blast & Breath</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_Breath" readonly>
-                      <span class="sheet-svnsubtext">Area Effects</span>
-                      <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{Breath}]]}}" name="roll_BreathCheck"></button>
-                  </div>
-                  <div class="sheet-svblock">
-                      <span class="sheet-svbtitle">Staffs & Wands</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_Device" readonly>
-                      <span class="sheet-svnsubtext">Effects from Items</span>
-                      <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{Device}]]}}" name="roll_DeviceCheck"></button>
-                  </div>
-                  <div class="sheet-svblock">
-                      <span class="sheet-svbtitle">Spells</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_Magic" readonly>
-                      <span class="sheet-svnsubtext">Effects from Spells</span>
-                      <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Spells}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{Magic}]]}}" name="roll_MagicCheck"></button>
-                  </div>
-                </div>
-                <span class="sheet-rightsidespacer">&nbsp;</span>
-                <!-- MISC BONUSES -->
-                <h3>Misc Bonuses</h3>
+                <!-- Misc Bonuses -->
+                <h2>Misc Bonuses</h2>
                 <div class="sheet-flex">
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Surprise</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_mSurp" value="0">
-                        <!--<button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Surprise}} {{surprroll=[[1d6+(@{Surpr})+(?{Modifier|0})]]}}" name="roll_suprise"></button>-->
+                        <input type="number" class="sheet-numbubble" name="attr_surpriseMisc" value="0">
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Reaction</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_mReact" value="0">
-                        <!--<button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Reaction}} {{reactroll=[[2d6+(@{React})+(?{Modifier|0})]]}}" name="roll_reaction"></button>-->
+                        <input type="number" class="sheet-numbubble" name="attr_reactionMisc" value="0">
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Initiative</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_mInit" value="0">
-                        <!--<button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Initiative}} {{initroll=[[1d6+(@{Init})+(?{Modifier|0})&{tracker}]]}}" name="roll_initiative"></button>-->
+                        <input type="number" class="sheet-numbubble" name="attr_initiativeMisc" value="0">
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Morale</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_mMorale" value="0">
-                        <!--<button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Hiring}} {{hireroll=[[2d6+(@{ChaMod})+(?{Modifier|0})]]}}" name="roll_hire"></button>-->
-                        <!--<button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Morale}} {{moraleroll=[[2d6+(@{ChaMod})+(?{Modifier|0})]]}}" name="roll_morale"></button>-->
+                        <input type="number" class="sheet-numbubble" name="attr_moraleMisc" value="0">
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">AC</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_mArmor" value="0">
+                        <input type="number" class="sheet-numbubble" name="attr_armorMisc" value="0">
                     </div>
+                    <div class="sheet-tiny-spacer"></div>
                 </div>
-                <div class="sheet-flex">
-                  <div class="sheet-svblock">
-                    <span class="sheet-svbtitle">Petrify & Paralysis</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_ParalyzeMod" value="0">
-                  </div>
-                  <div class="sheet-svblock">
-                      <span class="sheet-svbtitle">Poison & Death</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_PoisonMod" value="0">
-                  </div>
-                  <div class="sheet-svblock">
-                      <span class="sheet-svbtitle">Blast & Breath</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_BreathMod" value="0">
-                  </div>
-                  <div class="sheet-svblock">
-                      <span class="sheet-svbtitle">Staffs & Wands</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_DeviceMod" value="0">
-                  </div>
-                  <div class="sheet-svblock">
-                      <span class="sheet-svbtitle">Spells</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_MagicMod" value="0">
-                  </div>
+                <!-- Movement -->
+                <h2>Movement</h2>
+                <div class=" sheet-flex-between">
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Max Carry</span>
+                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMax"  value="(20+(@{strengthMod}))" disabled="true">
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Explore Mv</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveExplore" value="120" readonly>
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Combat Mv</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveCombat" value="40" readonly>
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Run Mv</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveExplore" value="120" readonly>
+                    </div>
+                    <div class="sheet-big-spacer"></div>
                 </div>
             </div>
         </div>
     </div>
     <!-- WEAPONS -->
     <div class="sheet-thick-border">
-        <h3>Weapons</h3>
+        <h2>Weapons</h2>
         <div class="sheet-rep-title sheet-flex-between">
             <span class="sheet-weapon-name">Name</span>
             <span class="sheet-weapon-type">Type</span>
@@ -270,21 +266,24 @@
             <span class="sheet-tiny">Long(-5)</span>
             <span class="sheet-tiny">Focus</span>
             <span class="sheet-attackbonus">Multiplier</span>
-            <span class="sheet-dummy-attack-button"></span>
+            <span class="sheet-button-spacer"></span>
         </div>
         <fieldset class="repeating_weapons">
-            <div class="sheet-skillcontainer">
+            <div class="sheet-weaponcontainer">
                 <input type="text" name="attr_weaponname" class="sheet-no-border sheet-weapon-name" placeholder="Weapon Name">
                 <select name="attr_weapontype" class="sheet-no-border sheet-weapon-type">
-                    <option value="@{MeleeAT}" selected>Melee</option>
-                    <option value="@{RangedAT}">Finesse</option>
-                    <option value="@{RangedAT}">Ranged</option>
+                    <option value="1" selected>Melee</option>
+                    <option value="2">Missile</option>
+                    <option value="3">Finesse</option>
                 </select>
+                <input class="sheet-hide-it sheet-meleecheck" type="checkbox" name="attr_weapontype" value="1" checked>
+                <input class="sheet-hide-it sheet-rangedcheck" type="checkbox" name="attr_weapontype" value="2">
+                <input class="sheet-hide-it sheet-finessecheck" type="checkbox" name="attr_weapontype" value="3">
                 <select name="attr_weapondamage" class="sheet-no-border sheet-damage">
-                    <option value="1d2" selected>1d2</option>
+                    <option value="1d2" >1d2</option>
                     <option value="1d4">1d4</option>
-                    <option value="1d6">1d6</option>
-                    <option value="1d8" selected>1d8</option>
+                    <option value="1d6" selected>1d6</option>
+                    <option value="1d8" >1d8</option>
                     <option value="1d10">1d10</option>
                 </select>
                 <input type="number" name="attr_attackbonus" class="sheet-no-border sheet-attackbonus" value="0">
@@ -292,13 +291,21 @@
                 <input type="text" name="attr_shortrange" class="sheet-no-border sheet-tiny">
                 <input type="text" name="attr_mediumrange" class="sheet-no-border sheet-tiny">
                 <input type="text" name="attr_longrange" class="sheet-no-border sheet-tiny">
-                <select name="attr_focus" class="sheet-no-border sheet-tiny">
+                <select name="attr_weaponfocus" class="sheet-no-border sheet-tiny">
                     <option value="0" selected>No</option>
                     <option value="1">Yes</option>
                 </select>
                 <input type="text" name="attr_multiplier" class="sheet-no-border sheet-attackbonus" value="1">
-                <button class="sheet-attack-button" type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackroll=[[1d20+(@{attackbonus})+(?{Modifier|0})-@{weapontype}]]}} {{damageroll=[[(@{multiplier}*(@{weapondamage}))+@{damagebonus}]]}} {{critdamageroll=[[((@{multiplier}+@{focus})*(@{weapondamage}))+@{damagebonus}]]}}" name="roll_Attack"></button>
-            	<textarea spellcheck="false" name="attr_weapondescription" class="sheet-bottom-line sheet-retainer-description" placeholder="Description"></textarea>
+                <div class="sheet-weapontype-melee">
+                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}]]}} {{critdamageroll=[[((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}]]}}" name="roll_attackThrow" title="Melee Attack Throw"></button>
+                </div>
+                <div class="sheet-weapontype-ranged">
+                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[(@{multiplier}*@{weapondamage})+@{damagebonus}]]}} {{critdamageroll=[[((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}]]}}" name="roll_attackThrow" title="Missile Attack Throw"></button>
+                </div>
+                <div class="sheet-weapontype-finesse">
+                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]] ]]}} {{critdamageroll=[[((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]]]}}" name="roll_attackThrow" title="Finesse Attack Throw"></button>
+                </div>
+                <input type="text" name="attr_weapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description"></textarea>
             </div>
         </fieldset>
     </div>
@@ -306,96 +313,79 @@
     <!-- SKILLS AND EQUIPMENT -->
     <div class="sheet-flex-between">
         <div class="sheet-col-left sheet-thick-border">
-            <h3>GMRoll Actions</h3>
+            <h2>GMRoll Actions</h2>
             <input type="text" name="attr_DSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Detect Secret" readonly>
-            <input type="number" name="attr_DSskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button class="sheet-skill-button" type="roll" value="&{template:acks_template} {{name=@{DSskillname}}} {{gmskillroll=[[(?{Modifier|0})]]}} {{target=[[@{DSskillvalue}]]}}" name="roll_DSSkill"></button>
+            <input type="number" name="attr_DSskillvalue" class="sheet-skillvalue" value="18">
+            <button type="roll" value="[@{character_name} Detect Secret](~@{character_id}|gmDSThrow)" name="roll_DSThrow" title="Detect Secret Skill Throw"></button>
+            <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{DSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{DSskillvalue}]]}}" name="roll_gmDSThrow"></button>
             <input type="text" name="attr_HNskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Hear Noise" readonly>
-            <input type="number" name="attr_HNskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button class="sheet-skill-button" type="roll" value="&{template:acks_template} {{name=@{HNskillname}}} {{gmskillroll=[[(?{Modifier|0})]]}} {{target=[[@{HNskillvalue}]]}}" name="roll_HNSkill"></button>
+            <input type="number" name="attr_HNskillvalue" class="sheet-skillvalue" value="18">
+            <button type="roll" value="[@{character_name} Hear Noise](~@{character_id}|gmHNThrow)" name="roll_HNSkill" title="Hear Noise Skill Throw"></button>
+            <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{HNskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{HNskillvalue}]]}}" name="roll_gmHNThrow"></button>
             <input type="text" name="attr_FTskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Find Traps" readonly>
-            <input type="number" name="attr_FTskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button class="sheet-skill-button" type="roll" value="&{template:acks_template} {{name=@{FTskillname}}} {{gmskillroll=[[(?{Modifier|0})]]}} {{target=[[@{FTskillvalue}]]}}" name="roll_FTSkill"></button>
+            <input type="number" name="attr_FTskillvalue" class="sheet-skillvalue" value="18">
+            <button type="roll" value="[@{character_name} Find Traps](~@{character_id}|gmFTThrow)" name="roll_FTSkill" title="Find Traps Skill Throw"></button>
+            <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{FTskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{FTskillvalue}]]}}" name="roll_gmFTThrow"></button>
             <fieldset class="repeating_gmskills">
                 <input type="text" name="attr_gmskillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
                 <input type="number" name="attr_gmskillvalue" class="sheet-skillvalue" value="18">
-                <button class="sheet-skill-button" type="roll" value="&{template:acks_template} {{name=@{gmskillname}}} {{gmskillroll=[[(?{Modifier|0})]]}} {{target=[[@{gmskillvalue}]]}}" name="roll_gmSkill"></button>
+                <input type="hidden" name="attr_gmskillRollvalue" readonly>
+                <button type="roll" value="@{gmskillRollvalue}" name="roll_GMSkill" title="Secret Skill Throw"></button>
+                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{gmskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{gmskillvalue}]]}}" name="roll_gmGMThrow"></button>
             </fieldset>
-            <h3>Actions</h3>
+            <h2>Actions</h2>
             <input type="text" name="attr_ODskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Open Door" readonly>
             <input type="number" name="attr_ODskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button class="sheet-skill-button" type="roll" value="&{template:acks_template} {{name=@{ODskillname}}} {{skillroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{ODskillvalue}]]}}" name="roll_ODSkill"></button>
+            <button type="roll" value="&{template:acks_template} {{name=@{ODskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{ODskillvalue}]]}}" name="roll_ODThrow" title="Open Doors Skill Throw"></button>
             <input type="text" name="attr_TSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Trained Skill" readonly>
             <input type="number" name="attr_TSskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button class="sheet-skill-button" type="roll" value="&{template:acks_template} {{name=@{TSskillname}}} {{skillroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{TSskillvalue}]]}}" name="roll_TSSkill"></button>
+            <button type="roll" value="&{template:acks_template} {{name=@{TSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{TSskillvalue}]]}}" name="roll_TSThrow" title="Trained Skill Throw"></button>
             <input type="text" name="attr_USskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Untrained Skill" readonly>
             <input type="number" name="attr_USskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button class="sheet-skill-button" type="roll" value="&{template:acks_template} {{name=@{USskillname}}} {{skillroll=[[(1d20+?{Modifier|0})]]}} {{target=[[@{USskillvalue}]]}}" name="roll_USSkill"></button>
+            <button type="roll" value="&{template:acks_template} {{name=@{USskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{USskillvalue}]]}}" name="roll_USThrow" title="Untrained Skill Throw"></button>
             <fieldset class="repeating_skills">
                 <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
                 <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="18">
-                <button class="sheet-skill-button" type="roll" value="&{template:acks_template} {{name=@{skillname}}} {{skillroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{skillvalue}]]}}" name="roll_Skill"></button>
+                <button type="roll" value="&{template:acks_template} {{name=@{skillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{skillvalue}]]}}" name="roll_skillThrow" title="Skill Throw"></button>
             </fieldset>
-            <h3>Abilities</h3>
+            <h2>Features</h2>
             <div class="sheet-othercontainer">
-                <input type="text" name="attr_featurelangs" class="sheet-no-border sheet-othername" value="Languages">
+                <input type="text" name="attr_featureLanguage" class="sheet-no-border sheet-othername" value="Languages">
                 <div class="sheet-bottom-line sheet-auto-expand">
-                	<span name="attr_featuredescrlangs"></span>
-                	<textarea spellcheck="false" name="attr_featuredescrlangs" placeholder="Common"></textarea>
+                	<span name="attr_featuredescrLanguage"></span>
+                	<textarea spellcheck="false" name="attr_featuredescrLanguage" placeholder="Common"></textarea>
                 </div>
             </div>
             <fieldset class="repeating_features">
                 <div class="sheet-othercontainer">
                     <input type="text" name="attr_featurename" class="sheet-no-border sheet-othername" placeholder="Ability Name">
                     <div class="sheet-bottom-line sheet-auto-expand">
-                    	<span name="attr_featuredescription"></span>
-                    	<textarea spellcheck="false" name="attr_featuredescription" placeholder="Description"></textarea>
+                    	<span name="attr_featuredescr"></span>
+                    	<textarea spellcheck="false" name="attr_featuredescr" placeholder="Description"></textarea>
                     </div>
                 </div>
             </fieldset>
-            <h3>Proficiencies</h3>
+            <h2>Proficiencies</h2>
             <div class="sheet-othercontainer">
-                <input type="text" name="attr_proficiencyAdv" class="sheet-no-border sheet-othername" value="Adventuring">
+                <input type="text" name="attr_proficiencyAdventuring" class="sheet-no-border sheet-othername" value="Adventuring">
                 <div class="sheet-bottom-line sheet-special-auto">
-                	<span name="attr_proficiencydescrAdv"></span>
-                	<textarea spellcheck="false" name="attr_proficiencydescrAdv" placeholder="The character is well-equipped for a life of adventure. He knows how to clean and sharpen weapons, saddle and ride a horse, set up a camp, and search for a secret door. He has a rough idea of the value of common coins, trade goods, gems, and jewelry. All player characters are assumed to have Adventuring for purposes of the profciency throws of standard adventuring tasks."></textarea>
+                	<span name="attr_proficiencydescrAdventuring"></span>
+                	<textarea spellcheck="false" name="attr_proficiencydescrAdventuring" placeholder="This character is well-equipped for a life of adventure. They know how to clean and sharpen weapons, saddle and ride a horse, set up a camp, and search for a secret door. They have a rough idea of the value of common coins, trade goods, gems, and jewelry. All player characters are assumed to have Adventuring for purposes of the profciency throws of standard adventuring tasks."></textarea>
                 </div>
             </div>
             <fieldset class="repeating_proficiencies">
                 <div class="sheet-othercontainer">
                     <input type="text" name="attr_proficiencyname" class="sheet-no-border sheet-othername" placeholder="Proficiency Name">
                     <div class="sheet-bottom-line sheet-auto-expand">
-                    	<span name="attr_proficiencydescription"></span>
-                    	<textarea spellcheck="false" name="attr_proficiencydescription" placeholder="Description"></textarea>
+                    	<span name="attr_proficiencydescr"></span>
+                    	<textarea spellcheck="false" name="attr_proficiencydescr" placeholder="Description"></textarea>
                     </div>
                 </div>
             </fieldset>
         </div>
-        <div class="sheet-col-right sheet-save-col">
-            <div class="sheet-thick-border">
-                <!-- MOVEMENT STUFF -->
-                <h3>Movement</h3>
-                <div class=" sheet-flex-between">
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Max Carry</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_maxcarry"  value="(20+(@{StrMod}))" disabled="true">
-                    </div>
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Explore Mv</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_exploreMV" value="120" readonly>
-                    </div>
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Combat Mv</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_combatMV" value="40" readonly>
-                    </div>
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Run Mv</span>
-                        <input type="number" class="sheet-savingthrow" name="attr_exploreMV" value="120" readonly>
-                    </div>
-                </div>
-            </div>
+        <div class="sheet-col-right">
             <div class="sheet-thick-border sheet-equipment">
-                <h3>Equipment</h3>
+                <h2>Equipment</h2>
                 <fieldset class="repeating_equipment">
                      <input type="number" name="attr_itemcount" placeholder="#" class="sheet-encumbrance sheet-bottom-line" min="0">
                      <input type="text" name="attr_itemname" placeholder="Item" class="sheet-bottom-line sheet-equipment-name">
@@ -415,17 +405,17 @@
                 </div>
                 <div class="sheet-top-line sheet-flex-between sheet-encumbrance-total">
                   <span class="sheet-equipment-name">Total</span>
-                  <input type="number" step=any name="attr_encumbrance_total" class="sheet-total-encumbrance" value="0" readonly>
+                  <input type="number" step=any name="attr_encumbranceTotal" class="sheet-total-encumbrance" value="0" readonly>
                 </div>
             </div>
             <div class="sheet-thick-border sheet-equipment">
-                <h3>Unencumbering</h3>
+                <h2>Unencumbering</h2>
                 <fieldset class="repeating_banked">
                     <div class="sheet-othercontainer">
                         <input type="text" name="attr_bankheader" class="sheet-no-border sheet-othername">
                         <div class="sheet-bottom-line sheet-auto-expand">
-                        	<span name="attr_bankdescription"></span>
-                        	<textarea spellcheck="false" name="attr_bankdescription" placeholder="Description"></textarea>
+                        	<span name="attr_bankdescr"></span>
+                        	<textarea spellcheck="false" name="attr_bankdescr" placeholder="Description"></textarea>
                         </div>
                     </div>
                 </fieldset>
@@ -444,7 +434,7 @@
         <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="7">
         <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="8">
         <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="9">
-        <h3>Spells</h3>
+        <h2>Spells</h2>
         <div class="sheet-spells-per-level sheet-flex-between">
           <div class="sheet-flex-between">
               <span>1: </span>
@@ -564,7 +554,7 @@
                     <span># cast: </span>
                     <input type="number" name="attr_spellcast" class="sheet-bottom-line sheet-spell-prepared" value="0" min="0">
                 </div>
-                <button class="sheet-attack-button" type="roll" value="&{template:acks_template} {{spell=1}} {{name=@{spellname}}} {{type=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_Cast"></button>
+                <button type="roll" value="&{template:acks_template} {{spell=1}} {{name=@{spellname}}} {{type=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_spellcast" title="Cast Spell"></button>
                 <div class="sheet-othercontainer sheet-auto-expand">
                 	<span name="attr_spelldescription"></span>
                 	<textarea spellcheck="false" name="attr_spelldescription" placeholder="Description"></textarea>
@@ -575,48 +565,47 @@
     </div>
     <!-- RETAINERS -->
     <div class="sheet-thick-border">
-        <h3>Hirelings</h3>
+        <h2>
+            Hirelings
+            <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{hireroll=[[2d6+(@{charismaMod})+(?{Modifier|0})]]}}" name="roll_hire" title="Hiring Roll"></button>
+        </h2>
         <fieldset class="repeating_retainers">
             <div class="sheet-retainercontainer">
                 <div class="sheet-info-row">
                     <input type="text" name="attr_retainername" class="sheet-bottom-line sheet-retainer-large">
+                    <input type="text" name="attr_retainerac" class="sheet-bottom-line sheet-retainer-small">
+                    <input type="text" name="attr_retainerhp" class="sheet-bottom-line sheet-retainer-small">
+                    <input type="text" name="attr_retainermove" class="sheet-bottom-line sheet-retainer-small">
+                    <input type="text" name="attr_retainerattack" class="sheet-bottom-line sheet-retainer-med">
+                    <input type="text" name="attr_retainerdamage" class="sheet-bottom-line sheet-retainer-med">
+                    <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[@{retainerdamage}]]}} {{critdamageroll=[[@{retainerdamage}]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
+                    <span class="sheet-retainer-large">Name</span>
+                    <span class="sheet-retainer-small">AC</span>
+                    <span class="sheet-retainer-small">HP</span>
+                    <span class="sheet-retainer-small">Move</span>
+                    <span class="sheet-retainer-med">Atk Throw</span>
+                    <span class="sheet-retainer-med">Damage</span>
+                    <span class="sheet-button-spacer"></span>
+                </div>
+                <div class="sheet-info-row">
+                    <input type="text" name="attr_retainerclasslvl" class="sheet-bottom-line sheet-retainer-large">
                     <input type="text" name="attr_retainerposition" class="sheet-bottom-line sheet-retainer-med">
                     <input type="text" name="attr_retainerxp" class="sheet-bottom-line sheet-retainer-med">
                     <input type="text" name="attr_retainerwage" class="sheet-bottom-line sheet-retainer-small">
                     <input type="text" name="attr_retainershare" class="sheet-bottom-line sheet-retainer-small">
                     <input type="text" name="attr_retainerloyalty" class="sheet-bottom-line sheet-retainer-small">
-                    <button class="sheet-attack-button" type="roll" value="&{template:acks_template} {{name=@{retainerposition} @{retainername}}} {{loyaltyroll=[[2d6+(@{ChaMod})+(@{mMorale})+(@{retainerloyalty})]]}}" name="roll_Retainer_Loyalty"></button>
-                    <span class="sheet-retainer-large">Name</span>
+                    <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{loyaltyroll=[[2d6+(@{charismaMod})+(@{moraleMisc})+(@{retainerloyalty})]]}}" name="roll_loyaltyRoll" title="Hireling Loyalty Roll"></button>
+                    <span class="sheet-retainer-large">Class and Level</span>
                     <span class="sheet-retainer-med">Position</span>
                     <span class="sheet-retainer-med">XP</span>
                     <span class="sheet-retainer-small">Wage</span>
                     <span class="sheet-retainer-small">Share</span>
                     <span class="sheet-retainer-small">Loyalty</span>
-                    <span class="sheet-dummy-attack-button"></span>
-                </div>
-                <div class="sheet-info-row">
-                    <input type="text" name="attr_retainerclasslvl" class="sheet-bottom-line sheet-retainer-large">
-                    <input type="text" name="attr_retainerac" class="sheet-bottom-line sheet-retainer-small">
-                    <input type="text" name="attr_retainerhp" class="sheet-bottom-line sheet-retainer-small">
-                    <input type="text" name="attr_retainermove" class="sheet-bottom-line sheet-retainer-small">
-                    <input type="text" name="attr_retainerattack" class="sheet-bottom-line sheet-retainer-smallplus">
-                    <input type="text" name="attr_retainerdamage" class="sheet-bottom-line sheet-retainer-med">
-                    <button class="sheet-attack-button" type="roll" value="&{template:acks_template} {{name=@{retainerposition} @{retainername}}} {{attackroll=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[@{retainerdamage}]]}} {{critdamageroll=[[@{retainerdamage}]]}}" name="roll_Retainer_Attack"></button>
-                    <input type="text" name="attr_retainersave" class="sheet-bottom-line sheet-retainer-small">
-                    <button class="sheet-attack-button" type="roll" value="&{template:acks_template} {{name=@{retainerposition} @{retainername}}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{retainersave}]]}}" name="roll_Retainer_Save"></button>
-                    <span class="sheet-retainer-large">Class and Level</span>
-                    <span class="sheet-retainer-small">AC</span>
-                    <span class="sheet-retainer-small">HP</span>
-                    <span class="sheet-retainer-small">Move</span>
-                    <span class="sheet-retainer-smallplus">Atk Throw</span>
-                    <span class="sheet-retainer-med">Damage</span>
-                    <span class="sheet-dummy-attack-button"></span>
-                    <span class="sheet-retainer-small">Save</span>
-                    <span class="sheet-dummy-attack-button"></span>
+                    <span class="sheet-button-spacer"></span>
                 </div>
                 <div class="sheet-auto-expand">
-                	<span name="attr_retainerdescription"></span>
-                	<textarea spellcheck="false" name="attr_retainerdescription" placeholder="Notes (Alignment, Gear, Proficiencies, Wounds, Description)"></textarea>
+                	<span name="attr_retainerdesc"></span>
+                	<textarea spellcheck="false" name="attr_retainerdescr" placeholder="Notes (Alignment, Gear, Proficiencies, Wounds, Description)"></textarea>
                 </div>
             </div>
         </fieldset>
@@ -626,64 +615,63 @@
 <div class="sheet-monsterinfo">
     <div class="sheet-flex-between">
         <div class="sheet-col-left">
-            <textarea spellcheck="false" name="attr_monster_rawblock" class="sheet-rawblock" placeholder="Raw Stat Block"></textarea>
+            <textarea spellcheck="false" name="attr_mrawBlock" class="sheet-rawblock" placeholder="Raw Stat Block"></textarea>
         </div>
-        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
         <div class="sheet-col-right">
-            <div class="sheet-flex-center">
-                <div class="sheet-topblock">
-                    <span class="sheet-toptitle">Move</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_m_combatMV" value="0">
-                </div>
-                <span class="sheet-toptitle">&nbsp;</span>
+            <div class="sheet-flex-between">
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Initiative</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_m_Init" value="0">
+                    <button type="roll" value="&{template:acks_template} {{name=@{MBname}}} {{initiativeroll=[[1d6+(@{Minitiative})&{tracker}]]}}" name="roll_mInitiativeRoll" title="Monster Initiative Roll"></button>
+                    <input type="number" class="sheet-numbubble" name="attr_Minitiative" value="0">
                 </div>
-                <span class="sheet-toptitle">&nbsp;</span>
-                <div class="sheet-topblock">
-                    <span class="sheet-toptitle">AC</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_m_AC" value="0">
-                </div>
-                <span class="sheet-toptitle">&nbsp;</span>
-                <div class="sheet-topblock">
-                    <span class="sheet-toptitle">AT</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_m_ATK" readonly>
-                </div>
-                <span class="sheet-toptitle">&nbsp;</span>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Morale</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_m_MOR" value="0">
+                    <button type="roll" value="&{template:acks_template} {{name=@{MBname}}} {{moraleroll=[[2d6+(@{Mmorale})]]}}" name="roll_mMoraleRoll" title="Monster Morale Roll"></button>
+                    <input type="number" class="sheet-numbubble" name="attr_Mmorale" value="0">
                 </div>
-                <span class="sheet-toptitle">&nbsp;</span>
+                <div class="sheet-topblock">
+                    <span class="sheet-toptitle">Move</span>
+                    <div class="sheet-medium-spacer"></div>
+                    <input type="number" class="sheet-numbubble" name="attr_MmoveCombat" value="40">
+                </div>
+                <div class="sheet-topblock">
+                    <span class="sheet-toptitle">AC</span>
+                    <div class="sheet-medium-spacer"></div>
+                    <input type="number" class="sheet-numbubble" name="attr_Marmorclass" value="10">
+                </div>
+                <div class="sheet-topblock">
+                    <span class="sheet-toptitle">AT</span>
+                    <div class="sheet-medium-spacer"></div>
+                    <input type="number" class="sheet-numbubble" name="attr_Mattackthrow" value="10" readonly>
+                </div>
                  <div class="sheet-topblock">
                     <span class="sheet-toptitle">Hit Dice</span>
-                    <input type="text" class="sheet-savingthrow-hd" name="attr_m_HD" value="0">
+                    <div class="sheet-medium-spacer"></div>
+                    <input type="text" class="sheet-numbubble-hd" name="attr_Mhitdice" value="1d8">
                 </div>
             </div>
             <!-- FIGHTS AND SAVES AS -->
-            <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <div class="sheet-info-row">
                 <span class="sheet-monsteras-span">Fights as</span>
-                <select name="attr_m_fightas" class="sheet-monster-type">
+                <select name="attr_Mfightas" class="sheet-monster-type">
                     <option value="MST" selected>Monster</option>
                     <option value="FTR">Fighter</option>
                     <option value="MAG">Mage</option>
                     <option value="CLR">Cleric</option>
                     <option value="THF">Thief</option>
                 </select>
-                <input type="number" name="attr_m_fightlvl" value="0">
+                <input type="number" name="attr_Mfightlevel" value="0">
             </div>
             
             <div class="sheet-info-row">
                 <span class="sheet-monsteras-span">Saves as</span>
-                <select name="attr_m_saveas" class="sheet-monster-type">
+                <select name="attr_Msaveas" class="sheet-monster-type">
                     <option value="FTR" selected>Fighter</option>
                     <option value="MAG">Mage</option>
                     <option value="CLR">Cleric</option>
                     <option value="THF">Thief</option>
                 </select>
-                <input type="number" name="attr_m_savelvl" value="0">
+                <input type="number" name="attr_Msavelevel" value="0">
             </div>
             
         </div>
@@ -692,125 +680,124 @@
         <div class="sheet-col-left">
             <div class="sheet-thick-border">
                 <!-- ABILITIES -->
-                <h3>Stat Block</h3>
+                <h2>Stat Block</h2>
                 <div class="sheet-statblock-column">
                     <div class="sheet-statblock-row">
                         <span>Name</span>
-                        <input type="text" name="attr_m_name" readonly>
+                        <input type="text" name="attr_MBname" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>% In Lair</span>
-                        <input type="text" name="attr_m_lair" readonly>
+                        <input type="text" name="attr_MBlair" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Dungeon Enc.</span>
-                        <input type="text" name="attr_m_denc" readonly>
+                        <input type="text" name="attr_MBdungeonenc" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Wilderness Enc.</span>
-                        <input type="text" name="attr_m_wenc" readonly>
+                        <input type="text" name="attr_MBwildernessenc" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Alignment</span>
-                        <input type="text" name="attr_m_alignment" readonly>
+                        <input type="text" name="attr_MBalignment" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Movement</span>
-                        <input type="text" name="attr_m_movement" readonly>
+                        <input type="text" name="attr_MBmovement" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Armor Class</span>
-                        <input type="text" name="attr_m_armorclass" readonly>
+                        <input type="text" name="attr_MBarmorclass" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Hit Dice</span>
-                        <input type="text" name="attr_m_hitdice" readonly>
+                        <input type="text" name="attr_MBhitdice" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Attacks</span>
-                        <input type="text" name="attr_m_attack" readonly>
+                        <input type="text" name="attr_MBattack" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Damage</span>
-                        <input type="text" name="attr_m_damage" readonly>
+                        <input type="text" name="attr_MBdamage" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Save</span>
-                        <input type="text" name="attr_m_save" readonly>
+                        <input type="text" name="attr_MBsave" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Morale</span>
-                        <input type="text" name="attr_m_morale" readonly>
+                        <input type="text" name="attr_MBmorale" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>Treasure Type</span>
-                        <input type="text" name="attr_m_treasure" readonly>
+                        <input type="text" name="attr_MBtreasure" readonly>
                     </div>
                     <div class="sheet-statblock-row">
                         <span>XP</span>
-                        <input type="text" name="attr_m_xp" readonly>
+                        <input type="text" name="attr_MBxp" readonly>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="sheet-col-right sheet-save-col">
-            <!-- SAVING THROWS -->
+        <div class="sheet-col-right">
             <div class="sheet-thick-border">
                 <!-- Saving Throws -->
-                <h3>Saving Throws</h3>
+                <h2>Saving Throws</h2>
                 <div class="sheet-flex">
                   <div class="sheet-svblock">
                     <span class="sheet-svbtitle">Petrify & Paralysis</span>
-                    <input type="number" class="sheet-savingthrow" name="attr_m_Paralyze" readonly>
+                    <input type="number" class="sheet-numbubble" name="attr_MparalyzeSave" readonly>
                     <span class="sheet-svnsubtext">Rendered Immobile</span>
-                    <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{m_Paralyze}]]}}" name="roll_ParalyzeCheck"></button>
+                    <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MparalyzeSave}]]}}" name="roll_mParalyzeSaveThrow" title="Monster Saving Throw vs Petrify & Paralysis"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Poison & Death</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_m_Poison" readonly>
+                      <input type="number" class="sheet-numbubble" name="attr_MpoisonSave" readonly>
                       <span class="sheet-svnsubtext">Death or Incapacitation</span>
-                      <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{m_Poison}]]}}" name="roll_PoisonCheck"></button>
+                      <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MpoisonSave}]]}}" name="roll_mPoisonSaveThrow" title="Monster Saving Throw vs Poison & Death"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Blast & Breath</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_m_Breath" readonly>
+                      <input type="number" class="sheet-numbubble" name="attr_MbreathSave" readonly>
                       <span class="sheet-svnsubtext">Area Effects</span>
-                      <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{m_Breath}]]}}" name="roll_BreathCheck"></button>
+                      <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MbreathSave}]]}}" name="roll_mBreathSaveThrow" title="Monster Saving Throw vs Blast & Breath"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Staffs & Wands</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_m_Device" readonly>
+                      <input type="number" class="sheet-numbubble" name="attr_MdeviceSave" readonly>
                       <span class="sheet-svnsubtext">Effects from Items</span>
-                      <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{m_Device}]]}}" name="roll_DeviceCheck"></button>
+                      <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MdeviceSave}]]}}" name="roll_mDeviceSaveThrow" title="Monster Saving Throw vs Staffs & Wands"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Spells</span>
-                      <input type="number" class="sheet-savingthrow" name="attr_m_Magic" readonly>
+                      <input type="number" class="sheet-numbubble" name="attr_MmagicSave" readonly>
                       <span class="sheet-svnsubtext">Effects from Spells</span>
-                      <button class="sheet-ability-button" type="roll" value="&{template:acks_template} {{name=Spells}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{m_Magic}]]}}" name="roll_MagicCheck"></button>
+                      <button type="roll" value="&{template:acks_template} {{name=Spells}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MmagicSave}]]}}" name="roll_mMagicSaveThrow" title="Monster Saving Throw vs Spells"></button>
                   </div>
                 </div>
             </div>
             <!-- COMBAT STUFF -->
             <div class="sheet-thick-border">
-                <h3>Combat</h3>
+                <h2>Combat</h2>
                 <div class="sheet-rep-title sheet-flex-between">
                     <span class="sheet-mweapon-name">Name</span>
                     <span class="sheet-mdamage">Damage</span>
                     <span class="sheet-mtiny">S</span>
                     <span class="sheet-mtiny">M(-2)</span>
                     <span class="sheet-mtiny">L(-5)</span>
-                    <span class="sheet-dummy-attack-button"></span>
+                    <span class="sheet-button-spacer"></span>
                 </div>
                 <fieldset class="repeating_mweapons">
-                    <div class="sheet-skillcontainer">
-                        <input type="text" name="attr_m_weaponname" class="sheet-no-border sheet-mweapon-name" placeholder="Weapon Name">
-                        <input type="text" name="attr_m_weapondamage" class="sheet-no-border sheet-mdamage" placeholder="1d6">
-                        <input type="text" name="attr_m_shortrange" class="sheet-no-border sheet-mtiny">
-                        <input type="text" name="attr_m_mediumrange" class="sheet-no-border sheet-mtiny">
-                        <input type="text" name="attr_m_longrange" class="sheet-no-border sheet-mtiny">
-                        <button class="sheet-attack-button" type="roll" value="&{template:acks_template} {{name=@{m_weaponname}}} {{attackroll=[[1d20+(?{Modifier|0})-(@{m_ATK})]]}} {{damageroll=[[@{m_weapondamage}]]}} {{critdamageroll=[[@{m_weapondamage}]]}}" name="roll_Attack"></button>
-                        <textarea spellcheck="false" name="attr_weapondescription" class="sheet-bottom-line sheet-retainer-description" placeholder="Description"></textarea>
+                    <div class="sheet-weaponcontainer">
+                        <input type="text" name="attr_Mweaponname" class="sheet-no-border sheet-mweapon-name" placeholder="Weapon Name">
+                        <input type="text" name="attr_Mweapondamage" class="sheet-no-border sheet-mdamage" placeholder="1d6">
+                        <input type="text" name="attr_Mshortrange" class="sheet-no-border sheet-mtiny">
+                        <input type="text" name="attr_Mmediumrange" class="sheet-no-border sheet-mtiny">
+                        <input type="text" name="attr_Mlongrange" class="sheet-no-border sheet-mtiny">
+                        <button type="roll" value="&{template:acks_template} {{name=@{Mweaponname}}} {{attackthrow=[[1d20+(?{Modifier|0})-(@{Mattackthrow})]]}} {{damageroll=[[@{Mweapondamage}]]}} {{critdamageroll=[[@{Mweapondamage}]]}}" name="roll_mAttackThrow" title="Monster Attack Throw"></button>
+                        <input type="text" name="attr_Mweapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description"></textarea>
                     </div>
                 </fieldset>
             </div>
@@ -820,218 +807,204 @@
 <!-- Templates -->
 <rolltemplate class="sheet-rolltemplate-acks_template">
     <table>
-        {{#abilityroll}}
-            <tr><th>{{name}} Throw</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{abilityroll}} vs {{target}}+</td></tr>
-            {{#rollLess() abilityroll target}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Failure.</b></td></tr>
-            {{/rollLess() abilityroll target}}
-            {{#rollTotal() abilityroll target}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Success!</b></td></tr>
-            {{/rollTotal() abilityroll target}}
-            {{#rollGreater() abilityroll target}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Success!</b></td></tr>
-            {{/rollGreater() abilityroll target}}
-        {{/abilityroll}}
-        {{#attackroll}}
-            <tr><th>Attack Throw</th></tr>
+        {{#mortalwounds}}
+            <tr><td class="sheet-subheader">Mortal Wounds Roll</td></tr>
             <tr><th>{{name}}</th></tr>
-            {{#rollWasFumble() attackroll}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Fumble!</b></td></tr>
-            {{/rollWasFumble() attackroll}}
-            {{#^rollWasFumble() attackroll}}
-                {{#rollWasCrit() attackroll}}
-                        <tr><td class="sheet-subheader" style="color:green;"><b>Critical Hit!</b></td></tr>
-                        <tr><td><span class="sheet-tcat">Damage Roll: </span>{{critdamageroll}}</td></tr>                
-                {{/rollWasCrit() attackroll}}
-                {{#^rollWasCrit() attackroll}}
-                    {{#rollLess() attackroll 0}}
-                            <tr><td class="sheet-subheader" style="color:red;"><b>Miss.</b></td></tr>
-                    {{/rollLess() attackroll 0}}
-                    {{#rollTotal() attackroll 0}}
-                            <tr><td class="sheet-subheader" style="color:green;"><b>Hit AC: {{attackroll}}</b></td></tr>
-                            <tr><td><span class="sheet-tcat">Damage Roll: </span>{{damageroll}}</td></tr>
-                    {{/rollTotal() attackroll 0}}
-                    {{#rollGreater() attackroll 0}}
-                            <tr><td class="sheet-subheader" style="color:green;"><b>Hit AC: {{attackroll}}</b></td></tr>
-                            <tr><td><span class="sheet-tcat">Damage Roll: </span>{{damageroll}}</td></tr>
-                    {{/rollGreater() attackroll 0}}
-                {{/^rollWasCrit() attackroll}}
-            {{/^rollWasFumble() attackroll}}
-        {{/attackroll}}
-        {{#gmskillroll}}
-            <tr><th>{{name}} Throw</th></tr>
-            <tr><td><span class="sheet-tcat"></span>1d20+{{gmskillroll}} vs {{target}}+</td></tr>
-            <tr><td><span class="sheet-tcat"></span>[SECRET ROLL TO GM](!broll 1d20+{{gmskillroll}} vs {{target}}+ to {{name}})</td></tr>
-        {{/gmskillroll}}
-        {{#skillroll}}
-            <tr><th>{{name}} Throw</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{skillroll}} vs {{target}}+ </td></tr>
-            {{#rollLess() skillroll target}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Failure.</b></td></tr>
-            {{/rollLess() skillroll target}}
-            {{#rollTotal() skillroll target}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Success!</b></td></tr>
-            {{/rollTotal() skillroll target}}
-            {{#rollGreater() skillroll target}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Success!</b></td></tr>
-            {{/rollGreater() skillroll target}}
-        {{/skillroll}}
-        {{#saveroll}}
-            <tr><th>Saving Throw</th></tr>
+            <tr><td><span class="sheet-tcat">d20 Result: </span>{{mortalwounds}}</td></tr>
+            <tr><td><span class="sheet-tcat">d6 Result: </span>{{rightinthe}}</td></tr>
+        {{/mortalwounds}}
+        {{#mortality}}
+            <tr><td class="sheet-subheader">Tampering with Mortality Roll</td></tr>
             <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{saveroll}} vs {{target}}+</td></tr>
-            {{#rollLess() saveroll target}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Failure.</b></td></tr>
-            {{/rollLess() saveroll target}}
-            {{#rollTotal() saveroll target}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Success!</b></td></tr>
-            {{/rollTotal() saveroll target}}
-            {{#rollGreater() saveroll target}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Success!</b></td></tr>
-            {{/rollGreater() saveroll target}}
-        {{/saveroll}}
-        {{#loyaltyroll}}
-            <tr><th>Morale Roll</th></tr>
+            <tr><td><span class="sheet-tcat">d20 Result: </span>{{mortality}}</td></tr>
+            <tr><td><span class="sheet-tcat">d6 Result: </span>{{rightinthe}}</td></tr>
+        {{/mortality}}
+        {{#surpriseroll}}
+            <tr><td class="sheet-subheader">Surprise Roll</td></tr>
             <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{loyaltyroll}}</td></tr>
-            {{#rollLess() loyaltyroll 0}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Hostility!</b></td></tr>
-            {{/rollLess() loyaltyroll 0}}
-            {{#rollBetween() loyaltyroll 0 2}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Hostility!</b></td></tr>
-            {{/rollBetween() loyaltyroll 0 2}}
-            {{#rollBetween() loyaltyroll 3 5}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Resignation.</b></td></tr>
-            {{/rollBetween() loyaltyroll 3 5}}
-            {{#rollBetween() loyaltyroll 6 8}}
-                    <tr><td class="sheet-subheader" style="color:yellow;"><b>Grudging Loyalty.</b></td></tr>
-            {{/rollBetween() loyaltyroll 6 8}}
-            {{#rollBetween() loyaltyroll 9 11}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Loyalty.</b></td></tr>
-            {{/rollBetween() loyaltyroll 9 11}}
-            {{#rollGreater() loyaltyroll 11}}
-                    <tr><td class="sheet-subheader" style="color:limegreen;"><b>Fanatic Loyalty!</b></td></tr>
-            {{/rollGreater() loyaltyroll 11}}
-        {{/loyaltyroll}}
-        {{#surprroll}}
-            <tr><th>{{name}} Roll</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{surprroll}}</td></tr>
-            {{#rollLess() loyaltyroll 3}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Suprised!</b></td></tr>
-            {{/rollLess() loyaltyroll 3}}
-            {{#rollGreater() loyaltyroll 11}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Not Surprised.</b></td></tr>
-            {{/rollGreater() loyaltyroll 11}}
-        {{/surprroll}}
-        {{#initroll}}
-            <tr><th>{{name}} Roll</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{initroll}}</td></tr>
-        {{/initroll}}
-        {{#reactroll}}
-            <tr><th>{{name}} Roll</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{reactroll}}</td></tr>
-            {{#rollLess() reactroll 0}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Hostile!</b></td></tr>
-            {{/rollLess() reactroll 0}}
-            {{#rollBetween() reactroll 0 2}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Hostile!</b></td></tr>
-            {{/rollBetween() reactroll 0 2}}
-            {{#rollBetween() reactroll 3 5}}
-                    <tr><td class="sheet-subheader" style="color:orange;"><b>Unfriendly.</b></td></tr>
-            {{/rollBetween() reactroll 3 5}}
-            {{#rollBetween() reactroll 6 8}}
-                    <tr><td class="sheet-subheader" style="color:yellow;"><b>Uncertain.</b></td></tr>
-            {{/rollBetween() reactroll 6 8}}
-            {{#rollBetween() reactroll 9 11}}
-                    <tr><td class="sheet-subheader" style="color:yellow;"><b>Uninterested.</b></td></tr>
-            {{/rollBetween() reactroll 9 11}}
-            {{#rollGreater() reactroll 11}}
-                    <tr><td class="sheet-subheader" style="color:limegreen;"><b>Friendly!</b></td></tr>
-            {{/rollGreater() reactroll 11}}
-        {{/reactroll}}
+            <tr><td><span class="sheet-tcat">Result: </span>{{surpriseroll}}</td></tr>
+            {{#rollLess() surpriseroll 3}}
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Suprised!</b></td></tr>
+            {{/rollLess() surpriseroll 3}}
+            {{#rollGreater() surpriseroll 2}}
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Not Surprised.</b></td></tr>
+            {{/rollGreater() surpriseroll 2}}
+        {{/surpriseroll}}
+        {{#initiativeroll}}
+            <tr><td class="sheet-subheader">Initiative Roll</td></tr>
+            <tr><th>{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span>{{initiativeroll}}</td></tr>
+        {{/initiativeroll}}
+        {{#reactionroll}}
+            <tr><td class="sheet-subheader">Reaction Roll</td></tr>
+            <tr><th>{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span>{{reactionroll}}</td></tr>
+            {{#rollLess() reactionroll 0}}
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Hostile!</b></td></tr>
+            {{/rollLess() reactionroll 0}}
+            {{#rollBetween() reactionroll 0 2}}
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Hostile!</b></td></tr>
+            {{/rollBetween() reactionroll 0 2}}
+            {{#rollBetween() reactionroll 3 5}}
+                    <tr><td class="sheet-subfooter" style="color:orange;"><b>Unfriendly.</b></td></tr>
+            {{/rollBetween() reactionroll 3 5}}
+            {{#rollBetween() reactionroll 6 8}}
+                    <tr><td class="sheet-subfooter" style="color:yellow;"><b>Uncertain.</b></td></tr>
+            {{/rollBetween() reactionroll 6 8}}
+            {{#rollBetween() reactionroll 9 11}}
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Uninterested.</b></td></tr>
+            {{/rollBetween() reactionroll 9 11}}
+            {{#rollGreater() reactionroll 11}}
+                    <tr><td class="sheet-subfooter" style="color:limegreen;"><b>Friendly!</b></td></tr>
+            {{/rollGreater() reactionroll 11}}
+        {{/reactionroll}}
         {{#moraleroll}}
-            <tr><th>{{name}} Roll</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{moraleroll}}</td></tr>
+            <tr><td class="sheet-subheader">Morale Roll</td></tr>
+            <tr><th>{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span>{{moraleroll}}</td></tr>
             {{#rollLess() moraleroll 0}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Retreat!</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Retreat!</b></td></tr>
             {{/rollLess() moraleroll 0}}
             {{#rollBetween() moraleroll 0 2}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Retreat!</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Retreat!</b></td></tr>
             {{/rollBetween() moraleroll 0 2}}
             {{#rollBetween() moraleroll 3 5}}
-                    <tr><td class="sheet-subheader" style="color:orange;"><b>Fighting Withdrawl.</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:orange;"><b>Fighting Withdrawl.</b></td></tr>
             {{/rollBetween() moraleroll 3 5}}
             {{#rollBetween() moraleroll 6 8}}
-                    <tr><td class="sheet-subheader" style="color:yellow;"><b>Fight On.</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:yellow;"><b>Fight On.</b></td></tr>
             {{/rollBetween() moraleroll 6 8}}
             {{#rollBetween() moraleroll 9 11}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Advance and Pursue.</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Advance and Pursue.</b></td></tr>
             {{/rollBetween() moraleroll 9 11}}
             {{#rollGreater() moraleroll 11}}
-                    <tr><td class="sheet-subheader" style="color:limegreen;"><b>Victory or Death!</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:limegreen;"><b>Victory or Death!</b></td></tr>
             {{/rollGreater() moraleroll 11}}
         {{/moraleroll}}
+        {{#savethrow}}
+            <tr><td class="sheet-subheader">Saving Throw</td></tr>
+            <tr><th>{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span>{{savethrow}} vs {{target}}+</td></tr>
+            {{#rollLess() savethrow target}}
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Failure.</b></td></tr>
+            {{/rollLess() savethrow target}}
+            {{#rollTotal() savethrow target}}
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+            {{/rollTotal() savethrow target}}
+            {{#rollGreater() savethrow target}}
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+            {{/rollGreater() savethrow target}}
+        {{/savethrow}}
+        {{#attackthrow}}
+            <tr><td class="sheet-subheader">Attack Throw</td></tr>
+            <tr><th>{{name}}</th></tr>
+            {{#rollWasFumble() attackthrow}}
+                    <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Fumble!</b></td></tr>
+            {{/rollWasFumble() attackthrow}}
+            {{#^rollWasFumble() attackthrow}}
+                {{#rollWasCrit() attackthrow}}
+                        <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
+                        <tr><td><span class="sheet-tcat">Damage: </span>{{critdamageroll}}</td></tr>                
+                        <tr><td class="sheet-subfooter" style="color:green;"><b>Critical Hit!</b></td></tr>
+                {{/rollWasCrit() attackthrow}}
+                {{#^rollWasCrit() attackthrow}}
+                    {{#rollLess() attackthrow 0}}
+                            <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
+                            <tr><td class="sheet-subfooter" style="color:red;"><b>Miss.</b></td></tr>
+                    {{/rollLess() attackthrow 0}}
+                    {{#rollTotal() attackthrow 0}}
+                            <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
+                            <tr><td><span class="sheet-tcat">Damage: </span>{{damageroll}}</td></tr>
+                            <tr><td class="sheet-subfooter" style="color:green;"><b>Hit AC: {{[[attackthrow}}</b></td></tr>
+                    {{/rollTotal() attackthrow 0}}
+                    {{#rollGreater() attackthrow 0}}
+                            <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
+                            <tr><td><span class="sheet-tcat">Damage: </span>{{damageroll}}</td></tr>
+                            <tr><td class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
+                    {{/rollGreater() attackthrow 0}}
+                {{/^rollWasCrit() attackthrow}}
+            {{/^rollWasFumble() attackthrow}}
+        {{/attackthrow}}
+        {{#skillthrow}}
+            <tr><td class="sheet-subheader">Skill Throw</td></tr>
+            <tr><th>{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span>{{skillthrow}} vs {{target}}+ </td></tr>
+            {{#rollLess() skillthrow target}}
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Failure.</b></td></tr>
+            {{/rollLess() skillthrow target}}
+            {{#rollTotal() skillthrow target}}
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+            {{/rollTotal() skillthrow target}}
+            {{#rollGreater() skillthrow target}}
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+            {{/rollGreater() skillthrow target}}
+        {{/skillthrow}}
+        {{#spell}}
+            <tr><td  colspan="2" class="sheet-subheader">{{type}} {{level}} Spell</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr class="sheet-spellrow"><td><span class="sheet-tcat">Duration: </span>{{duration}}</td>
+            <td><span class="sheet-tcat">Range: </span>{{range}}</td></tr>
+            <tr class="sheet-spellrow"><td colspan="2"><span class="sheet-tcat">Description: </span>{{description}}</td></tr>
+        {{/spell}}
         {{#hireroll}}
-            <tr><th>{{name}} Roll</th></tr>
-            <tr><td><span class="sheet-tcat">Roll: </span>{{hireroll}}</td></tr>
+            <tr><td class="sheet-subheader">Hiring Roll</td></tr>
+            <tr><th>{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span>{{hireroll}}</td></tr>
             {{#rollLess() hireroll 0}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Refuse and Slander!</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Refuse and Slander!</b></td></tr>
             {{/rollLess() hireroll 0}}
             {{#rollBetween() hireroll 0 2}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Refuse and Slander!</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Refuse and Slander!</b></td></tr>
             {{/rollBetween() hireroll 0 2}}
             {{#rollBetween() hireroll 3 5}}
-                    <tr><td class="sheet-subheader" style="color:red;"><b>Refuse.</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Refuse.</b></td></tr>
             {{/rollBetween() hireroll 3 5}}
             {{#rollBetween() hireroll 6 8}}
-                    <tr><td class="sheet-subheader" style="color:yellow;"><b>Try Again.</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:yellow;"><b>Try Again.</b></td></tr>
             {{/rollBetween() hireroll 6 8}}
             {{#rollBetween() hireroll 9 11}}
-                    <tr><td class="sheet-subheader" style="color:green;"><b>Accept.</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Accept.</b></td></tr>
             {{/rollBetween() hireroll 9 11}}
             {{#rollGreater() hireroll 11}}
-                    <tr><td class="sheet-subheader" style="color:limegreen;"><b>Accept with elan!</b></td></tr>
+                    <tr><td class="sheet-subfooter" style="color:limegreen;"><b>Accept with elan!</b></td></tr>
             {{/rollGreater() hireroll 11}}
         {{/hireroll}}
-        {{#spell}}
+        {{#loyaltyroll}}
+            <tr><td class="sheet-subheader">Loyalty Roll</td></tr>
             <tr><th>{{name}}</th></tr>
-            <tr class="sheet-spellrow"><td><span class="sheet-tcat">Level: </span>{{type}} {{level}}</td></tr>
-            <tr class="sheet-spellrow"><td><span class="sheet-tcat">Duration: </span>{{duration}}</td></tr>
-            <tr class="sheet-spellrow"><td><span class="sheet-tcat">Range: </span>{{range}}</td></tr>
-            <tr class="sheet-spellrow"><td><span class="sheet-tcat">Description: </span>{{description}}</td></tr>
-        {{/spell}}
+            <tr><td><span class="sheet-tcat">Result: </span>{{loyaltyroll}}</td></tr>
+            {{#rollLess() loyaltyroll 0}}
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Hostility!</b></td></tr>
+            {{/rollLess() loyaltyroll 0}}
+            {{#rollBetween() loyaltyroll 0 2}}
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Hostility!</b></td></tr>
+            {{/rollBetween() loyaltyroll 0 2}}
+            {{#rollBetween() loyaltyroll 3 5}}
+                    <tr><td class="sheet-subfooter" style="color:red;"><b>Resignation.</b></td></tr>
+            {{/rollBetween() loyaltyroll 3 5}}
+            {{#rollBetween() loyaltyroll 6 8}}
+                    <tr><td class="sheet-subfooter" style="color:yellow;"><b>Grudging Loyalty.</b></td></tr>
+            {{/rollBetween() loyaltyroll 6 8}}
+            {{#rollBetween() loyaltyroll 9 11}}
+                    <tr><td class="sheet-subfooter" style="color:green;"><b>Loyalty.</b></td></tr>
+            {{/rollBetween() loyaltyroll 9 11}}
+            {{#rollGreater() loyaltyroll 11}}
+                    <tr><td class="sheet-subfooter" style="color:limegreen;"><b>Fanatic Loyalty!</b></td></tr>
+            {{/rollGreater() loyaltyroll 11}}
+        {{/loyaltyroll}}
+        {{#custom}}
+            {{#allprops() custom}}
+                <tr><td class="sheet-subheader">GM Special</td></tr>
+                <tr><th>{{name}}</th></tr>
+                <tr class="rowcolor"><td><span class="tcat">{{key}}: </span>{{value}}</td></tr>
+            {{/allprops() custom}}
+        {{/custom}}
     </table>
 </rolltemplate>
 <!-- Sheet workers -->
 <script type="text/worker">
-const skills = [
-];
 
-const fillRepeatingSectionFromData = (sectionName, dataList) => {
-  getSectionIDs(`repeating_${sectionName}`, idList => {
-    const existingRowAttributes = idList.map(id => `repeating_${sectionName}_${id}_name`);
-    getAttrs(existingRowAttributes, v => {
-      const createdIDs = [],
-        setting = dataList.map(o => {
-          let rowID;
-          while (!rowID) {
-            let newID = generateRowID();
-            if (!createdIDs.includes(newID)) {
-              rowID = newID;
-              createdIDs.push(rowID);
-            }
-          }
-          return Object.keys(o).reduce((m, key) => {
-            m[`repeating_${sectionName}_${rowID}_${key}`] = String(o[key]);
-            return m;
-          }, {});
-        })
-        .reduce((m, o) => Object.assign(m, o), {});
-      setAttrs(setting);
-    });
-  });
-};
 // Spells Cast
 on('change:repeating_spells remove:repeating_spells', () => {
   "use strict";
@@ -1056,6 +1029,7 @@ on('change:repeating_spells remove:repeating_spells', () => {
     });
   });
 });
+
 // Equipment counter
 on('change:repeating_equipment remove:repeating_equipment change:coinsCP change:coinsSP change:coinsEP change:coinsGP change:coinsPP', function() {
     var totalCoins=0;
@@ -1091,36 +1065,38 @@ on('change:repeating_equipment remove:repeating_equipment change:coinsCP change:
                     }
                     if(num == 2) {
                         totalEnc += adg;
-                        setAttrs({ encumbrance_total: Math.round((totalEnc) * 100) / 100 });
+                        setAttrs({ encumbranceTotal: Math.round((totalEnc) * 100) / 100 });
                     }
                 });
             }
         });
     });
 });
+
 // Movement Rate
-on('change:encumbrance_total change:maxCarry', function() {
-    getAttrs(["encumbrance_total","maxCarry"], function(values) {
-        if(values.encumbrance_total > values.maxCarry) {
-            setAttrs({ exploreMV: 0});
-            setAttrs({ combatMV: 0});
-        } else if(values.encumbrance_total > 10) {
-            setAttrs({ exploreMV: 30});
-            setAttrs({ combatMV: 10});
-        } else if(values.encumbrance_total > 7) {
-            setAttrs({ exploreMV: 60});
-            setAttrs({ combatMV: 20});
-        } else if(values.encumbrance_total > 5) {
-            setAttrs({ exploreMV: 90});
-            setAttrs({ combatMV: 30});
+on('change:encumbranceTotal change:encumbranceMax', function() {
+    getAttrs(["encumbranceTotal","encumbranceMax"], function(values) {
+        if(values.encumbranceTotal > values.encumbranceMax) {
+            setAttrs({ moveExplore: 0});
+            setAttrs({ moveCombat: 0});
+        } else if(values.encumbranceTotal > 10) {
+            setAttrs({ moveExplore: 30});
+            setAttrs({ moveCombat: 10});
+        } else if(values.encumbranceTotal > 7) {
+            setAttrs({ moveExplore: 60});
+            setAttrs({ moveCombat: 20});
+        } else if(values.encumbranceTotal > 5) {
+            setAttrs({ moveExplore: 90});
+            setAttrs({ moveCombat: 30});
         } else {
-            setAttrs({ exploreMV: 120});
-            setAttrs({ combatMV: 40});
+            setAttrs({ moveExplore: 120});
+            setAttrs({ moveCombat: 40});
         }
     });
 });
+
 // Ability modifiers
-['Cha', 'Con', 'Dex', 'Int', 'Str', 'Wis'].forEach(ability => {
+['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'].forEach(ability => {
   on(`sheet:opened change:${ability.toLowerCase()}`, () => {
     getAttrs([ability.toLowerCase()], v => {
       const value = parseInt(v[ability.toLowerCase()]) || 10,
@@ -1136,950 +1112,392 @@ on('change:encumbrance_total change:maxCarry', function() {
     });
   });
 });
-// Default Adventuring Skills
-on('change:StrMod change:DexMod change:IntMod change:WisMod change:level', function() {
-    getAttrs(["StrMod","DexMod","IntMod","WisMod","level"], function(values) {
+
+// Adventuring Skills modifed by ability scores, and houseruled catch-all categories
+on('change:strengthMod change:level', function() {
+    getAttrs(["strengthMod","level"], function(values) {
         setAttrs({
-            ODskillvalue: 18-Math.max(parseInt(values.StrMod), 0) * 4,
-            DSskillvalue: 18-Math.max(parseInt(values.IntMod), 0) * 1,
-            HNskillvalue: 18-Math.max(parseInt(values.WisMod), 0) * 1,
-            FTskillvalue: 18-Math.max(parseInt(values.DexMod), 0) * 1,
+            ODskillvalue: 18-Math.max(parseInt(values.strengthMod), 0) * 4,
             TSskillvalue: 15-parseInt(values.level),
             USskillvalue: 19-Math.ceil(parseInt(values.level)/2)
         });
     });
 });
-// Conversion
-on('sheet:opened', () => {
-  const generateSkills = () => {
-    getSectionIDs('repeating_skills', idArray => {
-      const skillNames = idArray.map(id => `repeating_skills_${id}_skillname`);
-      getAttrs(skillNames, v => {
-        const existingSkills = Object.values(v).map(name => (name || '').toLowerCase()),
-          newSkills = skills.filter(s => !existingSkills.includes(s.toLowerCase())).map(n => ({
-            skillname: n
-          }));
-        fillRepeatingSectionFromData('skills', newSkills);
-      });
-    });
-  }
-  getAttrs(['version', 'MaxHP'], v => {
-    if (!v.version) {
-      if (v.MaxHP) {
-        setAttrs({
-          hp_max: v.MaxHP
-        });
-      }
-      getSectionIDs('repeating_wepons', idArray => {
-        const attrsToConvert = [
-          'weaponname', 'weapontype', 'weapondamage', 'shortrange', 'mediumrange', 'longrange'
-        ];
-        const attrs = idArray.reduce((m, id) => {
-          return m.concat(attrsToConvert.map(name => `repeating_wepons_${id}_${name}`));
-        }, []);
-        getAttrs(attrs, v => {
-          const data = idArray.map(id => {
-            return attrsToConvert.reduce((m, name) => {
-              m[name] = v[`repeating_wepons_${id}_${name}`] || '';
-              return m;
-            }, {});
-          });
-          idArray.forEach(id => removeRepeatingRow(`repeating_wepons_${id}`));
-          fillRepeatingSectionFromData('weapons', data);
-        });
-      });
-      generateSkills();
-    }
-    if (v.version === '1') generateSkills();
-    setAttrs({
-      version: '2'
-    });
-  });
-});
-// Calculating Character Saving Throws and Attack Throw
-// Classes with Split Progression: trickster (atk thief sv fighter) gladiator (atk monster sv fighter) Priest/ess Witch (atk mage sv cleric)
-on('change:class change:level change:ParalyzeMod change:PoisonMod change:BreathMod change:DeviceMod change:MagicMod change:WisMod', function() {
-    getAttrs(["class","level","ParalyzeMod","PoisonMod","BreathMod","DeviceMod","MagicMod","WisMod"], function(values) {
-        switch (values.class.toUpperCase()) {
-            case "FIGHTER":
-            case "ASSASSIN":
-            case "DWARVEN VAULTGUARD":
-            case "VAULTGUARD":
-            case "ELVEN SPELLSWORD":
-            case "SPELLSWORD":
-            case "EXPLORER":
-            case "ANTI-PALADIN":
-            case "BARBARIAN":
-            case "DWARVEN FURY":
-            case "FURY":
-            case "ELVEN RANGER":
-            case "RANGER":
-            case "ZAHARAN RUINGUARD":
-            case "RUINGUARD":
-            case "GNOMISH TRICKSTER":
-            case "TRICKSTER":
-            case "THRASSIAN GLADIATOR":
-            case "GLADIATOR":
-            case "MYSTIC":
-            case "PALADIN":
-                //Fighter Progression
-                switch (parseInt(values.level)) {
-                    case 1:
-                        setAttrs({
-                            BaseAT: 10,
-                            Paralyze: 15-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 14-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 16-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 16-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 17-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 2:
-                    case 3:
-                        setAttrs({
-                            BaseAT: 9,
-                            Paralyze: 14-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 13-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 15-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 15-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 16-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 4:
-                        setAttrs({
-                            BaseAT: 8,
-                            Paralyze: 13-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 12-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 14-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 14-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 15-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 5:
-                    case 6:
-                        setAttrs({
-                            BaseAT: 7,
-                            Paralyze: 12-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 11-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 13-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 13-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 14-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 7:
-                        setAttrs({
-                            BaseAT: 6,
-                            Paralyze: 11-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 10-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 12-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 12-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 13-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 8:
-                    case 9:
-                        setAttrs({
-                            BaseAT: 5,
-                            Paralyze: 10-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 9-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 11-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 11-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 12-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 10:
-                        setAttrs({
-                            BaseAT: 4,
-                            Paralyze: 9-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 8-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 10-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 10-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 11-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 11:
-                    case 12:
-                        setAttrs({
-                            BaseAT: 3,
-                            Paralyze: 8-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 7-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 9-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 9-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 10-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 13:
-                        setAttrs({
-                            BaseAT: 2,
-                            Paralyze: 7-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 6-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 8-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 8-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 9-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 14:
-                        setAttrs({
-                            BaseAT: 1,
-                            Paralyze: 6-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 5-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 7-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 7-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 8-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    default:
-                        setAttrs({ BaseAT: 20, Paralyze: 20, Poison: 20, Breath: 20, Device: 20, Magic: 20 });
-                }
-                break; 
-            case "MAGE":
-            case "ELVEN ENCHANTER":
-            case "ENCHANTER":
-            case "NOBIRAN WONDERWORKER":
-            case "WONDERWORKER":
-            case "WARLOCK":
-                //Mage Progression
-                switch (parseInt(values.level)) {
-                    case 1:
-                    case 2:
-                    case 3:
-                        setAttrs({
-                            BaseAT: 10,
-                            Paralyze: 13-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 13-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 15-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 11-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 12-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 4:
-                    case 5:
-                    case 6:
-                        setAttrs({
-                            BaseAT: 9,
-                            Paralyze: 12-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 12-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 14-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 10-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 11-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 7:
-                    case 8:
-                    case 9:
-                        setAttrs({
-                            BaseAT: 8,
-                            Paralyze: 11-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 11-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 13-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 9-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 10-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 10:
-                    case 11:
-                    case 12:
-                        setAttrs({
-                            BaseAT: 7,
-                            Paralyze: 10-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 10-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 12-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 8-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 9-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 13:
-                    case 14:
-                        setAttrs({
-                            BaseAT: 6,
-                            Paralyze: 9-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 9-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 11-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 7-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 8-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    default:
-                        setAttrs({ BaseAT: 20, Paralyze: 20, Poison: 20, Breath: 20, Device: 20, Magic: 20 });
-                }
-                break;
-            case "CLERIC":
-            case "BLADEDANCER":
-            case "DWARVEN CRAFTPRIEST":
-            case "CRAFTPRIEST":
-            case "PRIEST":
-            case "PRIESTESS":
-            case "SHAMAN":
-            case "WITCH":
-                //Cleric Progression
-                switch (parseInt(values.level)) {
-                    case 1:
-                    case 2:
-                        setAttrs({
-                            BaseAT: 10,
-                            Paralyze: 13-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 10-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 16-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 13-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 15-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 3:
-                    case 4:
-                        setAttrs({
-                            BaseAT: 9,
-                            Paralyze: 12-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 9-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 15-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 12-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 14-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 5:
-                    case 6:
-                        setAttrs({
-                            BaseAT: 8,
-                            Paralyze: 11-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 8-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 14-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 11-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 13-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 7:
-                    case 8:
-                        setAttrs({
-                            BaseAT: 7,
-                            Paralyze: 10-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 7-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 13-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 10-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 12-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
 
-                    case 9:
-                    case 10:
-                        setAttrs({
-                            BaseAT: 6,
-                            Paralyze: 9-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 6-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 12-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 9-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 11-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 11:
-                    case 12:
-                        setAttrs({
-                            BaseAT: 5,
-                            Paralyze: 8-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 5-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 11-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 8-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 10-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 13:
-                    case 14:
-                        setAttrs({
-                            BaseAT: 4,
-                            Paralyze: 7-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 4-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 10-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 7-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 9-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    default:
-                        setAttrs({ BaseAT: 20, Paralyze: 20, Poison: 20, Breath: 20, Device: 20, Magic: 20 });
-                }
-                break;
-            case "THIEF":
-            case "BARD":
-            case "ELVEN NIGHTBLADE":
-            case "NIGHTBLADE":
-            case "DWARVEN DELVER":
-            case "DELVER":
-            case "DWARVEN MACHINIST":
-            case "MACHINIST":
-            case "ELVEN COURTIER":
-            case "COURTIER":
-            case "VENTURER":
-                //Thief Progression
-                switch (parseInt(values.level)) {
-                    case 1:
-                    case 2:
-                        setAttrs({
-                            BaseAT: 10,
-                            Paralyze: 13-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 13-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 16-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 14-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 15-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 3:
-                    case 4:
-                        setAttrs({
-                            BaseAT: 9,
-                            Paralyze: 12-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 12-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 15-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 13-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 14-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 5:
-                    case 6:
-                        setAttrs({
-                            BaseAT: 8,
-                            Paralyze: 11-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 11-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 14-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 12-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 13-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 7:
-                    case 8:
-                        setAttrs({
-                            BaseAT: 7,
-                            Paralyze: 10-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 10-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 13-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 11-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 12-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-
-                    case 9:
-                    case 10:
-                        setAttrs({
-                            BaseAT: 6,
-                            Paralyze: 9-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 9-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 12-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 10-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 11-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 11:
-                    case 12:
-                        setAttrs({
-                            BaseAT: 5,
-                            Paralyze: 8-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 8-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 11-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 9-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 10-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    case 13:
-                    case 14:
-                        setAttrs({
-                            BaseAT: 4,
-                            Paralyze: 7-parseInt(values.ParalyzeMod)-parseInt(values.WisMod),
-                            Poison: 7-parseInt(values.PoisonMod)-parseInt(values.WisMod),
-                            Breath: 10-parseInt(values.BreathMod)-parseInt(values.WisMod),
-                            Device: 8-parseInt(values.DeviceMod)-parseInt(values.WisMod),
-                            Magic: 9-parseInt(values.MagicMod)-parseInt(values.WisMod)
-                        });
-                        break;
-                    default:
-                        setAttrs({ BaseAT: 20, Paralyze: 20, Poison: 20, Breath: 20, Device: 20, Magic: 20 });
-                }
-                break;
-            default: 
-                //NO PROGRESSION
-                setAttrs({ BaseAT: 20, Paralyze: 20, Poison: 20, Breath: 20, Device: 20, Magic: 20 });
+//Update GMRoll Skills buttons sometimes I guess
+on("change:repeating_gmskills:gmskillname", function() {
+    getSectionIDs("gmskills", function(idArray) {
+		var rollvalues = {};
+        for(var i=0; i < idArray.length; i++) {
+			rollvalues["gmskills_" + idArray[i] + "_gmskillRollvalue"] =  "[@{character_name} @{repeating_gmskills_" + idArray[i] + "_gmskillname}](~@{character_id}|repeating_gmskills_" + idArray[i] + "_gmGMThrow)";
         }
-        //Change Fight Progression trickster(atk thief) gladiator (atk monster) Priest/ess Witch (atk mage)
-        switch (values.class.toUpperCase()) {
-            case "THRASSIAN GLADIATOR":
-            case "GLADIATOR":
-                //Monster Progression
-                switch (parseInt(values.level)) {
-                    case 1:
-                        setAttrs({ BaseAT: 10 });
-                        break;
-                    case 2:
-                        setAttrs({ BaseAT: 9 });
-                        break;
-                    case 3:
-                        setAttrs({ BaseAT: 8 });
-                        break;
-                    case 4:
-                        setAttrs({ BaseAT: 7 });
-                        break;
-                    case 5:
-                        setAttrs({ BaseAT: 6 });
-                        break;
-                    case 6:
-                        setAttrs({ BaseAT: 5 });
-                        break;
-                    case 7:
-                        setAttrs({ BaseAT: 4 });
-                        break;
-                    case 8:
-                    case 9:
-                        setAttrs({ BaseAT: 3 });
-                        break;
-                    case 10:
-                    case 11:
-                        setAttrs({ BaseAT: 2 });
-                        break;
-                    case 12:
-                    case 13:
-                        setAttrs({ BaseAT: 1 });
-                        break;
-                    case 14:
-                        setAttrs({ BaseAT: 0 });
-                        break;
-                    default:
-                        //DONT DO A DAMN THING
-                }
-                break;
-            case "PRIEST":
-            case "PRIESTESS":
-            case "SHAMAN":
-            case "WITCH":
-                //Mage Progression
-                switch (parseInt(values.level)) {
-                    case 1:
-                    case 2:
-                    case 3:
-                        setAttrs({ BaseAT: 10 });
-                        break;
-                    case 4:
-                    case 5:
-                    case 6:
-                        setAttrs({ BaseAT: 9 });
-                        break;
-                    case 7:
-                    case 8:
-                    case 9:
-                        setAttrs({ BaseAT: 8 });
-                        break;
-                    case 10:
-                    case 11:
-                    case 12:
-                        setAttrs({ BaseAT: 7 });
-                        break;
-                    case 13:
-                    case 14:
-                        setAttrs({ BaseAT: 6 });
-                        break;
-                    default:
-                    //DONT DO A DAMN THING
-                }
-                break;
-            case "GNOMISH TRICKSTER":
-            case "TRICKSTER":
-                //Thief and Cleric Progression
-                switch (parseInt(values.level)) {
-                    case 1:
-                    case 2:
-                        setAttrs({ BaseAT: 10 });
-                        break;
-                    case 3:
-                    case 4:
-                        setAttrs({ BaseAT: 9 });
-                        break;
-                    case 5:
-                    case 6:
-                        setAttrs({ BaseAT: 8 });
-                        break;
-                    case 7:
-                    case 8:
-                        setAttrs({ BaseAT: 7 });
-                        break;
-                    case 9:
-                    case 10:
-                        setAttrs({ BaseAT: 6 });
-                        break;
-                    case 11:
-                    case 12:
-                        setAttrs({ BaseAT: 5 });
-                        break;
-                    case 13:
-                    case 14:
-                        setAttrs({ BaseAT: 4 });
-                        break;
-                    default:
-                    //DONT DO A DAMN THING
-                }
-                break;
-            default: 
-                //DONT DO A DAMN THING
-        }
+		setAttrs(rollvalues);
     });
 });
-
 
 // Monster Attack Throw
-on('change:m_fightas change:m_fightlvl', function() {
-    getAttrs(["m_fightas","m_fightlvl"], function(values) {
-        switch (values.m_fightas) {
+on('change:Mfightas change:Mfightlevel', function() {
+    getAttrs(["Mfightas","Mfightlevel"], function(values) {
+        switch (values.Mfightas) {
             case "MST":
-                switch (parseInt(values.m_fightlvl)) {
+                switch (parseInt(values.Mfightlevel)) {
                     case 1:
-                        setAttrs({ m_ATK: 10 });
+                        setAttrs({ Mattackthrow: 10 });
                         break;
                     case 2:
-                        setAttrs({ m_ATK: 9 });
+                        setAttrs({ Mattackthrow: 9 });
                         break;
                     case 3:
-                        setAttrs({ m_ATK: 8 });
+                        setAttrs({ Mattackthrow: 8 });
                         break;
                     case 4:
-                        setAttrs({ m_ATK: 7 });
+                        setAttrs({ Mattackthrow: 7 });
                         break;
                     case 5:
-                        setAttrs({ m_ATK: 6 });
+                        setAttrs({ Mattackthrow: 6 });
                         break;
                     case 6:
-                        setAttrs({ m_ATK: 5 });
+                        setAttrs({ Mattackthrow: 5 });
                         break;
                     case 7:
-                        setAttrs({ m_ATK: 4 });
+                        setAttrs({ Mattackthrow: 4 });
                         break;
                     case 8:
                     case 9:
-                        setAttrs({ m_ATK: 3 });
+                        setAttrs({ Mattackthrow: 3 });
                         break;
                     case 10:
                     case 11:
-                        setAttrs({ m_ATK: 2 });
+                        setAttrs({ Mattackthrow: 2 });
                         break;
                     case 12:
                     case 13:
-                        setAttrs({ m_ATK: 1 });
+                        setAttrs({ Mattackthrow: 1 });
                         break;
                     case 14:
                     case 15:
-                        setAttrs({ m_ATK: 0 });
+                        setAttrs({ Mattackthrow: 0 });
                         break;
                     case 16:
                     case 17:
-                        setAttrs({ m_ATK: -1 });
+                        setAttrs({ Mattackthrow: -1 });
                         break;
                     case 18:
                     case 19:
-                        setAttrs({ m_ATK: -2 });
+                        setAttrs({ Mattackthrow: -2 });
                         break;
                     case 20:
                     case 21:
-                        setAttrs({ m_ATK: -3 });
+                        setAttrs({ Mattackthrow: -3 });
                         break;
                     default:
-                        setAttrs({ m_ATK: -4 });
+                        setAttrs({ Mattackthrow: -4 });
                 }
                 break;
             case "FTR":
-                switch (parseInt(values.m_fightlvl)) {
+                switch (parseInt(values.Mfightlevel)) {
                     case 1:
-                        setAttrs({ m_ATK: 10 });
+                        setAttrs({ Mattackthrow: 10 });
                         break;
                     case 2:
                     case 3:
-                        setAttrs({ m_ATK: 9 });
+                        setAttrs({ Mattackthrow: 9 });
                         break;
                     case 4:
-                        setAttrs({ m_ATK: 8 });
+                        setAttrs({ Mattackthrow: 8 });
                         break;
                     case 5:
                     case 6:
-                        setAttrs({ m_ATK: 7 });
+                        setAttrs({ Mattackthrow: 7 });
                         break;
                     case 7:
-                        setAttrs({ m_ATK: 6 });
+                        setAttrs({ Mattackthrow: 6 });
                         break;
                     case 8:
                     case 9:
-                        setAttrs({ m_ATK: 5 });
+                        setAttrs({ Mattackthrow: 5 });
                         break;
                     case 10:
-                        setAttrs({ m_ATK: 4 });
+                        setAttrs({ Mattackthrow: 4 });
                         break;
                     case 11:
                     case 12:
-                        setAttrs({ m_ATK: 3 });
+                        setAttrs({ Mattackthrow: 3 });
                         break;
                     case 13:
-                        setAttrs({ m_ATK: 2 });
+                        setAttrs({ Mattackthrow: 2 });
                         break;
                     case 14:
-                        setAttrs({ m_ATK: 1 });
+                        setAttrs({ Mattackthrow: 1 });
                         break;
                     default:
-                        setAttrs({ m_ATK: 20 });
+                        setAttrs({ Mattackthrow: 20 });
                 }
                 break;
             case "MAG":
-                switch (parseInt(values.m_fightlvl)) {
+                switch (parseInt(values.Mfightlevel)) {
                     case 1:
                     case 2:
                     case 3:
-                        setAttrs({ m_ATK: 10 });
+                        setAttrs({ Mattackthrow: 10 });
                         break;
                     case 4:
                     case 5:
                     case 6:
-                        setAttrs({ m_ATK: 9 });
+                        setAttrs({ Mattackthrow: 9 });
                         break;
                     case 7:
                     case 8:
                     case 9:
-                        setAttrs({ m_ATK: 8 });
+                        setAttrs({ Mattackthrow: 8 });
                         break;
                     case 10:
                     case 11:
                     case 12:
-                        setAttrs({ m_ATK: 7 });
+                        setAttrs({ Mattackthrow: 7 });
                         break;
                     case 13:
                     case 14:
-                        setAttrs({ m_ATK: 6 });
+                        setAttrs({ Mattackthrow: 6 });
                         break;
                     default:
-                        setAttrs({ m_ATK: 20 });
+                        setAttrs({ Mattackthrow: 20 });
                 }
                 break;
             case "CLR":
             case "THF":
-                switch (parseInt(values.m_fightlvl)) {
+                switch (parseInt(values.Mfightlevel)) {
                     case 1:
                     case 2:
-                        setAttrs({ m_ATK: 10 });
+                        setAttrs({ Mattackthrow: 10 });
                         break;
                     case 3:
                     case 4:
-                        setAttrs({ m_ATK: 9 });
+                        setAttrs({ Mattackthrow: 9 });
                         break;
                     case 5:
                     case 6:
-                        setAttrs({ m_ATK: 8 });
+                        setAttrs({ Mattackthrow: 8 });
                         break;
                     case 7:
                     case 8:
-                        setAttrs({ m_ATK: 7 });
+                        setAttrs({ Mattackthrow: 7 });
                         break;
                     case 9:
                     case 10:
-                        setAttrs({ m_ATK: 6 });
+                        setAttrs({ Mattackthrow: 6 });
                         break;
                     case 11:
                     case 12:
-                        setAttrs({ m_ATK: 5 });
+                        setAttrs({ Mattackthrow: 5 });
                         break;
                     case 13:
                     case 14:
-                        setAttrs({ m_ATK: 4 });
+                        setAttrs({ Mattackthrow: 4 });
                         break;
                     default:
-                        setAttrs({ m_ATK: 20});
+                        setAttrs({ Mattackthrow: 20});
                 }
                 break;
             default:
-                setAttrs({ m_ATK: 20});
+                setAttrs({ Mattackthrow: 20});
         }
     });
 });
 
 // Monster Saving Throw
-on('change:m_saveas change:m_savelvl', function() {
-    getAttrs(["m_saveas","m_savelvl"], function(values) {
-        switch (values.m_saveas) {
+on('change:Msaveas change:Msavelevel', function() {
+    getAttrs(["Msaveas","Msavelevel"], function(values) {
+        switch (values.Msaveas) {
             case "FTR":
-                switch (parseInt(values.m_savelvl)) {
+                switch (parseInt(values.Msavelevel)) {
                     case 1:
-                        setAttrs({ m_Paralyze: 15, m_Poison: 14, m_Breath: 16, m_Device: 16, m_Magic: 17 });
+                        setAttrs({ MparalyzeSave: 15, MpoisonSave: 14, MbreathSave: 16, MdeviceSave: 16, MmagicSave: 17 });
                         break;
                     case 2:
                     case 3:
-                        setAttrs({ m_Paralyze: 14, m_Poison: 13, m_Breath: 15, m_Device: 15, m_Magic: 16 });
+                        setAttrs({ MparalyzeSave: 14, MpoisonSave: 13, MbreathSave: 15, MdeviceSave: 15, MmagicSave: 16 });
                         break;
                     case 4:
-                        setAttrs({ m_Paralyze: 13, m_Poison: 12, m_Breath: 14, m_Device: 14, m_Magic: 15 });
+                        setAttrs({ MparalyzeSave: 13, MpoisonSave: 12, MbreathSave: 14, MdeviceSave: 14, MmagicSave: 15 });
                         break;
                     case 5:
                     case 6:
-                        setAttrs({ m_Paralyze: 12, m_Poison: 11, m_Breath: 13, m_Device: 13, m_Magic: 14 });
+                        setAttrs({ MparalyzeSave: 12, MpoisonSave: 11, MbreathSave: 13, MdeviceSave: 13, MmagicSave: 14 });
                         break;
                     case 7:
-                        setAttrs({ m_Paralyze: 11, m_Poison: 10, m_Breath: 12, m_Device: 12, m_Magic: 13 });
+                        setAttrs({ MparalyzeSave: 11, MpoisonSave: 10, MbreathSave: 12, MdeviceSave: 12, MmagicSave: 13 });
                         break;
                     case 8:
                     case 9:
-                        setAttrs({ m_Paralyze: 10, m_Poison: 9, m_Breath: 11, m_Device: 11, m_Magic: 12 });
+                        setAttrs({ MparalyzeSave: 10, MpoisonSave: 9, MbreathSave: 11, MdeviceSave: 11, MmagicSave: 12 });
                         break;
                     case 10:
-                        setAttrs({ m_Paralyze: 9, m_Poison: 8, m_Breath: 10, m_Device: 10, m_Magic: 11 });
+                        setAttrs({ MparalyzeSave: 9, MpoisonSave: 8, MbreathSave: 10, MdeviceSave: 10, MmagicSave: 11 });
                         break;
                     case 11:
                     case 12:
-                        setAttrs({ m_Paralyze: 8, m_Poison: 7, m_Breath: 9, m_Device: 9, m_Magic: 10 });
+                        setAttrs({ MparalyzeSave: 8, MpoisonSave: 7, MbreathSave: 9, MdeviceSave: 9, MmagicSave: 10 });
                         break;
                     case 13:
-                        setAttrs({ m_Paralyze: 7, m_Poison: 6, m_Breath: 8, m_Device: 8, m_Magic: 9 });
+                        setAttrs({ MparalyzeSave: 7, MpoisonSave: 6, MbreathSave: 8, MdeviceSave: 8, MmagicSave: 9 });
                         break;
                     case 14:
-                        setAttrs({ m_Paralyze: 6, m_Poison: 5, m_Breath: 7, m_Device: 7, m_Magic: 8 });
+                        setAttrs({ MparalyzeSave: 6, MpoisonSave: 5, MbreathSave: 7, MdeviceSave: 7, MmagicSave: 8 });
                         break;
                     default:
-                        setAttrs({ m_Paralyze: 20, m_Poison: 20, m_Breath: 20, m_Device: 20, m_Magic: 20 });
+                        setAttrs({ MparalyzeSave: 20, MpoisonSave: 20, MbreathSave: 20, MdeviceSave: 20, MmagicSave: 20 });
                 }
                 break;
             case "MAG":
-                switch (parseInt(values.m_savelvl)) {
+                switch (parseInt(values.Msavelevel)) {
                     case 1:
                     case 2:
                     case 3:
-                        setAttrs({ m_Paralyze: 13, m_Poison: 13, m_Breath: 15, m_Device: 11, m_Magic: 12 });
+                        setAttrs({ MparalyzeSave: 13, MpoisonSave: 13, MbreathSave: 15, MdeviceSave: 11, MmagicSave: 12 });
                         break;
                     case 4:
                     case 5:
                     case 6:
-                        setAttrs({ m_Paralyze: 12, m_Poison: 12, m_Breath: 14, m_Device: 10, m_Magic: 11 });
+                        setAttrs({ MparalyzeSave: 12, MpoisonSave: 12, MbreathSave: 14, MdeviceSave: 10, MmagicSave: 11 });
                         break;
                     case 7:
                     case 8:
                     case 9:
-                        setAttrs({ m_Paralyze: 11, m_Poison: 11, m_Breath: 13, m_Device: 9, m_Magic: 10 });
+                        setAttrs({ MparalyzeSave: 11, MpoisonSave: 11, MbreathSave: 13, MdeviceSave: 9, MmagicSave: 10 });
                         break;
                     case 10:
                     case 11:
                     case 12:
-                        setAttrs({ m_Paralyze: 10, m_Poison: 10, m_Breath: 12, m_Device: 8, m_Magic: 9 });
+                        setAttrs({ MparalyzeSave: 10, MpoisonSave: 10, MbreathSave: 12, MdeviceSave: 8, MmagicSave: 9 });
                         break;
                     case 13:
                     case 14:
-                        setAttrs({ m_Paralyze: 9, m_Poison: 9, m_Breath: 11, m_Device: 7, m_Magic: 8 });
+                        setAttrs({ MparalyzeSave: 9, MpoisonSave: 9, MbreathSave: 11, MdeviceSave: 7, MmagicSave: 8 });
                         break;
                     default:
-                        setAttrs({ m_Paralyze: 20, m_Poison: 20, m_Breath: 20, m_Device: 20, m_Magic: 20 });
+                        setAttrs({ MparalyzeSave: 20, MpoisonSave: 20, MbreathSave: 20, MdeviceSave: 20, MmagicSave: 20 });
                 }
                 break;
             case "CLR":
-                switch (parseInt(values.m_savelvl)) {
+                switch (parseInt(values.Msavelevel)) {
                     case 1:
                     case 2:
-                        setAttrs({ m_Paralyze: 13, m_Poison: 10, m_Breath: 16, m_Device: 13, m_Magic: 15 });
+                        setAttrs({ MparalyzeSave: 13, MpoisonSave: 10, MbreathSave: 16, MdeviceSave: 13, MmagicSave: 15 });
                         break;
                     case 3:
                     case 4:
-                        setAttrs({ m_Paralyze: 12, m_Poison: 9, m_Breath: 15, m_Device: 12, m_Magic: 14 });
+                        setAttrs({ MparalyzeSave: 12, MpoisonSave: 9, MbreathSave: 15, MdeviceSave: 12, MmagicSave: 14 });
                         break;
                     case 5:
                     case 6:
-                        setAttrs({ m_Paralyze: 11, m_Poison: 8, m_Breath: 14, m_Device: 11, m_Magic: 13 });
+                        setAttrs({ MparalyzeSave: 11, MpoisonSave: 8, MbreathSave: 14, MdeviceSave: 11, MmagicSave: 13 });
                         break;
                     case 7:
                     case 8:
-                        setAttrs({ m_Paralyze: 10, m_Poison: 7, m_Breath: 13, m_Device: 10, m_Magic: 12 });
+                        setAttrs({ MparalyzeSave: 10, MpoisonSave: 7, MbreathSave: 13, MdeviceSave: 10, MmagicSave: 12 });
                         break;
                     case 9:
                     case 10:
-                        setAttrs({ m_Paralyze: 9, m_Poison: 6, m_Breath: 12, m_Device: 9, m_Magic: 11 });
+                        setAttrs({ MparalyzeSave: 9, MpoisonSave: 6, MbreathSave: 12, MdeviceSave: 9, MmagicSave: 11 });
                         break;
                     case 11:
                     case 12:
-                        setAttrs({ m_Paralyze: 8, m_Poison: 5, m_Breath: 11, m_Device: 8, m_Magic: 10 });
+                        setAttrs({ MparalyzeSave: 8, MpoisonSave: 5, MbreathSave: 11, MdeviceSave: 8, MmagicSave: 10 });
                         break;
                     case 13:
                     case 14:
-                        setAttrs({ m_Paralyze: 7, m_Poison: 4, m_Breath: 10, m_Device: 7, m_Magic: 9 });
+                        setAttrs({ MparalyzeSave: 7, MpoisonSave: 4, MbreathSave: 10, MdeviceSave: 7, MmagicSave: 9 });
                         break;
                     default:
-                        setAttrs({ m_Paralyze: 20, m_Poison: 20, m_Breath: 20, m_Device: 20, m_Magic: 20 });
+                        setAttrs({ MparalyzeSave: 20, MpoisonSave: 20, MbreathSave: 20, MdeviceSave: 20, MmagicSave: 20 });
                 }
                 break;
             case "THF":
-                switch (parseInt(values.m_savelvl)) {
+                switch (parseInt(values.Msavelevel)) {
                     case 1:
                     case 2:
-                        setAttrs({ m_Paralyze: 13, m_Poison: 13, m_Breath: 16, m_Device: 14, m_Magic: 15 });
+                        setAttrs({ MparalyzeSave: 13, MpoisonSave: 13, MbreathSave: 16, MdeviceSave: 14, MmagicSave: 15 });
                         break;
                     case 3:
                     case 4:
-                        setAttrs({ m_Paralyze: 12, m_Poison: 12, m_Breath: 15, m_Device: 13, m_Magic: 14 });
+                        setAttrs({ MparalyzeSave: 12, MpoisonSave: 12, MbreathSave: 15, MdeviceSave: 13, MmagicSave: 14 });
                         break;
                     case 5:
                     case 6:
-                        setAttrs({ m_Paralyze: 11, m_Poison: 11, m_Breath: 14, m_Device: 12, m_Magic: 13 });
+                        setAttrs({ MparalyzeSave: 11, MpoisonSave: 11, MbreathSave: 14, MdeviceSave: 12, MmagicSave: 13 });
                         break;
                     case 7:
                     case 8:
-                        setAttrs({ m_Paralyze: 10, m_Poison: 10, m_Breath: 13, m_Device: 11, m_Magic: 12 });
+                        setAttrs({ MparalyzeSave: 10, MpoisonSave: 10, MbreathSave: 13, MdeviceSave: 11, MmagicSave: 12 });
                         break;
                     case 9:
                     case 10:
-                        setAttrs({ m_Paralyze: 9, m_Poison: 9, m_Breath: 12, m_Device: 10, m_Magic: 11 });
+                        setAttrs({ MparalyzeSave: 9, MpoisonSave: 9, MbreathSave: 12, MdeviceSave: 10, MmagicSave: 11 });
                         break;
                     case 11:
                     case 12:
-                        setAttrs({ m_Paralyze: 8, m_Poison: 8, m_Breath: 11, m_Device: 9, m_Magic: 10 });
+                        setAttrs({ MparalyzeSave: 8, MpoisonSave: 8, MbreathSave: 11, MdeviceSave: 9, MmagicSave: 10 });
                         break;
                     case 13:
                     case 14:
-                        setAttrs({ m_Paralyze: 7, m_Poison: 7, m_Breath: 10, m_Device: 8, m_Magic: 9 });
+                        setAttrs({ MparalyzeSave: 7, MpoisonSave: 7, MbreathSave: 10, MdeviceSave: 8, MmagicSave: 9 });
                         break;
                     default:
-                        setAttrs({ m_Paralyze: 20, m_Poison: 20, m_Breath: 20, m_Device: 20, m_Magic: 20 });
+                        setAttrs({ MparalyzeSave: 20, MpoisonSave: 20, MbreathSave: 20, MdeviceSave: 20, MmagicSave: 20 });
                 }
                 break;
             default:
-                setAttrs({ m_Paralyze: 20, m_Poison: 20, m_Breath: 20, m_Device: 20, m_Magic: 20 });
+                setAttrs({ MparalyzeSave: 20, MpoisonSave: 20, MbreathSave: 20, MdeviceSave: 20, MmagicSave: 20 });
         }
     });
 });
 
 // Parse Monster Statblock
-on('change:monster_rawblock', function(eventInfo) {
+on('change:mrawBlock', function(eventInfo) {
     var strParse = eventInfo.newValue
     strParse = strParse.split("% In Lair:")
-    var monstName=strParse[0]; //m_name
+    var monstName=strParse[0]; //MBname
     strParse = strParse[1].split("Dungeon Enc:")
-    var monstLair=strParse[0]; //m_lair
+    var monstLair=strParse[0]; //MBlair
     strParse = strParse[1].split("Wilderness Enc:")
-    var monstDEnc=strParse[0]; //m_denc
+    var monstDEnc=strParse[0]; //MBdungeonenc
     strParse = strParse[1].split("Alignment:")
-    var monstWEnc=strParse[0]; //m_wenc
+    var monstWEnc=strParse[0]; //MBwildernessenc
     strParse = strParse[1].split("Movement:")
-    var monstAlign=strParse[0]; //m_alignment
+    var monstAlign=strParse[0]; //MBalignment
     strParse = strParse[1].split("Armor Class:")
-    var monstMove=strParse[0]; //m_movement
+    var monstMove=strParse[0]; //MBmovement
     strParse = strParse[1].split("Hit Dice:")
-    var monstAC=strParse[0]; //m_armorclass
+    var monstAC=strParse[0]; //MBarmorclass
     strParse = strParse[1].split("Attacks:")
-    var monstHD=strParse[0]; //m_hitdice
+    var monstHD=strParse[0]; //MBhitdice
     strParse = strParse[1].split("Damage:")
-    var monstAttack=strParse[0]; //m_attack
+    var monstAttack=strParse[0]; //MBattack
     strParse = strParse[1].split("Save:")
-    var monstDamage=strParse[0]; //m_damage
+    var monstDamage=strParse[0]; //MBdamage
     strParse = strParse[1].split("Morale:")
-    var monstSave=strParse[0]; //m_save
+    var monstSave=strParse[0]; //MBsave
     strParse = strParse[1].split("Treasure Type:")
-    var monstMorale=strParse[0]; //m_morale
+    var monstMorale=strParse[0]; //MBmorale
     strParse = strParse[1].split("XP:")
-    var monstTreasure=strParse[0]; //m_treasure
-    var monstXP=strParse[1]; //m_xp
+    var monstTreasure=strParse[0]; //MBtreasure
+    var monstXP=strParse[1]; //MBxp
     setAttrs({
-        m_name: monstName,
-        m_lair: monstLair,
-        m_denc: monstDEnc,
-        m_wenc: monstWEnc,
-        m_alignment: monstAlign,
-        m_movement: monstMove,
-        m_armorclass: monstAC,
-        m_hitdice: monstHD,
-        m_attack: monstAttack,
-        m_damage: monstDamage,
-        m_save: monstSave,
-        m_morale: monstMorale,
-        m_treasure: monstTreasure,
-        m_xp: monstXP
+        MBname: monstName,
+        MBlair: monstLair,
+        MBdungeonenc: monstDEnc,
+        MBwildernessenc: monstWEnc,
+        MBalignment: monstAlign,
+        MBmovement: monstMove,
+        MBarmorclass: monstAC,
+        MBhitdice: monstHD,
+        MBattack: monstAttack,
+        MBdamage: monstDamage,
+        MBsave: monstSave,
+        MBmorale: monstMorale,
+        MBtreasure: monstTreasure,
+        MBxp: monstXP
     });
 });
 </script>
