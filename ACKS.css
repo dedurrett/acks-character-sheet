@@ -14,7 +14,6 @@
  input.sheet-is-monster:checked ~ div.sheet-monsterinfo {
 	display: block;
 }
-
  input.sheet-is-monster {
 	width: 5%;
 	height: 16px;
@@ -23,11 +22,9 @@
 	opacity: 0;
 	z-index: 9999;
 }
-
  span.sheet-is-monster-tab::before {
 	content: "PC";
 }
-
  span.sheet-is-monster-tab {
 	text-align: center;
 	display: inline-block;
@@ -40,44 +37,15 @@
 	border-radius: 4px;
 	margin-left: -5%
 }
-
  input.sheet-is-monster:checked + span.sheet-is-monster-tab {
 	background: #93537c;
 	color: white;
 	border-radius: 4px;
 }
-
  input.sheet-is-monster:checked + span.sheet-is-monster-tab::before {
 	content: "BLOCK"
 }
-
-h3 {
-    line-height: 27px;
-    width: 100%;
-    font-size: 17px;
-    text-align: center;
-    margin: 0 0 10px;
-    padding: 0;
-    text-transform: uppercase;
-}
-select {
-    margin-bottom: 0;
-}
-h3::after, h3::before {
-    display: inline-block;
-    height: 3px;
-    content: " ";
-    text-shadow: none;
-    background-color: #000;
-    width: 80px;
-}
-h3::after {
-    margin: 0 0 5px 20px;
-}
-h3::before {
-    margin: 0 20px 5px 0;
-}
-h2 {
+h1 {
     font-family: Copperplate, "Copperplate Gothic Light", fantasy;
     font-weight: bold;
     width: 100%;
@@ -87,36 +55,43 @@ h2 {
     padding: 0;
     text-transform: uppercase;
 }
-.repitem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 3px;
-    justify-content: space-between;
+h2 {
+    line-height: 27px;
+    width: 100%;
+    font-size: 17px;
+    text-align: center;
+    margin: 0 0 10px;
+    padding: 0;
+    text-transform: uppercase;
 }
-.sheet-flex-between {
-    display: flex;
-    justify-content: space-between;
+h2::after, h2::before {
+    display: inline-block;
+    height: 3px;
+    content: " ";
+    text-shadow: none;
+    background-color: #000;
+    width: 80px;
+}
+h2::after {
+    margin: 0 0 5px 20px;
+}
+h2::before {
+    margin: 0 20px 5px 0;
 }
 .sheet-flex {
     display: flex;
     align-items: start;
 }
-.sheet-flex-center {
+.sheet-flex-between {
     display: flex;
-    margin: 0 auto
+    justify-content: space-between;
 }
-.sheet-flex-vert {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+
 .sheet-noborder, .sheet-thick-border {
     padding: 15px;
 }
-.sheet-col-1, .sheet-col-2, .sheet-thick-border {
-    box-sizing: border-box;
-}
 .sheet-thick-border {
+    box-sizing: border-box;
     border: 3px solid;
     overflow: auto;
     margin-bottom: 10px;
@@ -127,17 +102,11 @@ h2 {
 .sheet-col-right {
     width: 49%;
 }
-.sheet-col-topmiddle {
-    width: 32%;
-}
-.sheet-col-topright {
-    width: 18%;
-}
-.sheet-save-col {
-    flex-direction: column;
-}
 .sheet-hide-it {
     display: none;
+}
+select {
+    margin-bottom: 0;
 }
 input {
     border-radius: 0;
@@ -153,18 +122,15 @@ input[type=number]::-webkit-inner-spin-button {
 }
 /* THOSE TOP STATS */
 .sheet-topblock {
-    width: 20%;
+    width: 25%;
     text-align: center;
-}
-.sheet-wierdtoptitle {
-    font-size: 14px;
-    display: block;
-    height: 21px;
 }
 .sheet-toptitle {
     font-size: 14px;
     display: block;
-    height: 26px;
+}
+.sheet-hp {
+    background-color: #ffcc00;
 }
 /* INFO BLOCK */
 .sheet-info-name {
@@ -180,7 +146,7 @@ input[type=number]::-webkit-inner-spin-button {
     display: flex;
     text-align: center;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .sheet-info-row input {
     text-align: center;
@@ -226,18 +192,6 @@ input[type=number]::-webkit-inner-spin-button {
     align-items: center;
     font-weight: bold;
 }
-.sheet-ability-column-roll {
-    width: 16%;
-    height: 90px;
-}
-input[type=number].sheet-ability-modifier {
-    width: 40px;
-    height: 40px;
-    border-radius: 20px;
-    font-size: 20px;
-    text-align: center;
-    padding: 0;
-}
 .sheet-subtext {
     width: 138px;
 }
@@ -249,26 +203,16 @@ input[type=number].sheet-ability-value {
     display: block;
     margin: 6px auto;
 }
-button[type=roll].sheet-ability-button {
+input[type=number].sheet-ability-modifier {
     width: 40px;
     height: 40px;
-    font-size: 26px;
-    background-color: white;
-    background-image: none;
-    color: black;
-    text-shadow: none;
-    margin: auto;
-    display: block;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+    padding: 0;
 }
-/* SAVINGS */
-.sheet-rightsidespacer {
-    font-size: 14px;
-    display: block;
-    height: 18px;
-}
-.sheet-hp {
-    background-color: #ffcc00;
-}
+
+/* SAVING THROWS */
 .sheet-svblock {
     width: 25%;
     text-align: center;
@@ -290,7 +234,7 @@ button[type=roll].sheet-ability-button {
     min-height: 40px;
     display: block;
 }
-input[type=number].sheet-savingthrow {
+input[type=number].sheet-numbubble {
     width: 40px;
     height: 40px;
     display: block;
@@ -299,58 +243,42 @@ input[type=number].sheet-savingthrow {
     font-size: 20px;
     text-align: center;
     padding: 0;
-    margin: 10px auto;
+    margin: 5px auto;
 }
-.sheet-equipment-name {
-    width: 80%; /*width: 85%;*/
-    padding-left: 4px;
-}
-.sheet-skillcontainer {
+.repitem {
     display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 4px;
     align-items: center;
+    margin-bottom: 3px;
     justify-content: space-between;
-    align-content: start;
 }
-.sheet-othercontainer {
-    width: 100%;
-    display: block;
-    margin-bottom: 4px;
-    align-items: center;
-    justify-content: space-between;
-    align-content: start;
+
+button[type="roll"]{
+    align-items: left;
+    color: black;
+    font-weight: normal;
+    font-size: 30px;
+    text-decoration:none;
+    background:none;
+    background-image:none;
+    border: none;
+    box-shadow: none;
+    text-shadow: none;
+    padding: 0px 0px 0px 0px;
+    margin: 0px 0px 0px 0px;
+    text-align: center;
 }
-.sheet-skillname {
-    width: 76%;
-}
-.sheet-othername {
-    width: 100%;
+button[type="roll"]:hover{
     font-weight: bold;
 }
-button[type=roll].sheet-skill-button {
-    width: 30px;
-    height: 28px;
-    font-size: 20px;
-    background-color: white;
-    background-image: none;
-    color: black;
-    margin-right: 0;
-    text-Shadow: none;
-}
-button[type=roll].sheet-under-button {
-    width: 30px;
-    height: 28px;
-    font-size: 20px;
-    background-color: white;
-    background-image: none;
-    color: black;
-    text-Shadow: none;
-}
+/* EQUIPMENT */
 .sheet-equipment {
     display: flex;
     flex-wrap: wrap;
     align-content: start;
+}
+.sheet-equipment-name {
+    width: 80%;
+    padding-left: 4px;
 }
 .sheet-equipment .repcontainer {
     width: 100%;
@@ -362,6 +290,22 @@ button[type=roll].sheet-under-button {
 .sheet-equipment .repcontrol {
     order: 4;
     width: 100%;
+}
+.sheet-othercontainer {
+    width: 100%;
+    display: block;
+    margin-bottom: 4px;
+    align-items: center;
+    justify-content: space-between;
+    align-content: start;
+}
+.sheet-othername {
+    width: 100%;
+    font-weight: bold;
+}
+
+.sheet-skillname {
+    width: 76%;
 }
 input[type=number].sheet-encumbrance,
 select.sheet-skillvalue {
@@ -383,12 +327,14 @@ input[type=number].sheet-total-encumbrance {
     order: 3;
     width: 100%;
 }
-.sheet-movement {
-    align-items: center;
-    margin: 5px 0;
-    padding-top: 3px;
-    order: 3;
-    width: 100%;
+.sheet-tiny-spacer {
+    border-top: 4px solid transparent;
+}
+.sheet-medium-spacer {
+    border-top: 24px solid transparent;
+}
+.sheet-big-spacer {
+    border-top: 134px solid transparent;
 }
 .sheet-top-line {
     border-top: 2px solid black;
@@ -402,12 +348,22 @@ input[type=number].sheet-total-encumbrance {
     justify-content: space-between;
     align-content: start;
 }
+
 .sheet-weapon-name {
     width: 31%;
 }
 .sheet-weapon-type {
     width: 10%;
     text-align: center;
+}
+
+.charsheet div[class^="sheet-weapontype"] {
+  display: none;
+}
+.charsheet input.sheet-meleecheck:checked ~ div.sheet-weapontype-melee,
+.charsheet input.sheet-rangedcheck:checked ~ div.sheet-weapontype-ranged,
+.charsheet input.sheet-finessecheck:checked ~ div.sheet-weapontype-finesse {
+  display: block;
 }
 .sheet-attackbonus,
 input[type=number].sheet-attackbonus {
@@ -422,19 +378,19 @@ input[type=number].sheet-attackbonus {
     width: 7%;
     text-align: center;
 }
-button[type=roll].sheet-attack-button {
-    width: 30px;
-    height: 28px;
-    font-size: 20px;
-    background-color: white;
-    background-image: none;
-    color: black;
-    margin-right: 0;
-    text-Shadow: none;
-}
-.sheet-dummy-attack-button {
-    width: 30px;
+
+.sheet-button-spacer {
+    width: 24px;
     margin-left: 3px;
+}
+.sheet-weapon-description {
+    width: 100%;
+    resize: vertical;
+    box-sizing: border-box;
+    border-radius: 0;
+    height: 30px;
+    margin-bottom: 0;
+    min-height: 30px;
 }
 /* Spells */
 .sheet-spells .repitem {
@@ -447,8 +403,8 @@ button[type=roll].sheet-attack-button {
     flex-wrap: wrap;
     margin-bottom: 4px;
     align-items: center;
-    border: 2px solid black;
     padding: 2px;
+    border: 2px solid;
     justify-content: space-between;
     align-content: start;
 }
@@ -547,8 +503,11 @@ input[type=number].sheet-spell-prepared {
     margin-bottom: 3px;
 }
 .sheet-retainercontainer {
-    border: 2px solid black;
     padding: 2px;
+    border: 2px solid;
+    align-items: center;
+    justify-content: space-between;
+    align-content: start;
 }
 .sheet-retainersub {
     display: flex;
@@ -565,10 +524,6 @@ input[type=number].sheet-spell-prepared {
     width: 18%;
     text-align: center;
 }
-.sheet-retainer-smallplus {
-    width: 9%;
-    text-align: center;
-}
 .sheet-retainer-small {
     width: 6%;
     text-align: center;
@@ -582,6 +537,7 @@ input[type=number].sheet-spell-prepared {
     margin-bottom: 0;
     min-height: 30px;
 }
+/* Growing Text Boxes*/
 .sheet-special-auto {
 	position: relative;
 	cursor: text;
@@ -641,6 +597,7 @@ input[type=number].sheet-spell-prepared {
 	text-align: inherit;
 	text-transform: inherit; */
 }
+
 /* Stat Block Page stuff */
 .sheet-statblock {
     width: 100%;
@@ -651,7 +608,7 @@ input[type=number].sheet-spell-prepared {
     margin-bottom: 0;
     min-height: 30px;
 }
-input[type=text].sheet-savingthrow-hd {
+input[type=text].sheet-numbubble-hd {
     width: 75px;
     height: 40px;
     display: block;
@@ -662,6 +619,7 @@ input[type=text].sheet-savingthrow-hd {
     padding: 0;
     margin: 10px auto;
 }
+/* MONSTER PAGE*/
 .sheet-statblock-column {
     display: block;
     width: 90%;
@@ -701,28 +659,44 @@ input[type=text].sheet-savingthrow-hd {
 /* sheet roll template */
 .sheet-rolltemplate-acks_template table {
     width: 100%;
+    line-height: 1em;
     font-size: 1em;
-    font-family: "Helvetica Neue", Helvetica, sans-serif;
     border-collapse: separate;
     border: solid black 1px;
 }
 .sheet-rolltemplate-acks_template th {
-    background-color: #002200;
-    color: #ffffff;
+    background-color: #555555;
+    color: #ededed;
     padding: 2px;
-    line-height: 1.6em;
-    font-size: 1.2em;
+    line-height: 1.4em;
+    font-size: 1.4em;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    font-variant: small-caps;
     border-top: none;
 }
 .sheet-rolltemplate-acks_template .sheet-subheader {
-    background-color: #333333;
-    color: #ffffff;
-    font-size: 1em;
+    background-color: #555555;
+    color: #ededed;
+    line-height: 0.9em;
+    font-size: 0.9em;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
     font-style: italic;
-    text-align: center;
+    text-align: left;
+    border: none;
+}
+.sheet-rolltemplate-acks_template .sheet-subfooter {
+    background-color: #dcdcdc;
+    color: #000;
+    line-height: 0.9em;
+    font-size: 0.9em;
+    font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
+    font-style: italic;
+    font-weight: bold;
+    text-align: right;
 }
 .sheet-rolltemplate-acks_template .sheet-tcat {
-    font-weight: bold;
+    text-align: left;
+    font-variant: small-caps;
 }
 .sheet-rolltemplate-acks_template td {
     padding: 5px;
@@ -730,10 +704,11 @@ input[type=text].sheet-savingthrow-hd {
     text-align: center;
 }
 .sheet-rolltemplate-acks_template tr:nth-child(odd) {
-    background-color: #ffffff;
+    background-color: #fefefe;
 }
 .sheet-rolltemplate-acks_template tr:nth-child(even) {
-    background-color: #ededed;
+    /*background-color: #dcdcdc;*/
+    background-color: #fefefe;
 }
 .sheet-rolltemplate-acks_template .inlinerollresult {
     display: inline-block;
@@ -741,6 +716,13 @@ input[type=text].sheet-savingthrow-hd {
     text-align: center;
     border: 2px solid #a7a8aa; /*Cool Gray 6 C*/
     background-color: #c5c6c7; /*Cool Gray 6 C*/
+}
+.sheet-rolltemplate-acks_template .sheet-subfooter .inlinerollresult {
+    display: inline-block;
+    min-width: 1.5em;
+    text-align: center;
+    border: none; /*Cool Gray 6 C*/
+    background-color: #dcdcdc; /*Cool Gray 6 C*/
 }
 .sheet-rolltemplate-acks_template .inlinerollresult.fullcrit {
     background-color: #3FB315;
