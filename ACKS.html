@@ -195,11 +195,11 @@
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Melee</span>
-                        <input type="number" class="sheet-numbubble" name="attr_attackthrowMelee" value="(@{attackthrow}-@{strengthMod})" disabled="true">
+                        <input type="number" class="sheet-numbubble" name="attr_attackthrowMelee" value="(@{attackthrow}-(@{strengthMod}))" disabled="true">
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Missile</span>
-                        <input type="number" class="sheet-numbubble" name="attr_attackthrowMissile" value="(@{attackthrow}-@{dexterityMod})" disabled="true">
+                        <input type="number" class="sheet-numbubble" name="attr_attackthrowMissile" value="(@{attackthrow}-(@{dexterityMod}))" disabled="true">
                     </div>
                     <div class="sheet-tiny-spacer"></div>
                 </div>
@@ -554,7 +554,7 @@
                     <span># cast: </span>
                     <input type="number" name="attr_spellcast" class="sheet-bottom-line sheet-spell-prepared" value="0" min="0">
                 </div>
-                <button type="roll" value="&{template:acks_template} {{spell=1}} {{name=@{spellname}}} {{type=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_spellcast" title="Cast Spell"></button>
+                <button type="roll" value="&{template:acks_template} {{spell=1}} {{name=@{spellname}}} {{caster=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_spellcast" title="Cast Spell"></button>
                 <div class="sheet-othercontainer sheet-auto-expand">
                 	<span name="attr_spelldescription"></span>
                 	<textarea spellcheck="false" name="attr_spelldescription" placeholder="Description"></textarea>
@@ -750,31 +750,31 @@
                     <span class="sheet-svbtitle">Petrify & Paralysis</span>
                     <input type="number" class="sheet-numbubble" name="attr_MparalyzeSave" readonly>
                     <span class="sheet-svnsubtext">Rendered Immobile</span>
-                    <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MparalyzeSave}]]}}" name="roll_mParalyzeSaveThrow" title="Monster Saving Throw vs Petrify & Paralysis"></button>
+                    <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MparalyzeSave}]]}}" name="roll_mParalyzeSaveThrow" title="Monster Saving Throw vs Petrify & Paralysis"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Poison & Death</span>
                       <input type="number" class="sheet-numbubble" name="attr_MpoisonSave" readonly>
                       <span class="sheet-svnsubtext">Death or Incapacitation</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MpoisonSave}]]}}" name="roll_mPoisonSaveThrow" title="Monster Saving Throw vs Poison & Death"></button>
+                      <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MpoisonSave}]]}}" name="roll_mPoisonSaveThrow" title="Monster Saving Throw vs Poison & Death"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Blast & Breath</span>
                       <input type="number" class="sheet-numbubble" name="attr_MbreathSave" readonly>
                       <span class="sheet-svnsubtext">Area Effects</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MbreathSave}]]}}" name="roll_mBreathSaveThrow" title="Monster Saving Throw vs Blast & Breath"></button>
+                      <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MbreathSave}]]}}" name="roll_mBreathSaveThrow" title="Monster Saving Throw vs Blast & Breath"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Staffs & Wands</span>
                       <input type="number" class="sheet-numbubble" name="attr_MdeviceSave" readonly>
                       <span class="sheet-svnsubtext">Effects from Items</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MdeviceSave}]]}}" name="roll_mDeviceSaveThrow" title="Monster Saving Throw vs Staffs & Wands"></button>
+                      <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MdeviceSave}]]}}" name="roll_mDeviceSaveThrow" title="Monster Saving Throw vs Staffs & Wands"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Spells</span>
                       <input type="number" class="sheet-numbubble" name="attr_MmagicSave" readonly>
                       <span class="sheet-svnsubtext">Effects from Spells</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Spells}} {{saveroll=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MmagicSave}]]}}" name="roll_mMagicSaveThrow" title="Monster Saving Throw vs Spells"></button>
+                      <button type="roll" value="&{template:acks_template} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MmagicSave}]]}}" name="roll_mMagicSaveThrow" title="Monster Saving Throw vs Spells"></button>
                   </div>
                 </div>
             </div>
@@ -941,7 +941,7 @@
             {{/rollGreater() skillthrow target}}
         {{/skillthrow}}
         {{#spell}}
-            <tr><td  colspan="2" class="sheet-subheader">{{type}} {{level}} Spell</td></tr>
+            <tr><td  colspan="2" class="sheet-subheader">{{caster}} {{level}} Spell</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
             <tr class="sheet-spellrow"><td><span class="sheet-tcat">Duration: </span>{{duration}}</td>
             <td><span class="sheet-tcat">Range: </span>{{range}}</td></tr>
