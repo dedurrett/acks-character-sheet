@@ -736,6 +736,16 @@ input[type=text].sheet-numbubble-hd {
     background-color: #4A57ED;
     color: white;
 }
+.sheet-rolltemplate-acks_template .sheet-damageoutput .inlinerollresult.fullcrit,
+.sheet-rolltemplate-acks_template .sheet-damageoutput .inlinerollresult.fullfail,
+.sheet-rolltemplate-acks_template .sheet-damageoutput .inlinerollresult.importantroll {
+    display: inline-block;
+    min-width: 1.5em;
+    text-align: center;
+    border: 2px solid #a7a8aa; /*Cool Gray 6 C*/
+    color: #000;
+    background-color: #c5c6c7; /*Cool Gray 6 C*/
+}
 .sheet-rolltemplate-acks_template div {
     width: 100%;
     max-width: 400px;
