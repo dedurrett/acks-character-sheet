@@ -297,13 +297,13 @@
                 </select>
                 <input type="text" name="attr_multiplier" class="sheet-no-border sheet-attackbonus" value="1">
                 <div class="sheet-weapontype-melee">
-                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}]]}} {{critdamageroll=[[((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}]]}}" name="roll_attackThrow" title="Melee Attack Throw"></button>
+                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrow" title="Melee Attack Throw"></button>
                 </div>
                 <div class="sheet-weapontype-ranged">
-                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[(@{multiplier}*@{weapondamage})+@{damagebonus}]]}} {{critdamageroll=[[((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}]]}}" name="roll_attackThrow" title="Missile Attack Throw"></button>
+                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrow" title="Missile Attack Throw"></button>
                 </div>
                 <div class="sheet-weapontype-finesse">
-                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]] ]]}} {{critdamageroll=[[((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]]]}}" name="roll_attackThrow" title="Finesse Attack Throw"></button>
+                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrow" title="Finesse Attack Throw"></button>
                 </div>
                 <input type="text" name="attr_weapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description"></textarea>
             </div>
@@ -320,17 +320,17 @@
             <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{DSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{DSskillvalue}]]}}" name="roll_gmDSThrow"></button>
             <input type="text" name="attr_HNskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Hear Noise" readonly>
             <input type="number" name="attr_HNskillvalue" class="sheet-skillvalue" value="18">
-            <button type="roll" value="[@{character_name} Hear Noise](~@{character_id}|gmHNThrow)" name="roll_HNSkill" title="Hear Noise Skill Throw"></button>
+            <button type="roll" value="[@{character_name} Hear Noise](~@{character_id}|gmHNThrow)" name="roll_HNThrow" title="Hear Noise Skill Throw"></button>
             <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{HNskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{HNskillvalue}]]}}" name="roll_gmHNThrow"></button>
             <input type="text" name="attr_FTskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Find Traps" readonly>
             <input type="number" name="attr_FTskillvalue" class="sheet-skillvalue" value="18">
-            <button type="roll" value="[@{character_name} Find Traps](~@{character_id}|gmFTThrow)" name="roll_FTSkill" title="Find Traps Skill Throw"></button>
+            <button type="roll" value="[@{character_name} Find Traps](~@{character_id}|gmFTThrow)" name="roll_FTThrow" title="Find Traps Skill Throw"></button>
             <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{FTskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{FTskillvalue}]]}}" name="roll_gmFTThrow"></button>
             <fieldset class="repeating_gmskills">
                 <input type="text" name="attr_gmskillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
                 <input type="number" name="attr_gmskillvalue" class="sheet-skillvalue" value="18">
                 <input type="hidden" name="attr_gmskillRollvalue" readonly>
-                <button type="roll" value="@{gmskillRollvalue}" name="roll_GMSkill" title="Secret Skill Throw"></button>
+                <button type="roll" value="@{gmskillRollvalue}" name="roll_GMThrow" title="Secret Skill Throw"></button>
                 <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{gmskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{gmskillvalue}]]}}" name="roll_gmGMThrow"></button>
             </fieldset>
             <h2>Actions</h2>
@@ -578,7 +578,7 @@
                     <input type="text" name="attr_retainermove" class="sheet-bottom-line sheet-retainer-small">
                     <input type="text" name="attr_retainerattack" class="sheet-bottom-line sheet-retainer-med">
                     <input type="text" name="attr_retainerdamage" class="sheet-bottom-line sheet-retainer-med">
-                    <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[@{retainerdamage}]]}} {{critdamageroll=[[@{retainerdamage}]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
+                    <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[{@{retainerdamage}, 1d1}k1]]}} {{critdamageroll=[[{@{retainerdamage}, 1d1}k1]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
                     <span class="sheet-retainer-large">Name</span>
                     <span class="sheet-retainer-small">AC</span>
                     <span class="sheet-retainer-small">HP</span>
@@ -796,7 +796,7 @@
                         <input type="text" name="attr_Mshortrange" class="sheet-no-border sheet-mtiny">
                         <input type="text" name="attr_Mmediumrange" class="sheet-no-border sheet-mtiny">
                         <input type="text" name="attr_Mlongrange" class="sheet-no-border sheet-mtiny">
-                        <button type="roll" value="&{template:acks_template} {{name=@{Mweaponname}}} {{attackthrow=[[1d20+(?{Modifier|0})-(@{Mattackthrow})]]}} {{damageroll=[[@{Mweapondamage}]]}} {{critdamageroll=[[@{Mweapondamage}]]}}" name="roll_mAttackThrow" title="Monster Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{name=@{Mweaponname}}} {{attackthrow=[[1d20+(?{Modifier|0})-(@{Mattackthrow})]]}} {{damageroll=[[{@{Mweapondamage}, 1d1}k1]]}} {{critdamageroll=[[{@{Mweapondamage}, 1d1}k1]]}}" name="roll_mAttackThrow" title="Monster Attack Throw"></button>
                         <input type="text" name="attr_Mweapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description"></textarea>
                     </div>
                 </fieldset>
@@ -905,7 +905,7 @@
             {{#^rollWasFumble() attackthrow}}
                 {{#rollWasCrit() attackthrow}}
                         <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
-                        <tr><td><span class="sheet-tcat">Damage: </span>{{critdamageroll}}</td></tr>                
+                        <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span>{{critdamageroll}}</td></tr>                
                         <tr><td class="sheet-subfooter" style="color:green;"><b>Critical Hit!</b></td></tr>
                 {{/rollWasCrit() attackthrow}}
                 {{#^rollWasCrit() attackthrow}}
@@ -915,12 +915,12 @@
                     {{/rollLess() attackthrow 0}}
                     {{#rollTotal() attackthrow 0}}
                             <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
-                            <tr><td><span class="sheet-tcat">Damage: </span>{{damageroll}}</td></tr>
-                            <tr><td class="sheet-subfooter" style="color:green;"><b>Hit AC: {{[[attackthrow}}</b></td></tr>
+                            <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span>{{damageroll}}</td></tr>
+                            <tr><td class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
                     {{/rollTotal() attackthrow 0}}
                     {{#rollGreater() attackthrow 0}}
                             <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
-                            <tr><td><span class="sheet-tcat">Damage: </span>{{damageroll}}</td></tr>
+                            <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span>{{damageroll}}</td></tr>
                             <tr><td class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
                     {{/rollGreater() attackthrow 0}}
                 {{/^rollWasCrit() attackthrow}}
