@@ -308,7 +308,7 @@
                         <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrow" title="Melee Attack Throw"></button>
                     </div>
                     <div class="sheet-weapontype-ranged">
-                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrow" title="Missile Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{weaponranges=@{shortrange}/@{mediumrange}/@{longrange}}}{{attackthrow=[[1d20+@{attackbonus}-?{Range|0-@{shortrange},0|@{shortrange}-@{mediumrange},2|@{mediumrange}-@{longrange},5}+(?{Additional Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrow" title="Missile Attack Throw"></button>
                     </div>
                     <div class="sheet-weapontype-finesse">
                         <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrow" title="Finesse Attack Throw"></button>
@@ -917,6 +917,9 @@
         {{#attackthrow}}
             <tr><td class="sheet-subheader">Attack Throw</td></tr>
             <tr><th>{{name}}</th></tr>
+            {{#weaponranges}}
+                <tr><td><span class="sheet-tcat">Weapon Range: </span>{{weaponranges}}</td></tr>
+            {{/weaponranges}}
             {{#rollWasFumble() attackthrow}}
                     <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
                     <tr><td class="sheet-subfooter" style="color:red;"><b>Fumble!</b></td></tr>
