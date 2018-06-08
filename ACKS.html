@@ -252,139 +252,153 @@
             </div>
         </div>
     </div>
+    <!-- TAB SELECTION -->
+    <span>&nbsp;&nbsp;</span>
+    <input class="sheet-is-weapons" type="checkbox" name="attr_is_weapons" value="1" checked><span class="sheet-show-weapons"></span>
+    <input class="sheet-is-actions" type="checkbox" name="attr_is_actions" value="1" checked><span class="sheet-show-actions"></span>
+    <input class="sheet-is-equipment" type="checkbox" name="attr_is_equipment" value="1" checked><span class="sheet-show-equipment"></span>
+    <input class="sheet-is-spells" type="checkbox" name="attr_is_spells" value="1" checked><span class="sheet-show-spells"></span>
+    <input class="sheet-is-hirelings" type="checkbox" name="attr_is_hirelings" value="1" checked><span class="sheet-show-hirelings"></span>
     <!-- WEAPONS -->
-    <div class="sheet-thick-border">
-        <h2>Weapons</h2>
-        <div class="sheet-rep-title sheet-flex-between">
-            <span class="sheet-weapon-name">Name</span>
-            <span class="sheet-weapon-type">Type</span>
-            <span class="sheet-damage">Die</span>
-            <span class="sheet-attackbonus">+Hit</span>
-            <span class="sheet-attackbonus">+Dmg</span>
-            <span class="sheet-tiny">Short</span>
-            <span class="sheet-tiny">Med(-2)</span>
-            <span class="sheet-tiny">Long(-5)</span>
-            <span class="sheet-tiny">Focus</span>
-            <span class="sheet-attackbonus">Multiplier</span>
-            <span class="sheet-button-spacer"></span>
-        </div>
-        <fieldset class="repeating_weapons">
-            <div class="sheet-weaponcontainer">
-                <input type="text" name="attr_weaponname" class="sheet-no-border sheet-weapon-name" placeholder="Weapon Name">
-                <select name="attr_weapontype" class="sheet-no-border sheet-weapon-type">
-                    <option value="1" selected>Melee</option>
-                    <option value="2">Missile</option>
-                    <option value="3">Finesse</option>
-                </select>
-                <input class="sheet-hide-it sheet-meleecheck" type="checkbox" name="attr_weapontype" value="1" checked>
-                <input class="sheet-hide-it sheet-rangedcheck" type="checkbox" name="attr_weapontype" value="2">
-                <input class="sheet-hide-it sheet-finessecheck" type="checkbox" name="attr_weapontype" value="3">
-                <select name="attr_weapondamage" class="sheet-no-border sheet-damage">
-                    <option value="1d2" >1d2</option>
-                    <option value="1d4">1d4</option>
-                    <option value="1d6" selected>1d6</option>
-                    <option value="1d8" >1d8</option>
-                    <option value="1d10">1d10</option>
-                </select>
-                <input type="number" name="attr_attackbonus" class="sheet-no-border sheet-attackbonus" value="0">
-                <input type="text" name="attr_damagebonus" class="sheet-no-border sheet-attackbonus" value="0">
-                <input type="text" name="attr_shortrange" class="sheet-no-border sheet-tiny">
-                <input type="text" name="attr_mediumrange" class="sheet-no-border sheet-tiny">
-                <input type="text" name="attr_longrange" class="sheet-no-border sheet-tiny">
-                <select name="attr_weaponfocus" class="sheet-no-border sheet-tiny">
-                    <option value="0" selected>No</option>
-                    <option value="1">Yes</option>
-                </select>
-                <input type="text" name="attr_multiplier" class="sheet-no-border sheet-attackbonus" value="1">
-                <div class="sheet-weapontype-melee">
-                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrow" title="Melee Attack Throw"></button>
-                </div>
-                <div class="sheet-weapontype-ranged">
-                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrow" title="Missile Attack Throw"></button>
-                </div>
-                <div class="sheet-weapontype-finesse">
-                    <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrow" title="Finesse Attack Throw"></button>
-                </div>
-                <input type="text" name="attr_weapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description"></textarea>
+    <div class="sheet-weapons-tab">
+        <div class="sheet-thick-border">
+            <h2>Weapons</h2>
+            <div class="sheet-rep-title sheet-flex-between">
+                <span class="sheet-weapon-name">Name</span>
+                <span class="sheet-weapon-type">Type</span>
+                <span class="sheet-damage">Die</span>
+                <span class="sheet-attackbonus">+Hit</span>
+                <span class="sheet-attackbonus">+Dmg</span>
+                <span class="sheet-tiny">Short</span>
+                <span class="sheet-tiny">Med(-2)</span>
+                <span class="sheet-tiny">Long(-5)</span>
+                <span class="sheet-tiny">Focus</span>
+                <span class="sheet-attackbonus">Multiplier</span>
+                <span class="sheet-button-spacer"></span>
             </div>
-        </fieldset>
+            <fieldset class="repeating_weapons">
+                <div class="sheet-weaponcontainer">
+                    <input type="text" name="attr_weaponname" class="sheet-no-border sheet-weapon-name" placeholder="Weapon Name">
+                    <select name="attr_weapontype" class="sheet-no-border sheet-weapon-type">
+                        <option value="1" selected>Melee</option>
+                        <option value="2">Missile</option>
+                        <option value="3">Finesse</option>
+                    </select>
+                    <input class="sheet-hide-it sheet-meleecheck" type="checkbox" name="attr_weapontype" value="1" checked>
+                    <input class="sheet-hide-it sheet-rangedcheck" type="checkbox" name="attr_weapontype" value="2">
+                    <input class="sheet-hide-it sheet-finessecheck" type="checkbox" name="attr_weapontype" value="3">
+                    <select name="attr_weapondamage" class="sheet-no-border sheet-damage">
+                        <option value="1d2" >1d2</option>
+                        <option value="1d4">1d4</option>
+                        <option value="1d6" selected>1d6</option>
+                        <option value="1d8" >1d8</option>
+                        <option value="1d10">1d10</option>
+                    </select>
+                    <input type="number" name="attr_attackbonus" class="sheet-no-border sheet-attackbonus" value="0">
+                    <input type="text" name="attr_damagebonus" class="sheet-no-border sheet-attackbonus" value="0">
+                    <input type="text" name="attr_shortrange" class="sheet-no-border sheet-tiny">
+                    <input type="text" name="attr_mediumrange" class="sheet-no-border sheet-tiny">
+                    <input type="text" name="attr_longrange" class="sheet-no-border sheet-tiny">
+                    <select name="attr_weaponfocus" class="sheet-no-border sheet-tiny">
+                        <option value="0" selected>No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                    <input type="text" name="attr_multiplier" class="sheet-no-border sheet-attackbonus" value="1">
+                    <div class="sheet-weapontype-melee">
+                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrow" title="Melee Attack Throw"></button>
+                    </div>
+                    <div class="sheet-weapontype-ranged">
+                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrow" title="Missile Attack Throw"></button>
+                    </div>
+                    <div class="sheet-weapontype-finesse">
+                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrow" title="Finesse Attack Throw"></button>
+                    </div>
+                    <input type="text" name="attr_weapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description">
+                </div>
+            </fieldset>
+        </div>
     </div>
-    
     <!-- SKILLS AND EQUIPMENT -->
-    <div class="sheet-flex-between">
-        <div class="sheet-col-left sheet-thick-border">
-            <h2>GMRoll Actions</h2>
-            <input type="text" name="attr_DSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Detect Secret" readonly>
-            <input type="number" name="attr_DSskillvalue" class="sheet-skillvalue" value="18">
-            <button type="roll" value="[@{character_name} Detect Secret](~@{character_id}|gmDSThrow)" name="roll_DSThrow" title="Detect Secret Skill Throw"></button>
-            <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{DSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{DSskillvalue}]]}}" name="roll_gmDSThrow"></button>
-            <input type="text" name="attr_HNskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Hear Noise" readonly>
-            <input type="number" name="attr_HNskillvalue" class="sheet-skillvalue" value="18">
-            <button type="roll" value="[@{character_name} Hear Noise](~@{character_id}|gmHNThrow)" name="roll_HNThrow" title="Hear Noise Skill Throw"></button>
-            <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{HNskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{HNskillvalue}]]}}" name="roll_gmHNThrow"></button>
-            <input type="text" name="attr_FTskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Find Traps" readonly>
-            <input type="number" name="attr_FTskillvalue" class="sheet-skillvalue" value="18">
-            <button type="roll" value="[@{character_name} Find Traps](~@{character_id}|gmFTThrow)" name="roll_FTThrow" title="Find Traps Skill Throw"></button>
-            <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{FTskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{FTskillvalue}]]}}" name="roll_gmFTThrow"></button>
-            <fieldset class="repeating_gmskills">
-                <input type="text" name="attr_gmskillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
-                <input type="number" name="attr_gmskillvalue" class="sheet-skillvalue" value="18">
-                <input type="hidden" name="attr_gmskillRollvalue" readonly>
-                <button type="roll" value="@{gmskillRollvalue}" name="roll_GMThrow" title="Secret Skill Throw"></button>
-                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{gmskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{gmskillvalue}]]}}" name="roll_gmGMThrow"></button>
-            </fieldset>
-            <h2>Actions</h2>
-            <input type="text" name="attr_ODskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Open Door" readonly>
-            <input type="number" name="attr_ODskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button type="roll" value="&{template:acks_template} {{name=@{ODskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{ODskillvalue}]]}}" name="roll_ODThrow" title="Open Doors Skill Throw"></button>
-            <input type="text" name="attr_TSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Trained Skill" readonly>
-            <input type="number" name="attr_TSskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button type="roll" value="&{template:acks_template} {{name=@{TSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{TSskillvalue}]]}}" name="roll_TSThrow" title="Trained Skill Throw"></button>
-            <input type="text" name="attr_USskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Untrained Skill" readonly>
-            <input type="number" name="attr_USskillvalue" class="sheet-skillvalue" value="18" readonly>
-            <button type="roll" value="&{template:acks_template} {{name=@{USskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{USskillvalue}]]}}" name="roll_USThrow" title="Untrained Skill Throw"></button>
-            <fieldset class="repeating_skills">
-                <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
-                <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="18">
-                <button type="roll" value="&{template:acks_template} {{name=@{skillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{skillvalue}]]}}" name="roll_skillThrow" title="Skill Throw"></button>
-            </fieldset>
-            <h2>Features</h2>
-            <div class="sheet-othercontainer">
-                <input type="text" name="attr_featureLanguage" class="sheet-no-border sheet-othername" value="Languages">
-                <div class="sheet-bottom-line sheet-auto-expand">
-                	<span name="attr_featuredescrLanguage"></span>
-                	<textarea spellcheck="false" name="attr_featuredescrLanguage" placeholder="Common"></textarea>
-                </div>
-            </div>
-            <fieldset class="repeating_features">
+    <div class="sheet-actions-tab">
+        <div class="sheet-flex-between">
+            <div class="sheet-col-left sheet-thick-border">
+                <h2>Features</h2>
                 <div class="sheet-othercontainer">
-                    <input type="text" name="attr_featurename" class="sheet-no-border sheet-othername" placeholder="Ability Name">
+                    <input type="text" name="attr_featureLanguage" class="sheet-no-border sheet-othername" value="Languages">
                     <div class="sheet-bottom-line sheet-auto-expand">
-                    	<span name="attr_featuredescr"></span>
-                    	<textarea spellcheck="false" name="attr_featuredescr" placeholder="Description"></textarea>
+                    	<span name="attr_featuredescrLanguage"></span>
+                    	<textarea spellcheck="false" name="attr_featuredescrLanguage" placeholder="Common"></textarea>
                     </div>
                 </div>
-            </fieldset>
-            <h2>Proficiencies</h2>
-            <div class="sheet-othercontainer">
-                <input type="text" name="attr_proficiencyAdventuring" class="sheet-no-border sheet-othername" value="Adventuring">
-                <div class="sheet-bottom-line sheet-special-auto">
-                	<span name="attr_proficiencydescrAdventuring"></span>
-                	<textarea spellcheck="false" name="attr_proficiencydescrAdventuring" placeholder="This character is well-equipped for a life of adventure. They know how to clean and sharpen weapons, saddle and ride a horse, set up a camp, and search for a secret door. They have a rough idea of the value of common coins, trade goods, gems, and jewelry. All player characters are assumed to have Adventuring for purposes of the profciency throws of standard adventuring tasks."></textarea>
-                </div>
-            </div>
-            <fieldset class="repeating_proficiencies">
+                <fieldset class="repeating_features">
+                    <div class="sheet-othercontainer">
+                        <input type="text" name="attr_featurename" class="sheet-no-border sheet-othername" placeholder="Ability Name">
+                        <div class="sheet-bottom-line sheet-auto-expand">
+                        	<span name="attr_featuredescr"></span>
+                        	<textarea spellcheck="false" name="attr_featuredescr" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+                <h2>Proficiencies</h2>
                 <div class="sheet-othercontainer">
-                    <input type="text" name="attr_proficiencyname" class="sheet-no-border sheet-othername" placeholder="Proficiency Name">
-                    <div class="sheet-bottom-line sheet-auto-expand">
-                    	<span name="attr_proficiencydescr"></span>
-                    	<textarea spellcheck="false" name="attr_proficiencydescr" placeholder="Description"></textarea>
+                    <input type="text" name="attr_proficiencyAdventuring" class="sheet-no-border sheet-othername" value="Adventuring">
+                    <div class="sheet-bottom-line sheet-special-auto">
+                    	<span name="attr_proficiencydescrAdventuring"></span>
+                    	<textarea spellcheck="false" name="attr_proficiencydescrAdventuring" placeholder="This character is well-equipped for a life of adventure. They know how to clean and sharpen weapons, saddle and ride a horse, set up a camp, and search for a secret door. They have a rough idea of the value of common coins, trade goods, gems, and jewelry. All player characters are assumed to have Adventuring for purposes of the proficiency throws of standard adventuring tasks."></textarea>
                     </div>
                 </div>
-            </fieldset>
+                <fieldset class="repeating_proficiencies">
+                    <div class="sheet-othercontainer">
+                        <input type="text" name="attr_proficiencyname" class="sheet-no-border sheet-othername" placeholder="Proficiency Name">
+                        <div class="sheet-bottom-line sheet-auto-expand">
+                        	<span name="attr_proficiencydescr"></span>
+                        	<textarea spellcheck="false" name="attr_proficiencydescr" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="sheet-col-right sheet-thick-border">
+                <h2>GMRoll Actions</h2>
+                <input type="text" name="attr_DSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Detect Secret" readonly>
+                <input type="number" name="attr_DSskillvalue" class="sheet-skillvalue" value="18">
+                <button type="roll" value="[@{character_name} Detect Secret](~@{character_id}|gmDSThrow)" name="roll_DSThrow" title="Detect Secret Skill Throw"></button>
+                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{DSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{DSskillvalue}]]}}" name="roll_gmDSThrow"></button>
+                <input type="text" name="attr_HNskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Hear Noise" readonly>
+                <input type="number" name="attr_HNskillvalue" class="sheet-skillvalue" value="18">
+                <button type="roll" value="[@{character_name} Hear Noise](~@{character_id}|gmHNThrow)" name="roll_HNThrow" title="Hear Noise Skill Throw"></button>
+                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{HNskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{HNskillvalue}]]}}" name="roll_gmHNThrow"></button>
+                <input type="text" name="attr_FTskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Find Traps" readonly>
+                <input type="number" name="attr_FTskillvalue" class="sheet-skillvalue" value="18">
+                <button type="roll" value="[@{character_name} Find Traps](~@{character_id}|gmFTThrow)" name="roll_FTThrow" title="Find Traps Skill Throw"></button>
+                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{FTskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{FTskillvalue}]]}}" name="roll_gmFTThrow"></button>
+                <fieldset class="repeating_gmskills">
+                    <input type="text" name="attr_gmskillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
+                    <input type="number" name="attr_gmskillvalue" class="sheet-skillvalue" value="18">
+                    <input type="hidden" name="attr_gmskillRollvalue" readonly>
+                    <button type="roll" value="@{gmskillRollvalue}" name="roll_GMThrow" title="Secret Skill Throw"></button>
+                    <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{gmskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{gmskillvalue}]]}}" name="roll_gmGMThrow"></button>
+                </fieldset>
+                <h2>Actions</h2>
+                <input type="text" name="attr_ODskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Open Door" readonly>
+                <input type="number" name="attr_ODskillvalue" class="sheet-skillvalue" value="18" readonly>
+                <button type="roll" value="&{template:acks_template} {{name=@{ODskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{ODskillvalue}]]}}" name="roll_ODThrow" title="Open Doors Skill Throw"></button>
+                <input type="text" name="attr_TSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Trained Skill" readonly>
+                <input type="number" name="attr_TSskillvalue" class="sheet-skillvalue" value="18" readonly>
+                <button type="roll" value="&{template:acks_template} {{name=@{TSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{TSskillvalue}]]}}" name="roll_TSThrow" title="Trained Skill Throw"></button>
+                <input type="text" name="attr_USskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Untrained Skill" readonly>
+                <input type="number" name="attr_USskillvalue" class="sheet-skillvalue" value="18" readonly>
+                <button type="roll" value="&{template:acks_template} {{name=@{USskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{USskillvalue}]]}}" name="roll_USThrow" title="Untrained Skill Throw"></button>
+                <fieldset class="repeating_skills">
+                    <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
+                    <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="18">
+                    <button type="roll" value="&{template:acks_template} {{name=@{skillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{skillvalue}]]}}" name="roll_skillThrow" title="Skill Throw"></button>
+                </fieldset>
+            </div>
         </div>
-        <div class="sheet-col-right">
-            <div class="sheet-thick-border sheet-equipment">
+    </div>
+    <div class="sheet-equipment-tab">
+        <div class="sheet-flex-between">
+            <div class="sheet-col-left sheet-thick-border sheet-equipment">
                 <h2>Equipment</h2>
                 <fieldset class="repeating_equipment">
                      <input type="number" name="attr_itemcount" placeholder="#" class="sheet-encumbrance sheet-bottom-line" min="0">
@@ -408,7 +422,7 @@
                   <input type="number" step=any name="attr_encumbranceTotal" class="sheet-total-encumbrance" value="0" readonly>
                 </div>
             </div>
-            <div class="sheet-thick-border sheet-equipment">
+            <div class="sheet-col-right sheet-thick-border sheet-equipment">
                 <h2>Unencumbering</h2>
                 <fieldset class="repeating_banked">
                     <div class="sheet-othercontainer">
@@ -423,196 +437,201 @@
         </div>
     </div>
     <!-- SPELLS -->
-    <div class="sheet-thick-border sheet-spells">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="all" checked>
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="1">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="2">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="3">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="4">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="5">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="6">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="7">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="8">
-        <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="9">
-        <h2>Spells</h2>
-        <div class="sheet-spells-per-level sheet-flex-between">
-          <div class="sheet-flex-between">
-              <span>1: </span>
-              <input type="number" name="attr_spells_l1" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l1_max" value="0">
-          </div>
-          <div class="sheet-flex-between">
-              <span>2: </span>
-              <input type="number" name="attr_spells_l2" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l2_max" value="0">
-          </div>
-          <div class="sheet-flex-between">
-              <span>3: </span>
-              <input type="number" name="attr_spells_l3" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l3_max" value="0">
-          </div>
-          <div class="sheet-flex-between">
-              <span>4: </span>
-              <input type="number" name="attr_spells_l4" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l4_max" value="0">
-          </div>
-          <div class="sheet-flex-between">
-              <span>5: </span>
-              <input type="number" name="attr_spells_l5" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l5_max" value="0">
-          </div>
-          <div class="sheet-flex-between">
-              <span>6: </span>
-              <input type="number" name="attr_spells_l6" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l6_max" value="0">
-          </div>
-          <div class="sheet-flex-between">
-              <span>7: </span>
-              <input type="number" name="attr_spells_l7" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l7_max" value="0">
-          </div>
-          <div class="sheet-flex-between">
-              <span>8: </span>
-              <input type="number" name="attr_spells_l8" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l8_max" value="0">
-          </div>
-          <div class="sheet-flex-between">
-              <span>9: </span>
-              <input type="number" name="attr_spells_l9" value="0">
-              <span> / </span>
-              <input type="number" name="attr_spells_l9_max" value="0">
-          </div>
-        </div>
-        <div class="sheet-spell-filters sheet-flex-between">
-            <div>Filter:</div>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="all" checked>
-                <span>all</span>
-            </label>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="1">
-                <span>1</span>
-            </label>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="2">
-                <span>2</span>
-            </label>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="3">
-                <span>3</span>
-            </label>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="4">
-                <span>4</span>
-            </label>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="5">
-                <span>5</span>
-            </label>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="6">
-                <span>6</span>
-            </label>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="7">
-                <span>7</span>
-            </label>
-            <label class="sheet-filter-button">
-                <input type="radio" name="attr_spells_filter" value="8">
-                <span>8</span>
-            </label>
-            <label class="sheet-filter-button">
-              <input type="radio" name="attr_spells_filter" value="9">
-              <span>9</span>
-          </label>
-        </div>
-        <fieldset class="repeating_spells">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8">
-            <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9">
-            <div class="sheet-spellcontainer">
-                <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" placeholder="Spell or Ability Name">
-                <input type="text" name="attr_spelltype" class="sheet-spell-type" placeholder="Caster Class">
-                <input type="text" name="attr_spelllevel" class="sheet-bottom-line sheet-spell-level" placeholder="1">
-                <input type="text" name="attr_spellduration" class="sheet-bottom-line sheet-spell-duration" placeholder="Duration">
-                <input type="text" name="attr_spellrange" class="sheet-bottom-line sheet-spell-range" placeholder="Range">
-                <div>
-                    <span># cast: </span>
-                    <input type="number" name="attr_spellcast" class="sheet-bottom-line sheet-spell-prepared" value="0" min="0">
-                </div>
-                <button type="roll" value="&{template:acks_template} {{spell=1}} {{name=@{spellname}}} {{caster=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_spellcast" title="Cast Spell"></button>
-                <div class="sheet-othercontainer sheet-auto-expand">
-                	<span name="attr_spelldescription"></span>
-                	<textarea spellcheck="false" name="attr_spelldescription" placeholder="Description"></textarea>
-                	<!-- class="sheet-spell-description" -->
-                </div>
+    <div class="sheet-spells-tab">
+        <div class="sheet-thick-border sheet-spells">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="all" checked>
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="1">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="2">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="3">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="4">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="5">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="6">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="7" disabled="true">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="8" disabled="true">
+            <input type="checkbox" name="attr_spells_filter" class="sheet-spellfilter" value="9" disabled="true">
+            <h2>Spells</h2>
+            <div class="sheet-spells-per-level sheet-flex-between">
+              <div class="sheet-flex-between">
+                  <span>1: </span>
+                  <input type="number" name="attr_spells_l1" value="0">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l1_max" value="0">
+              </div>
+              <div class="sheet-flex-between">
+                  <span>2: </span>
+                  <input type="number" name="attr_spells_l2" value="0">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l2_max" value="0">
+              </div>
+              <div class="sheet-flex-between">
+                  <span>3: </span>
+                  <input type="number" name="attr_spells_l3" value="0">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l3_max" value="0">
+              </div>
+              <div class="sheet-flex-between">
+                  <span>4: </span>
+                  <input type="number" name="attr_spells_l4" value="0">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l4_max" value="0">
+              </div>
+              <div class="sheet-flex-between">
+                  <span>5: </span>
+                  <input type="number" name="attr_spells_l5" value="0">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l5_max" value="0">
+              </div>
+              <div class="sheet-flex-between">
+                  <span>6: </span>
+                  <input type="number" name="attr_spells_l6" value="0">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l6_max" value="0">
+              </div>
+              <div class="sheet-flex-between">
+                  <span>7: </span>
+                  <input type="number" name="attr_spells_l7" value="0" disabled="true">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l7_max" value="0" disabled="true">
+              </div>
+              <div class="sheet-flex-between">
+                  <span>8: </span>
+                  <input type="number" name="attr_spells_l8" value="0" disabled="true">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l8_max" value="0" disabled="true">
+              </div>
+              <div class="sheet-flex-between">
+                  <span>9: </span>
+                  <input type="number" name="attr_spells_l9" value="0" disabled="true">
+                  <span> / </span>
+                  <input type="number" name="attr_spells_l9_max" value="0" disabled="true">
+              </div>
             </div>
-        </fieldset>
+            <div class="sheet-spell-filters sheet-flex-between">
+                <div>Filter:</div>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="all" checked>
+                    <span>all</span>
+                </label>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="1">
+                    <span>1</span>
+                </label>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="2">
+                    <span>2</span>
+                </label>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="3">
+                    <span>3</span>
+                </label>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="4">
+                    <span>4</span>
+                </label>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="5">
+                    <span>5</span>
+                </label>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="6">
+                    <span>6</span>
+                </label>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="7" disabled="true">
+                    <span>7</span>
+                </label>
+                <label class="sheet-filter-button">
+                    <input type="radio" name="attr_spells_filter" value="8" disabled="true">
+                    <span>8</span>
+                </label>
+                <label class="sheet-filter-button">
+                  <input type="radio" name="attr_spells_filter" value="9" disabled="true">
+                  <span>9</span>
+              </label>
+            </div>
+            <fieldset class="repeating_spells">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="1">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="2">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="3">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="4">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="5">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="6">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="7" disabled="true">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="8" disabled="true">
+                <input type="checkbox" name="attr_spelllevel" class="sheet-hidden-spell-level" value="9" disabled="true">
+                <div class="sheet-spellcontainer">
+                    <input type="text" name="attr_spellname" class="sheet-bottom-line sheet-spell-name" placeholder="Spell or Ability Name">
+                    <input type="text" name="attr_spelltype" class="sheet-spell-type" placeholder="Caster Class">
+                    <input type="text" name="attr_spelllevel" class="sheet-bottom-line sheet-spell-level" placeholder="1">
+                    <input type="text" name="attr_spellduration" class="sheet-bottom-line sheet-spell-duration" placeholder="Duration">
+                    <input type="text" name="attr_spellrange" class="sheet-bottom-line sheet-spell-range" placeholder="Range">
+                    <div>
+                        <span># cast: </span>
+                        <input type="number" name="attr_spellcast" class="sheet-bottom-line sheet-spell-prepared" value="0" min="0">
+                    </div>
+                    <button type="roll" value="&{template:acks_template} {{spell=1}} {{name=@{spellname}}} {{caster=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_spellcast" title="Cast Spell"></button>
+                    <div class="sheet-othercontainer sheet-auto-expand">
+                    	<span name="attr_spelldescription"></span>
+                    	<textarea spellcheck="false" name="attr_spelldescription" placeholder="Description"></textarea>
+                    	<!-- class="sheet-spell-description" -->
+                    </div>
+                </div>
+            </fieldset>
+        </div>
     </div>
     <!-- RETAINERS -->
-    <div class="sheet-thick-border">
-        <h2>
-            Hirelings
-            <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{hireroll=[[2d6+(@{charismaMod})+(?{Modifier|0})]]}}" name="roll_hire" title="Hiring Roll"></button>
-        </h2>
-        <fieldset class="repeating_retainers">
-            <div class="sheet-retainercontainer">
-                <div class="sheet-info-row">
-                    <input type="text" name="attr_retainername" class="sheet-bottom-line sheet-retainer-large">
-                    <input type="text" name="attr_retainerac" class="sheet-bottom-line sheet-retainer-small">
-                    <input type="text" name="attr_retainerhp" class="sheet-bottom-line sheet-retainer-small">
-                    <input type="text" name="attr_retainermove" class="sheet-bottom-line sheet-retainer-small">
-                    <input type="text" name="attr_retainerattack" class="sheet-bottom-line sheet-retainer-med">
-                    <input type="text" name="attr_retainerdamage" class="sheet-bottom-line sheet-retainer-med">
-                    <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[{@{retainerdamage}, 1d1}k1]]}} {{critdamageroll=[[{@{retainerdamage}, 1d1}k1]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
-                    <span class="sheet-retainer-large">Name</span>
-                    <span class="sheet-retainer-small">AC</span>
-                    <span class="sheet-retainer-small">HP</span>
-                    <span class="sheet-retainer-small">Move</span>
-                    <span class="sheet-retainer-med">Atk Throw</span>
-                    <span class="sheet-retainer-med">Damage</span>
-                    <span class="sheet-button-spacer"></span>
+    <div class="sheet-hirelings-tab"> 
+        <div class="sheet-thick-border">
+            <h2>
+                Hirelings
+                <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{hireroll=[[2d6+(@{charismaMod})+(?{Modifier|0})]]}}" name="roll_hire" title="Hiring Roll"></button>
+            </h2>
+            <fieldset class="repeating_retainers">
+                <div class="sheet-retainercontainer">
+                    <div class="sheet-info-row">
+                        <input type="text" name="attr_retainername" class="sheet-bottom-line sheet-retainer-large">
+                        <input type="text" name="attr_retainerac" class="sheet-bottom-line sheet-retainer-small">
+                        <input type="text" name="attr_retainerhp" class="sheet-bottom-line sheet-retainer-small">
+                        <input type="text" name="attr_retainermove" class="sheet-bottom-line sheet-retainer-small">
+                        <input type="text" name="attr_retainerattack" class="sheet-bottom-line sheet-retainer-med">
+                        <input type="text" name="attr_retainerdamage" class="sheet-bottom-line sheet-retainer-med">
+                        <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[{@{retainerdamage}, 1d1}k1]]}} {{critdamageroll=[[{@{retainerdamage}, 1d1}k1]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
+                        <span class="sheet-retainer-large">Name</span>
+                        <span class="sheet-retainer-small">AC</span>
+                        <span class="sheet-retainer-small">HP</span>
+                        <span class="sheet-retainer-small">Move</span>
+                        <span class="sheet-retainer-med">Atk Throw</span>
+                        <span class="sheet-retainer-med">Damage</span>
+                        <span class="sheet-button-spacer"></span>
+                    </div>
+                    <div class="sheet-info-row">
+                        <input type="text" name="attr_retainerclasslvl" class="sheet-bottom-line sheet-retainer-large">
+                        <input type="text" name="attr_retainerposition" class="sheet-bottom-line sheet-retainer-med">
+                        <input type="text" name="attr_retainerxp" class="sheet-bottom-line sheet-retainer-med">
+                        <input type="text" name="attr_retainerwage" class="sheet-bottom-line sheet-retainer-small">
+                        <input type="text" name="attr_retainershare" class="sheet-bottom-line sheet-retainer-small">
+                        <input type="text" name="attr_retainerloyalty" class="sheet-bottom-line sheet-retainer-small">
+                        <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{loyaltyroll=[[2d6+(@{charismaMod})+(@{moraleMisc})+(@{retainerloyalty})]]}}" name="roll_loyaltyRoll" title="Hireling Loyalty Roll"></button>
+                        <span class="sheet-retainer-large">Class and Level</span>
+                        <span class="sheet-retainer-med">Position</span>
+                        <span class="sheet-retainer-med">XP</span>
+                        <span class="sheet-retainer-small">Wage</span>
+                        <span class="sheet-retainer-small">Share</span>
+                        <span class="sheet-retainer-small">Loyalty</span>
+                        <span class="sheet-button-spacer"></span>
+                    </div>
+                    <div class="sheet-auto-expand">
+                    	<span name="attr_retainerdesc"></span>
+                    	<textarea spellcheck="false" name="attr_retainerdescr" placeholder="Notes (Alignment, Gear, Proficiencies, Wounds, Description)"></textarea>
+                    </div>
                 </div>
-                <div class="sheet-info-row">
-                    <input type="text" name="attr_retainerclasslvl" class="sheet-bottom-line sheet-retainer-large">
-                    <input type="text" name="attr_retainerposition" class="sheet-bottom-line sheet-retainer-med">
-                    <input type="text" name="attr_retainerxp" class="sheet-bottom-line sheet-retainer-med">
-                    <input type="text" name="attr_retainerwage" class="sheet-bottom-line sheet-retainer-small">
-                    <input type="text" name="attr_retainershare" class="sheet-bottom-line sheet-retainer-small">
-                    <input type="text" name="attr_retainerloyalty" class="sheet-bottom-line sheet-retainer-small">
-                    <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{loyaltyroll=[[2d6+(@{charismaMod})+(@{moraleMisc})+(@{retainerloyalty})]]}}" name="roll_loyaltyRoll" title="Hireling Loyalty Roll"></button>
-                    <span class="sheet-retainer-large">Class and Level</span>
-                    <span class="sheet-retainer-med">Position</span>
-                    <span class="sheet-retainer-med">XP</span>
-                    <span class="sheet-retainer-small">Wage</span>
-                    <span class="sheet-retainer-small">Share</span>
-                    <span class="sheet-retainer-small">Loyalty</span>
-                    <span class="sheet-button-spacer"></span>
-                </div>
-                <div class="sheet-auto-expand">
-                	<span name="attr_retainerdesc"></span>
-                	<textarea spellcheck="false" name="attr_retainerdescr" placeholder="Notes (Alignment, Gear, Proficiencies, Wounds, Description)"></textarea>
-                </div>
-            </div>
-        </fieldset>
+            </fieldset>
+        </div>
     </div>
 </div>
 <!-- THIS IS THE STAT BLOCK TAB PART -->
 <div class="sheet-monsterinfo">
+    <div class="sheet-statblock-spacer"/>
     <div class="sheet-flex-between">
         <div class="sheet-col-left">
             <textarea spellcheck="false" name="attr_mrawBlock" class="sheet-rawblock" placeholder="Raw Stat Block"></textarea>
@@ -780,7 +799,7 @@
             </div>
             <!-- COMBAT STUFF -->
             <div class="sheet-thick-border">
-                <h2>Combat</h2>
+                <h2>Weapons</h2>
                 <div class="sheet-rep-title sheet-flex-between">
                     <span class="sheet-mweapon-name">Name</span>
                     <span class="sheet-mdamage">Damage</span>
@@ -797,7 +816,7 @@
                         <input type="text" name="attr_Mmediumrange" class="sheet-no-border sheet-mtiny">
                         <input type="text" name="attr_Mlongrange" class="sheet-no-border sheet-mtiny">
                         <button type="roll" value="&{template:acks_template} {{name=@{Mweaponname}}} {{attackthrow=[[1d20+(?{Modifier|0})-(@{Mattackthrow})]]}} {{damageroll=[[{@{Mweapondamage}, 1d1}k1]]}} {{critdamageroll=[[{@{Mweapondamage}, 1d1}k1]]}}" name="roll_mAttackThrow" title="Monster Attack Throw"></button>
-                        <input type="text" name="attr_Mweapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description"></textarea>
+                        <input type="text" name="attr_Mweapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description">
                     </div>
                 </fieldset>
             </div>
