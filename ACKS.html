@@ -153,34 +153,33 @@
                   <div class="sheet-svblock">
                     <span class="sheet-svbtitle">Petrify & Paralysis</span>
                     <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{paralyzeSave}]]}}" name="roll_paralyzeSaveThrow" title="Saving Throw vs Petrify & Paralysis"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_paralyzeSave" value="20">
+                    <input type="number" class="sheet-numbubble" name="attr_paralyzeSave" value="20" readonly>
                     <span class="sheet-svnsubtext">Rendered Immobile</span>
                   </div>
                   <div class="sheet-svblock">
                     <span class="sheet-svbtitle">Poison & Death</span>
                       <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{poisonSave}]]}}" name="roll_poisonSaveThrow" title="Saving Throw vs Poison & Death"></button>
-                      <input type="number" class="sheet-numbubble" name="attr_poisonSave" value="20">
+                      <input type="number" class="sheet-numbubble" name="attr_poisonSave" value="20" readonly>
                       <span class="sheet-svnsubtext">Death or Incapacitation</span>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Blast & Breath</span>
                       <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{breathSave}]]}}" name="roll_breathSaveThrow" title="Saving Throw vs Blast & Breath"></button>
-                      <input type="number" class="sheet-numbubble" name="attr_breathSave" value="20">
+                      <input type="number" class="sheet-numbubble" name="attr_breathSave" value="20" readonly>
                       <span class="sheet-svnsubtext">Area Effects</span>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Staffs & Wands</span>
                       <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{deviceSave}]]}}" name="roll_deviceSaveThrow" title="Saving Throw vs Staffs & Wands"></button>
-                      <input type="number" class="sheet-numbubble" name="attr_deviceSave" value="20">
+                      <input type="number" class="sheet-numbubble" name="attr_deviceSave" value="20" readonly>
                       <span class="sheet-svnsubtext">Effects from Items</span>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Spells</span>
                       <button type="roll" value="&{template:acks_template} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{magicSave}]]}}" name="roll_magicSaveThrow" title="Saving Throw vs Spells"></button>
-                      <input type="number" class="sheet-numbubble" name="attr_magicSave" value="20">
+                      <input type="number" class="sheet-numbubble" name="attr_magicSave" value="20" readonly>
                       <span class="sheet-svnsubtext">Effects from Spells</span>
                   </div>
-                  <div class="sheet-tiny-spacer"></div>
                 </div>
                 <!-- Combat -->
                 <h2>Combat</h2>
@@ -191,7 +190,7 @@
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Atk Throw</span>
-                        <input type="number" class="sheet-numbubble" name="attr_attackthrow" value="10">
+                        <input type="number" class="sheet-numbubble" name="attr_attackthrow" value="10" readonly>
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">Melee</span>
@@ -201,7 +200,6 @@
                         <span class="sheet-statstitle">Missile</span>
                         <input type="number" class="sheet-numbubble" name="attr_attackthrowMissile" value="(@{attackthrow}-(@{dexterityMod}))" disabled="true">
                     </div>
-                    <div class="sheet-tiny-spacer"></div>
                 </div>
                 <!-- Misc Bonuses -->
                 <h2>Misc Bonuses</h2>
@@ -226,7 +224,28 @@
                         <span class="sheet-statstitle">AC</span>
                         <input type="number" class="sheet-numbubble" name="attr_armorMisc" value="0">
                     </div>
-                    <div class="sheet-tiny-spacer"></div>
+                </div>
+                <div class="sheet-flex">
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Sv P&P</span>
+                        <input type="number" class="sheet-numbubble" name="attr_paralyzeSaveMisc" value="0">
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Sv P&D</span>
+                        <input type="number" class="sheet-numbubble" name="attr_poisonSaveMisc" value="0">
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Sv B&B</span>
+                        <input type="number" class="sheet-numbubble" name="attr_breathSaveMisc" value="0">
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Sv S&W</span>
+                        <input type="number" class="sheet-numbubble" name="attr_deviceSaveMisc" value="0">
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Sv SP</span>
+                        <input type="number" class="sheet-numbubble" name="attr_magicSaveMisc" value="0">
+                    </div>
                 </div>
                 <!-- Movement -->
                 <h2>Movement</h2>
@@ -247,7 +266,6 @@
                         <span class="sheet-statstitle">Run Mv</span>
                         <input type="number" class="sheet-numbubble" name="attr_moveExplore" value="120" readonly>
                     </div>
-                    <div class="sheet-big-spacer"></div>
                 </div>
             </div>
         </div>
@@ -305,13 +323,13 @@
                     </select>
                     <input type="text" name="attr_multiplier" class="sheet-no-border sheet-attackbonus" value="1">
                     <div class="sheet-weapontype-melee">
-                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrow" title="Melee Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrowMelee" title="Melee Attack Throw"></button>
                     </div>
                     <div class="sheet-weapontype-ranged">
-                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{weaponranges=@{shortrange}/@{mediumrange}/@{longrange}}}{{attackthrow=[[1d20+@{attackbonus}-?{Range|0-@{shortrange},0|@{shortrange}-@{mediumrange},2|@{mediumrange}-@{longrange},5}+(?{Additional Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrow" title="Missile Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{weaponranges=@{shortrange}/@{mediumrange}/@{longrange}}}{{attackthrow=[[1d20+@{attackbonus}-?{Range|0-@{shortrange},0|@{shortrange}-@{mediumrange},2|@{mediumrange}-@{longrange},5}+(?{Additional Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrowMissile" title="Missile Attack Throw"></button>
                     </div>
                     <div class="sheet-weapontype-finesse">
-                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrow" title="Finesse Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrowFinesse" title="Finesse Attack Throw"></button>
                     </div>
                     <input type="text" name="attr_weapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description">
                 </div>
@@ -1520,6 +1538,526 @@ on('change:mrawBlock', function(eventInfo) {
         MBmorale: monstMorale,
         MBtreasure: monstTreasure,
         MBxp: monstXP
+    });
+});
+
+// Calculating Character Saving Throws and Attack Throw
+// Classes with Split Progression: trickster (atk thief sv fighter) gladiator (atk monster sv fighter) Priest/ess Witch (atk mage sv cleric)
+on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc change:breathSaveMisc change:deviceSaveMisc change:magicSaveMisc change:wisdomMod', function() {
+    getAttrs(["class","level","paralyzeSaveMisc","poisonSaveMisc","breathSaveMisc","deviceSaveMisc","magicSaveMisc","wisdomMod"], function(values) {
+        switch (values.class.toUpperCase()) {
+            case "FIGHTER":
+            case "ASSASSIN":
+            case "DWARVEN VAULTGUARD":
+            case "VAULTGUARD":
+            case "ELVEN SPELLSWORD":
+            case "SPELLSWORD":
+            case "EXPLORER":
+            case "ANTI-PALADIN":
+            case "BARBARIAN":
+            case "DWARVEN FURY":
+            case "FURY":
+            case "ELVEN RANGER":
+            case "RANGER":
+            case "ZAHARAN RUINGUARD":
+            case "RUINGUARD":
+            case "GNOMISH TRICKSTER":
+            case "TRICKSTER":
+            case "THRASSIAN GLADIATOR":
+            case "GLADIATOR":
+            case "MYSTIC":
+            case "PALADIN":
+                //Fighter Progression
+                switch (parseInt(values.level)) {
+                    case 1:
+                        setAttrs({
+                            attackthrow: 10,
+                            paralyzeSave: 15-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 14-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 16-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 17-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 2:
+                    case 3:
+                        setAttrs({
+                            attackthrow: 9,
+                            paralyzeSave: 14-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 15-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 16-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 4:
+                        setAttrs({
+                            attackthrow: 8,
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 14-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 5:
+                    case 6:
+                        setAttrs({
+                            attackthrow: 7,
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 7:
+                        setAttrs({
+                            attackthrow: 6,
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 8:
+                    case 9:
+                        setAttrs({
+                            attackthrow: 5,
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 10:
+                        setAttrs({
+                            attackthrow: 4,
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 11:
+                    case 12:
+                        setAttrs({
+                            attackthrow: 3,
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 9-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 13:
+                        setAttrs({
+                            attackthrow: 2,
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 6-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 8-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 14:
+                        setAttrs({
+                            attackthrow: 1,
+                            paralyzeSave: 6-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 5-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 7-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 8-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    default:
+                        setAttrs({ attackthrow: 20, paralyzeSave: 20, poisonSave: 20, breathSave: 20, deviceSave: 20, magicSave: 20 });
+                }
+                break; 
+            case "MAGE":
+            case "ELVEN ENCHANTER":
+            case "ENCHANTER":
+            case "NOBIRAN WONDERWORKER":
+            case "WONDERWORKER":
+            case "WARLOCK":
+                //Mage Progression
+                switch (parseInt(values.level)) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        setAttrs({
+                            attackthrow: 10,
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                        setAttrs({
+                            attackthrow: 9,
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 7:
+                    case 8:
+                    case 9:
+                        setAttrs({
+                            attackthrow: 8,
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 10:
+                    case 11:
+                    case 12:
+                        setAttrs({
+                            attackthrow: 7,
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 13:
+                    case 14:
+                        setAttrs({
+                            attackthrow: 6,
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 8-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    default:
+                        setAttrs({ attackthrow: 20, paralyzeSave: 20, poisonSave: 20, breathSave: 20, deviceSave: 20, magicSave: 20 });
+                }
+                break;
+            case "CLERIC":
+            case "BLADEDANCER":
+            case "DWARVEN CRAFTPRIEST":
+            case "CRAFTPRIEST":
+            case "PRIEST":
+            case "PRIESTESS":
+            case "SHAMAN":
+            case "WITCH":
+                //Cleric Progression
+                switch (parseInt(values.level)) {
+                    case 1:
+                    case 2:
+                        setAttrs({
+                            attackthrow: 10,
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 3:
+                    case 4:
+                        setAttrs({
+                            attackthrow: 9,
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 5:
+                    case 6:
+                        setAttrs({
+                            attackthrow: 8,
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 7:
+                    case 8:
+                        setAttrs({
+                            attackthrow: 7,
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+
+                    case 9:
+                    case 10:
+                        setAttrs({
+                            attackthrow: 6,
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 6-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 11:
+                    case 12:
+                        setAttrs({
+                            attackthrow: 5,
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 5-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 13:
+                    case 14:
+                        setAttrs({
+                            attackthrow: 4,
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 4-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    default:
+                        setAttrs({ attackthrow: 20, paralyzeSave: 20, poisonSave: 20, breathSave: 20, deviceSave: 20, magicSave: 20 });
+                }
+                break;
+            case "THIEF":
+            case "BARD":
+            case "ELVEN NIGHTBLADE":
+            case "NIGHTBLADE":
+            case "DWARVEN DELVER":
+            case "DELVER":
+            case "DWARVEN MACHINIST":
+            case "MACHINIST":
+            case "ELVEN COURTIER":
+            case "COURTIER":
+            case "VENTURER":
+                //Thief Progression
+                switch (parseInt(values.level)) {
+                    case 1:
+                    case 2:
+                        setAttrs({
+                            attackthrow: 10,
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 14-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 3:
+                    case 4:
+                        setAttrs({
+                            attackthrow: 9,
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 5:
+                    case 6:
+                        setAttrs({
+                            attackthrow: 8,
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 7:
+                    case 8:
+                        setAttrs({
+                            attackthrow: 7,
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+
+                    case 9:
+                    case 10:
+                        setAttrs({
+                            attackthrow: 6,
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 11:
+                    case 12:
+                        setAttrs({
+                            attackthrow: 5,
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    case 13:
+                    case 14:
+                        setAttrs({
+                            attackthrow: 4,
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
+                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                        });
+                        break;
+                    default:
+                        setAttrs({ attackthrow: 20, paralyzeSave: 20, poisonSave: 20, breathSave: 20, deviceSave: 20, magicSave: 20 });
+                }
+                break;
+            default: 
+                //NO PROGRESSION
+                setAttrs({ attackthrow: 20, paralyzeSave: 20, poisonSave: 20, breathSave: 20, deviceSave: 20, magicSave: 20 });
+        }
+        //Change Fight Progression trickster(atk thief) gladiator (atk monster) Priest/ess Witch (atk mage)
+        switch (values.class.toUpperCase()) {
+            case "THRASSIAN GLADIATOR":
+            case "GLADIATOR":
+                //Monster Progression
+                switch (parseInt(values.level)) {
+                    case 1:
+                        setAttrs({ attackthrow: 10 });
+                        break;
+                    case 2:
+                        setAttrs({ attackthrow: 9 });
+                        break;
+                    case 3:
+                        setAttrs({ attackthrow: 8 });
+                        break;
+                    case 4:
+                        setAttrs({ attackthrow: 7 });
+                        break;
+                    case 5:
+                        setAttrs({ attackthrow: 6 });
+                        break;
+                    case 6:
+                        setAttrs({ attackthrow: 5 });
+                        break;
+                    case 7:
+                        setAttrs({ attackthrow: 4 });
+                        break;
+                    case 8:
+                    case 9:
+                        setAttrs({ attackthrow: 3 });
+                        break;
+                    case 10:
+                    case 11:
+                        setAttrs({ attackthrow: 2 });
+                        break;
+                    case 12:
+                    case 13:
+                        setAttrs({ attackthrow: 1 });
+                        break;
+                    case 14:
+                        setAttrs({ attackthrow: 0 });
+                        break;
+                    default:
+                        //DONT DO A DAMN THING
+                }
+                break;
+            case "PRIEST":
+            case "PRIESTESS":
+            case "SHAMAN":
+            case "WITCH":
+                //Mage Progression
+                switch (parseInt(values.level)) {
+                    case 1:
+                    case 2:
+                    case 3:
+                        setAttrs({ attackthrow: 10 });
+                        break;
+                    case 4:
+                    case 5:
+                    case 6:
+                        setAttrs({ attackthrow: 9 });
+                        break;
+                    case 7:
+                    case 8:
+                    case 9:
+                        setAttrs({ attackthrow: 8 });
+                        break;
+                    case 10:
+                    case 11:
+                    case 12:
+                        setAttrs({ attackthrow: 7 });
+                        break;
+                    case 13:
+                    case 14:
+                        setAttrs({ attackthrow: 6 });
+                        break;
+                    default:
+                    //DONT DO A DAMN THING
+                }
+                break;
+            case "GNOMISH TRICKSTER":
+            case "TRICKSTER":
+                //Thief and Cleric Progression
+                switch (parseInt(values.level)) {
+                    case 1:
+                    case 2:
+                        setAttrs({ attackthrow: 10 });
+                        break;
+                    case 3:
+                    case 4:
+                        setAttrs({ attackthrow: 9 });
+                        break;
+                    case 5:
+                    case 6:
+                        setAttrs({ attackthrow: 8 });
+                        break;
+                    case 7:
+                    case 8:
+                        setAttrs({ attackthrow: 7 });
+                        break;
+                    case 9:
+                    case 10:
+                        setAttrs({ attackthrow: 6 });
+                        break;
+                    case 11:
+                    case 12:
+                        setAttrs({ attackthrow: 5 });
+                        break;
+                    case 13:
+                    case 14:
+                        setAttrs({ attackthrow: 4 });
+                        break;
+                    default:
+                    //DONT DO A DAMN THING
+                }
+                break;
+            default: 
+                //DONT DO A DAMN THING
+        }
     });
 });
 </script>
