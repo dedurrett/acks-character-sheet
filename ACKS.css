@@ -506,6 +506,8 @@ input[type=number].sheet-spell-prepared {
     margin-bottom: 3px;
 }
 .sheet-retainercontainer {
+    width: 100%;
+    display: block;
     padding: 2px;
     border: 2px solid;
     align-items: center;
