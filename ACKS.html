@@ -185,6 +185,10 @@
                 <h2>Combat</h2>
                 <div class="sheet-flex">
                     <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Move</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveCombat" value="40" readonly>
+                    </div>
+                    <div class="sheet-svblock">
                         <span class="sheet-statstitle">Armor</span>
                         <input type="number" class="sheet-numbubble" name="attr_armor" value="0">
                     </div>
@@ -251,32 +255,33 @@
                 <h2>Movement</h2>
                 <div class=" sheet-flex-between">
                     <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Carry Mod</span>
+                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMod"  value="0">
+                    </div>
+                    <div class="sheet-svblock">
                         <span class="sheet-statstitle">Max Carry</span>
-                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMax"  value="(20+(@{strengthMod}))" disabled="true">
+                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMax"  value="20" readonly>
                     </div>
                     <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Explore Mv</span>
+                        <span class="sheet-statstitle">Explore/Run</span>
                         <input type="number" class="sheet-numbubble" name="attr_moveExplore" value="120" readonly>
                     </div>
                     <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Combat Mv</span>
-                        <input type="number" class="sheet-numbubble" name="attr_moveCombat" value="40" readonly>
-                    </div>
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Run Mv</span>
-                        <input type="number" class="sheet-numbubble" name="attr_moveExplore" value="120" readonly>
+                        <span class="sheet-statstitle">March</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveWilderness" value="24" readonly>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <!-- TAB SELECTION -->
-    <span>&nbsp;&nbsp;</span>
+    <span>&nbsp;&nbsp;&nbsp;</span>
     <input class="sheet-is-weapons" type="checkbox" name="attr_show_weapons" value="1" checked><span class="sheet-show-weapons"></span>
     <input class="sheet-is-actions" type="checkbox" name="attr_show_actions" value="1" checked><span class="sheet-show-actions"></span>
     <input class="sheet-is-equipment" type="checkbox" name="attr_show_equipment" value="1" checked><span class="sheet-show-equipment"></span>
     <input class="sheet-is-spells" type="checkbox" name="attr_show_spells" value="1" checked><span class="sheet-show-spells"></span>
     <input class="sheet-is-hirelings" type="checkbox" name="attr_show_hirelings" value="1" checked><span class="sheet-show-hirelings"></span>
+    <input class="sheet-is-effects" type="checkbox" name="attr_show_effects" value="1" checked><span class="sheet-show-effects"></span>
     <!-- WEAPONS -->
     <div class="sheet-weapons-tab">
         <div class="sheet-thick-border">
@@ -307,6 +312,7 @@
                     <input class="sheet-hide-it sheet-finessecheck" type="checkbox" name="attr_weapontype" value="3">
                     <select name="attr_weapondamage" class="sheet-no-border sheet-damage">
                         <option value="1d2" >1d2</option>
+                        <option value="1d3" >1d3</option>
                         <option value="1d4">1d4</option>
                         <option value="1d6" selected>1d6</option>
                         <option value="1d8" >1d8</option>
@@ -646,6 +652,20 @@
             </fieldset>
         </div>
     </div>
+    <div class="sheet-effects-tab">
+        <div class="sheet-thick-border sheet-equipment">
+            <h2>Permanent Injuries and other Notes</h2>
+            <fieldset class="repeating_notes">
+                <div class="sheet-othercontainer">
+                    <input type="text" name="attr_notesheader" class="sheet-no-border sheet-othername" placeholder="Title">
+                    <div class="sheet-bottom-line sheet-auto-expand">
+                    	<span name="attr_notesdescr"></span>
+                    	<textarea spellcheck="false" name="attr_notesdescr" placeholder="Description"></textarea>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
 </div>
 <!-- THIS IS THE STAT BLOCK TAB PART -->
 <div class="sheet-monsterinfo">
@@ -707,6 +727,7 @@
                     <option value="MAG">Mage</option>
                     <option value="CLR">Cleric</option>
                     <option value="THF">Thief</option>
+                    <option value="NM">Normal Man</option>
                 </select>
                 <input type="number" name="attr_Msavelevel" value="0">
             </div>
@@ -981,7 +1002,7 @@
             {{/rollGreater() skillthrow target}}
         {{/skillthrow}}
         {{#spell}}
-            <tr><td  colspan="2" class="sheet-subheader">{{caster}} {{level}} Spell</td></tr>
+            <tr><td  colspan="2" class="sheet-subheader">Level {{level}} {{caster}} Spell</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
             <tr class="sheet-spellrow"><td><span class="sheet-tcat">Duration: </span>{{duration}}</td>
             <td><span class="sheet-tcat">Range: </span>{{range}}</td></tr>
@@ -1113,24 +1134,71 @@ on('change:repeating_equipment remove:repeating_equipment change:coinsCP change:
     });
 });
 
+//Max Encumbrance
+on('change:race change:strengthMod change:encumbranceMod', function() {
+    var racialLimit = 20;
+    getAttrs(["race","strengthMod","encumbranceMod"], function(values) {
+        switch (values.race.toUpperCase()) {
+            case "HALFLING":
+            case "HOBBIT":
+                racialLimit = 12;
+                break;
+            default:
+        }
+        setAttrs({ encumbranceMax: racialLimit+parseInt(values.strengthMod)+parseInt(values.encumbranceMod)});
+    });
+});
+
 // Movement Rate
-on('change:encumbranceTotal change:encumbranceMax', function() {
-    getAttrs(["encumbranceTotal","encumbranceMax"], function(values) {
-        if(values.encumbranceTotal > values.encumbranceMax) {
-            setAttrs({ moveExplore: 0});
-            setAttrs({ moveCombat: 0});
-        } else if(values.encumbranceTotal > 10) {
-            setAttrs({ moveExplore: 30});
-            setAttrs({ moveCombat: 10});
-        } else if(values.encumbranceTotal > 7) {
-            setAttrs({ moveExplore: 60});
-            setAttrs({ moveCombat: 20});
-        } else if(values.encumbranceTotal > 5) {
-            setAttrs({ moveExplore: 90});
-            setAttrs({ moveCombat: 30});
-        } else {
-            setAttrs({ moveExplore: 120});
-            setAttrs({ moveCombat: 40});
+on('change:race change:encumbranceTotal change:encumbranceMax', function() {
+    getAttrs(["race","encumbranceTotal","encumbranceMax"], function(values) {
+        switch (values.race.toUpperCase()) {
+            case "HALFLING":
+            case "HOBBIT":
+                if(values.encumbranceTotal > values.encumbranceMax) {
+                    setAttrs({ moveWilderness: 0});
+                    setAttrs({ moveExplore: 0});
+                    setAttrs({ moveCombat: 0});
+                } else if(values.encumbranceTotal > 7) {
+                    setAttrs({ moveWilderness: 6});
+                    setAttrs({ moveExplore: 30});
+                    setAttrs({ moveCombat: 10});
+                } else if(values.encumbranceTotal > 5) {
+                    setAttrs({ moveWilderness: 12});
+                    setAttrs({ moveExplore: 60});
+                    setAttrs({ moveCombat: 20});
+                } else if(values.encumbranceTotal > 4) {
+                    setAttrs({ moveWilderness: 18});
+                    setAttrs({ moveExplore: 90});
+                    setAttrs({ moveCombat: 30});
+                } else {
+                    setAttrs({ moveWilderness: 24});
+                    setAttrs({ moveExplore: 120});
+                    setAttrs({ moveCombat: 40});
+                }
+                break;
+            default:
+                if(values.encumbranceTotal > values.encumbranceMax) {
+                    setAttrs({ moveWilderness: 0});
+                    setAttrs({ moveExplore: 0});
+                    setAttrs({ moveCombat: 0});
+                } else if(values.encumbranceTotal > 10) {
+                    setAttrs({ moveWilderness: 6});
+                    setAttrs({ moveExplore: 30});
+                    setAttrs({ moveCombat: 10});
+                } else if(values.encumbranceTotal > 7) {
+                    setAttrs({ moveWilderness: 12});
+                    setAttrs({ moveExplore: 60});
+                    setAttrs({ moveCombat: 20});
+                } else if(values.encumbranceTotal > 5) {
+                    setAttrs({ moveWilderness: 18});
+                    setAttrs({ moveExplore: 90});
+                    setAttrs({ moveCombat: 30});
+                } else {
+                    setAttrs({ moveWilderness: 24});
+                    setAttrs({ moveExplore: 120});
+                    setAttrs({ moveCombat: 40});
+                }
         }
     });
 });
@@ -1154,10 +1222,18 @@ on('change:encumbranceTotal change:encumbranceMax', function() {
 });
 
 // Adventuring Skills modifed by ability scores, and houseruled catch-all categories
-on('change:strengthMod change:level', function() {
-    getAttrs(["strengthMod","level"], function(values) {
+on('change: race change:strengthMod change:level', function() {
+    var racialMod = 0;
+    getAttrs(["race","strengthMod","level"], function(values) {
+        switch (values.race.toUpperCase()) {
+            case "HALFLING":
+            case "HOBBIT":
+                racialMod = 4;
+                break;
+            default:
+        }
         setAttrs({
-            ODskillvalue: 18-Math.max(parseInt(values.strengthMod), 0) * 4,
+            ODskillvalue: 18+racialMod-Math.max(parseInt(values.strengthMod), 0) * 4,
             TSskillvalue: 15-parseInt(values.level),
             USskillvalue: 19-Math.ceil(parseInt(values.level)/2)
         });
@@ -1487,6 +1563,12 @@ on('change:Msaveas change:Msavelevel', function() {
                         setAttrs({ MparalyzeSave: 20, MpoisonSave: 20, MbreathSave: 20, MdeviceSave: 20, MmagicSave: 20 });
                 }
                 break;
+            case "NM":
+                switch (parseInt(values.Msavelevel)) {
+                    default:
+                        setAttrs({ MparalyzeSave: 16, MpoisonSave: 15, MbreathSave: 17, MdeviceSave: 17, MmagicSave: 18 });
+                }
+                break;
             default:
                 setAttrs({ MparalyzeSave: 20, MpoisonSave: 20, MbreathSave: 20, MdeviceSave: 20, MmagicSave: 20 });
         }
@@ -1543,8 +1625,35 @@ on('change:mrawBlock', function(eventInfo) {
 
 // Calculating Character Saving Throws and Attack Throw
 // Classes with Split Progression: trickster (atk thief sv fighter) gladiator (atk monster sv fighter) Priest/ess Witch (atk mage sv cleric)
-on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc change:breathSaveMisc change:deviceSaveMisc change:magicSaveMisc change:wisdomMod', function() {
-    getAttrs(["class","level","paralyzeSaveMisc","poisonSaveMisc","breathSaveMisc","deviceSaveMisc","magicSaveMisc","wisdomMod"], function(values) {
+on('change:race change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc change:breathSaveMisc change:deviceSaveMisc change:magicSaveMisc change:wisdomMod', function() {
+    var racialParalyze = 0;
+    var racialPoison = 0;
+    var racialBreath = 0;
+    var racialDevice = 0;
+    var racialMagic = 0;
+    getAttrs(["race","class","level","paralyzeSaveMisc","poisonSaveMisc","breathSaveMisc","deviceSaveMisc","magicSaveMisc","wisdomMod"], function(values) {
+
+        switch (values.race.toUpperCase()) {
+            case "ELF":
+            case "ELVEN":
+            case "ELVISH":
+            case "ELFIN":
+            case "ELFISH":
+            case "HALFLING":
+            case "HOBBIT":
+                racialParalyze = 1;
+                racialMagic = 1;
+                break;
+            case "DWARF":
+            case "DWARVEN":
+                racialParalyze = 4;
+                racialPoison = 4;
+                racialBreath = 3;
+                racialDevice = 4;
+                racialMagic = 4;
+            default:
+        }
+        
         switch (values.class.toUpperCase()) {
             case "FIGHTER":
             case "ASSASSIN":
@@ -1567,110 +1676,112 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
             case "GLADIATOR":
             case "MYSTIC":
             case "PALADIN":
+            case "HALFLING BOUNDER":
+            case "BOUNDER":
                 //Fighter Progression
                 switch (parseInt(values.level)) {
                     case 1:
                         setAttrs({
                             attackthrow: 10,
-                            paralyzeSave: 15-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 14-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
-                            breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 16-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 17-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            paralyzeSave: 15-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 14-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
+                            breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod)-racialBreath,
+                            deviceSave: 16-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 17-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 2:
                     case 3:
                         setAttrs({
                             attackthrow: 9,
-                            paralyzeSave: 14-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 14-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 15-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 16-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 15-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 16-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 4:
                         setAttrs({
                             attackthrow: 8,
-                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 14-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 14-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 5:
                     case 6:
                         setAttrs({
                             attackthrow: 7,
-                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 7:
                         setAttrs({
                             attackthrow: 6,
-                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 8:
                     case 9:
                         setAttrs({
                             attackthrow: 5,
-                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 10:
                         setAttrs({
                             attackthrow: 4,
-                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 11:
                     case 12:
                         setAttrs({
                             attackthrow: 3,
-                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 9-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 13:
                         setAttrs({
                             attackthrow: 2,
-                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 6-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 6-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 8-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 14:
                         setAttrs({
                             attackthrow: 1,
-                            paralyzeSave: 6-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 5-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 6-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 5-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 7-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 8-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 8-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     default:
@@ -1690,11 +1801,11 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
                     case 3:
                         setAttrs({
                             attackthrow: 10,
-                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 4:
@@ -1702,11 +1813,11 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
                     case 6:
                         setAttrs({
                             attackthrow: 9,
-                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 7:
@@ -1714,11 +1825,11 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
                     case 9:
                         setAttrs({
                             attackthrow: 8,
-                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 10:
@@ -1726,22 +1837,22 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
                     case 12:
                         setAttrs({
                             attackthrow: 7,
-                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 13:
                     case 14:
                         setAttrs({
                             attackthrow: 6,
-                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 8-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 8-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     default:
@@ -1762,44 +1873,44 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
                     case 2:
                         setAttrs({
                             attackthrow: 10,
-                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 3:
                     case 4:
                         setAttrs({
                             attackthrow: 9,
-                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 5:
                     case 6:
                         setAttrs({
                             attackthrow: 8,
-                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 7:
                     case 8:
                         setAttrs({
                             attackthrow: 7,
-                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
 
@@ -1807,33 +1918,33 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
                     case 10:
                         setAttrs({
                             attackthrow: 6,
-                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 6-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 6-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 11:
                     case 12:
                         setAttrs({
                             attackthrow: 5,
-                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 5-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 5-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 13:
                     case 14:
                         setAttrs({
                             attackthrow: 4,
-                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 4-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 4-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     default:
@@ -1851,50 +1962,52 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
             case "ELVEN COURTIER":
             case "COURTIER":
             case "VENTURER":
+            case "HALFLING BURGLAR":
+            case "BURGLAR":
                 //Thief Progression
                 switch (parseInt(values.level)) {
                     case 1:
                     case 2:
                         setAttrs({
                             attackthrow: 10,
-                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 14-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 14-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 3:
                     case 4:
                         setAttrs({
                             attackthrow: 9,
-                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 5:
                     case 6:
                         setAttrs({
                             attackthrow: 8,
-                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 7:
                     case 8:
                         setAttrs({
                             attackthrow: 7,
-                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
 
@@ -1902,33 +2015,33 @@ on('change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc chan
                     case 10:
                         setAttrs({
                             attackthrow: 6,
-                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 11:
                     case 12:
                         setAttrs({
                             attackthrow: 5,
-                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 13:
                     case 14:
                         setAttrs({
                             attackthrow: 4,
-                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod),
-                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod),
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
                             breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod),
-                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     default:
