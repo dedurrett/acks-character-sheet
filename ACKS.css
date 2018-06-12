@@ -667,27 +667,73 @@ div.sheet-weapons-tab,
 div.sheet-actions-tab,
 div.sheet-equipment-tab,
 div.sheet-spells-tab,
-div.sheet-hirelings-tab {
+div.sheet-hirelings-tab,
+div.sheet-effects-tab {
 	display: none;
 }
 input.sheet-is-weapons:checked ~ div.sheet-weapons-tab,
 input.sheet-is-actions:checked ~ div.sheet-actions-tab,
 input.sheet-is-equipment:checked ~ div.sheet-equipment-tab,
 input.sheet-is-spells:checked ~ div.sheet-spells-tab,
-input.sheet-is-hirelings:checked ~ div.sheet-hirelings-tab {
+input.sheet-is-hirelings:checked ~ div.sheet-hirelings-tab,
+input.sheet-is-effects:checked ~ div.sheet-effects-tab {
 	display: block;
 }
 input.sheet-is-weapons,
 input.sheet-is-actions,
 input.sheet-is-equipment,
 input.sheet-is-spells,
-input.sheet-is-hirelings {
-	width: 19%;
+input.sheet-is-hirelings,
+input.sheet-is-effects {
 	height: 16px;
 	cursor: pointer;
 	position: relative;
 	opacity: 0;
 	z-index: 9999;
+}
+
+
+input.sheet-is-weapons, 
+input.sheet-is-equipment,
+input.sheet-is-spells,
+input.sheet-is-hirelings {
+	width: 13%;
+}
+span.sheet-show-weapons,
+span.sheet-show-equipment,
+span.sheet-show-spells,
+span.sheet-show-hirelings {
+    width: 13%;
+    margin-left: -13%
+}
+input.sheet-is-actions {
+	width: 17%;
+}
+span.sheet-show-actions {
+    width: 17%;
+    margin-left: -17%
+}
+input.sheet-is-effects {
+	width: 25%;
+}
+span.sheet-show-effects {
+    width: 25%;
+	margin-left: -25%
+}
+span.sheet-show-weapons,
+span.sheet-show-actions,
+span.sheet-show-equipment,
+span.sheet-show-spells,
+span.sheet-show-hirelings,
+span.sheet-show-effects {
+	text-align: center;
+	display: inline-block;
+	height: 16px;
+	font-size: 12px;
+	background: #CCCCCC;
+	color: black;
+	font-weight: bold;
+	border-radius: 4px;
 }
 span.sheet-show-weapons::after {
     content: "Weapons";
@@ -704,27 +750,16 @@ span.sheet-show-spells::after {
 span.sheet-show-hirelings::after {
     content: "Hirelings";
 }
-span.sheet-show-weapons,
-span.sheet-show-actions,
-span.sheet-show-equipment,
-span.sheet-show-spells,
-span.sheet-show-hirelings {
-	text-align: center;
-	display: inline-block;
-	width: 19%;
-	height: 16px;
-	font-size: 12px;
-	background: #CCCCCC;
-	color: black;
-	font-weight: bold;
-	border-radius: 4px;
-	margin-left: -19%
+span.sheet-show-effects::after {
+    content: "Permanent Injuries and other Notes";
 }
+
 input.sheet-is-weapons:checked + span.sheet-show-weapons,
 input.sheet-is-actions:checked + span.sheet-show-actions,
 input.sheet-is-equipment:checked + span.sheet-show-equipment,
 input.sheet-is-spells:checked + span.sheet-show-spells,
-input.sheet-is-hirelings:checked + span.sheet-show-hirelings {
+input.sheet-is-hirelings:checked + span.sheet-show-hirelings,
+input.sheet-is-effects:checked + span.sheet-show-effects {
 	background: #666666;
 	color: white;
 	border-radius: 4px;
