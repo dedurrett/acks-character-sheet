@@ -247,7 +247,7 @@
                         <input type="number" class="sheet-numbubble" name="attr_deviceSaveMisc" value="0">
                     </div>
                     <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Sv SP</span>
+                        <span class="sheet-statstitle">Sv Spell</span>
                         <input type="number" class="sheet-numbubble" name="attr_magicSaveMisc" value="0">
                     </div>
                 </div>
@@ -1239,7 +1239,6 @@ on('change: race change:strengthMod change:level', function() {
         });
     });
 });
-
 //Update GMRoll Skills buttons sometimes I guess
 on("change:repeating_gmskills:gmskillname", function() {
     getSectionIDs("gmskills", function(idArray) {
