@@ -20,3 +20,5 @@ Lastly, a roll template has been implemented and is used by the sheet roll butto
 For example, one could macro this:
 
 &{template:acks_template} {{type=GM Report}} {{name=Player Defense}} {{Player1=[[@{Player1|armorclass}]] AC}} {{Player2=[[@{Player2|armorclass}]] AC}}
+
+![Custom Roll Template Output](https://raw.githubusercontent.com/dedurrett/acks-character-sheet/master/ACKS_rolltemplate.png)
