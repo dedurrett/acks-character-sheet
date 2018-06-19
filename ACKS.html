@@ -1221,25 +1221,6 @@ on('change:race change:encumbranceTotal change:encumbranceMax', function() {
   });
 });
 
-// Adventuring Skills modifed by ability scores, and houseruled catch-all categories
-on('change: race change:strengthMod change:level', function() {
-    var racialMod = 0;
-    getAttrs(["race","strengthMod","level"], function(values) {
-        switch (values.race.toUpperCase()) {
-            case "HALFLING":
-            case "HOBBIT":
-                racialMod = 4;
-                break;
-            default:
-        }
-        setAttrs({
-            ODskillvalue: 18+racialMod-Math.max(parseInt(values.strengthMod), 0) * 4,
-            TSskillvalue: 15-parseInt(values.level),
-            USskillvalue: 19-Math.ceil(parseInt(values.level)/2)
-        });
-    });
-});
-
 //Update GMRoll Skills buttons sometimes I guess
 on("change:repeating_gmskills:gmskillname", function() {
     getSectionIDs("repeating_gmskills", function(idArray) {
@@ -1623,7 +1604,7 @@ on('change:mrawBlock', function(eventInfo) {
     });
 });
 
-// Calculating Character Saving Throws and Attack Throw
+// Calculating Character Trained/Untrained Skill Throws, Saving Throws and Attack Throw
 // Classes with Split Progression: trickster (atk thief sv fighter) gladiator (atk monster sv fighter) Priest/ess Witch (atk mage sv cleric)
 on('change:race change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc change:breathSaveMisc change:deviceSaveMisc change:magicSaveMisc change:wisdomMod', function() {
     var racialParalyze = 0;
@@ -1632,6 +1613,11 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
     var racialDevice = 0;
     var racialMagic = 0;
     getAttrs(["race","class","level","paralyzeSaveMisc","poisonSaveMisc","breathSaveMisc","deviceSaveMisc","magicSaveMisc","wisdomMod"], function(values) {
+
+        setAttrs({
+            TSskillvalue: 15-parseInt(values.level),
+            USskillvalue: 19-Math.ceil(parseInt(values.level)/2)
+        });
 
         switch (values.race.toUpperCase()) {
             case "ELF":
