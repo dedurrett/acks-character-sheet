@@ -1245,7 +1245,7 @@ on("change:repeating_gmskills:gmskillname", function() {
     getSectionIDs("gmskills", function(idArray) {
 		var rollvalues = {};
         for(var i=0; i < idArray.length; i++) {
-			rollvalues["gmskills_" + idArray[i] + "_gmskillRollvalue"] =  "[@{character_name} @{repeating_gmskills_" + idArray[i] + "_gmskillname}](~@{character_id}|repeating_gmskills_" + idArray[i] + "_gmGMThrow)";
+			rollvalues["repeating_gmskills_" + idArray[i] + "_gmskillRollvalue"] =  "[@{character_name} @{repeating_gmskills_" + idArray[i] + "_gmskillname}](~@{character_id}|repeating_gmskills_" + idArray[i] + "_gmGMThrow)";
         }
 		setAttrs(rollvalues);
     });
