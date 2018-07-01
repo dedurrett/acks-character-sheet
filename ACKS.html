@@ -404,7 +404,7 @@
                 </fieldset>
                 <h2>Actions</h2>
                 <input type="text" name="attr_ODskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Open Door" readonly>
-                <input type="number" name="attr_ODskillvalue" class="sheet-skillvalue" value="18" readonly>
+                <input type="number" name="attr_ODskillvalue" class="sheet-skillvalue" value="18">
                 <button type="roll" value="&{template:acks_template} {{name=@{ODskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{ODskillvalue}]]}}" name="roll_ODThrow" title="Open Doors Skill Throw"></button>
                 <input type="text" name="attr_TSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Trained Skill" readonly>
                 <input type="number" name="attr_TSskillvalue" class="sheet-skillvalue" value="18" readonly>
@@ -866,199 +866,195 @@
 <rolltemplate class="sheet-rolltemplate-acks_template">
     <table>
         {{#mortalwounds}}
-            <tr><td class="sheet-subheader">Mortal Wounds Roll</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">d20 Result: </span>{{mortalwounds}}</td></tr>
-            <tr><td><span class="sheet-tcat">d6 Result: </span>{{rightinthe}}</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Mortal Wounds Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">d20 Result: </span></td><td class="sheet-results">{{mortalwounds}}</td></tr>
+            <tr><td><span class="sheet-tcat">d6 Result: </span></td><td class="sheet-results">{{rightinthe}}</td></tr>
         {{/mortalwounds}}
         {{#mortality}}
-            <tr><td class="sheet-subheader">Tampering with Mortality Roll</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">d20 Result: </span>{{mortality}}</td></tr>
-            <tr><td><span class="sheet-tcat">d6 Result: </span>{{rightinthe}}</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Tampering with Mortality Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">d20 Result: </span></td><td class="sheet-results">{{mortality}}</td></tr>
+            <tr><td><span class="sheet-tcat">d6 Result: </span></td><td class="sheet-results">{{rightinthe}}</td></tr>
         {{/mortality}}
         {{#surpriseroll}}
-            <tr><td class="sheet-subheader">Surprise Roll</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Result: </span>{{surpriseroll}}</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Surprise Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{surpriseroll}}</td></tr>
             {{#rollLess() surpriseroll 3}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Suprised!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Suprised!</b></td></tr>
             {{/rollLess() surpriseroll 3}}
             {{#rollGreater() surpriseroll 2}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Not Surprised.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Not Surprised.</b></td></tr>
             {{/rollGreater() surpriseroll 2}}
         {{/surpriseroll}}
         {{#initiativeroll}}
-            <tr><td class="sheet-subheader">Initiative Roll</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Result: </span>{{initiativeroll}}</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Initiative Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{initiativeroll}}</td></tr>
         {{/initiativeroll}}
         {{#reactionroll}}
-            <tr><td class="sheet-subheader">Reaction Roll</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Result: </span>{{reactionroll}}</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Reaction Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{reactionroll}}</td></tr>
             {{#rollLess() reactionroll 0}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Hostile!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Hostile!</b></td></tr>
             {{/rollLess() reactionroll 0}}
             {{#rollBetween() reactionroll 0 2}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Hostile!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Hostile!</b></td></tr>
             {{/rollBetween() reactionroll 0 2}}
             {{#rollBetween() reactionroll 3 5}}
-                    <tr><td class="sheet-subfooter" style="color:orange;"><b>Unfriendly.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:orange;"><b>Unfriendly.</b></td></tr>
             {{/rollBetween() reactionroll 3 5}}
             {{#rollBetween() reactionroll 6 8}}
-                    <tr><td class="sheet-subfooter" style="color:yellow;"><b>Uncertain.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:yellow;"><b>Uncertain.</b></td></tr>
             {{/rollBetween() reactionroll 6 8}}
             {{#rollBetween() reactionroll 9 11}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Uninterested.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Uninterested.</b></td></tr>
             {{/rollBetween() reactionroll 9 11}}
             {{#rollGreater() reactionroll 11}}
-                    <tr><td class="sheet-subfooter" style="color:limegreen;"><b>Friendly!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Friendly!</b></td></tr>
             {{/rollGreater() reactionroll 11}}
         {{/reactionroll}}
         {{#moraleroll}}
-            <tr><td class="sheet-subheader">Morale Roll</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Result: </span>{{moraleroll}}</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Morale Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{moraleroll}}</td></tr>
             {{#rollLess() moraleroll 0}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Retreat!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Retreat!</b></td></tr>
             {{/rollLess() moraleroll 0}}
             {{#rollBetween() moraleroll 0 2}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Retreat!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Retreat!</b></td></tr>
             {{/rollBetween() moraleroll 0 2}}
             {{#rollBetween() moraleroll 3 5}}
-                    <tr><td class="sheet-subfooter" style="color:orange;"><b>Fighting Withdrawl.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:orange;"><b>Fighting Withdrawl.</b></td></tr>
             {{/rollBetween() moraleroll 3 5}}
             {{#rollBetween() moraleroll 6 8}}
-                    <tr><td class="sheet-subfooter" style="color:yellow;"><b>Fight On.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:yellow;"><b>Fight On.</b></td></tr>
             {{/rollBetween() moraleroll 6 8}}
             {{#rollBetween() moraleroll 9 11}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Advance and Pursue.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Advance and Pursue.</b></td></tr>
             {{/rollBetween() moraleroll 9 11}}
             {{#rollGreater() moraleroll 11}}
-                    <tr><td class="sheet-subfooter" style="color:limegreen;"><b>Victory or Death!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:limegreen;"><b>Victory or Death!</b></td></tr>
             {{/rollGreater() moraleroll 11}}
         {{/moraleroll}}
         {{#savethrow}}
-            <tr><td class="sheet-subheader">Saving Throw</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Result: </span>{{savethrow}} vs {{target}}+</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Saving Throw</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{savethrow}} vs {{target}}+</td></tr>
             {{#rollLess() savethrow target}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Failure.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Failure.</b></td></tr>
             {{/rollLess() savethrow target}}
             {{#rollTotal() savethrow target}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
             {{/rollTotal() savethrow target}}
             {{#rollGreater() savethrow target}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
             {{/rollGreater() savethrow target}}
         {{/savethrow}}
         {{#attackthrow}}
-            <tr><td class="sheet-subheader">Attack Throw</td></tr>
-            <tr><th>{{name}}</th></tr>
+            <tr><td colspan="2" class="sheet-subheader">Attack Throw</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
             {{#weaponranges}}
-                <tr><td><span class="sheet-tcat">Weapon Range: </span>{{weaponranges}}</td></tr>
+                <tr><td><span class="sheet-tcat">Weapon Range: </span></td><td class="sheet-results">{{weaponranges}}</td></tr>
             {{/weaponranges}}
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{attackthrow}}</td></tr>
             {{#rollWasFumble() attackthrow}}
-                    <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Fumble!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Fumble!</b></td></tr>
             {{/rollWasFumble() attackthrow}}
             {{#^rollWasFumble() attackthrow}}
                 {{#rollWasCrit() attackthrow}}
-                        <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
-                        <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span>{{critdamageroll}}</td></tr>                
-                        <tr><td class="sheet-subfooter" style="color:green;"><b>Critical Hit!</b></td></tr>
+                        <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{critdamageroll}}</td></tr>                
+                        <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Critical Hit!</b></td></tr>
                 {{/rollWasCrit() attackthrow}}
                 {{#^rollWasCrit() attackthrow}}
                     {{#rollLess() attackthrow 0}}
-                            <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
-                            <tr><td class="sheet-subfooter" style="color:red;"><b>Miss.</b></td></tr>
+                            <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Miss.</b></td></tr>
                     {{/rollLess() attackthrow 0}}
                     {{#rollTotal() attackthrow 0}}
-                            <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
-                            <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span>{{damageroll}}</td></tr>
-                            <tr><td class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
+                            <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{damageroll}}</td></tr>
+                            <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
                     {{/rollTotal() attackthrow 0}}
                     {{#rollGreater() attackthrow 0}}
-                            <tr><td><span class="sheet-tcat">Result: </span>{{attackthrow}}</td></tr>
-                            <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span>{{damageroll}}</td></tr>
-                            <tr><td class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
+                            <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{damageroll}}</td></tr>
+                            <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
                     {{/rollGreater() attackthrow 0}}
                 {{/^rollWasCrit() attackthrow}}
             {{/^rollWasFumble() attackthrow}}
         {{/attackthrow}}
         {{#skillthrow}}
-            <tr><td class="sheet-subheader">Skill Throw</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Result: </span>{{skillthrow}} vs {{target}}+ </td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Skill Throw</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{skillthrow}} vs {{target}}+ </td></tr>
             {{#rollLess() skillthrow target}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Failure.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Failure.</b></td></tr>
             {{/rollLess() skillthrow target}}
             {{#rollTotal() skillthrow target}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
             {{/rollTotal() skillthrow target}}
             {{#rollGreater() skillthrow target}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
             {{/rollGreater() skillthrow target}}
         {{/skillthrow}}
         {{#spell}}
-            <tr><td  colspan="2" class="sheet-subheader">Level {{level}} {{caster}} Spell</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Level {{level}} {{caster}} Spell</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
-            <tr class="sheet-spellrow"><td><span class="sheet-tcat">Duration: </span>{{duration}}</td>
-            <td><span class="sheet-tcat">Range: </span>{{range}}</td></tr>
+            <tr class="sheet-spellrow"><td><span class="sheet-tcat">Duration: </span></td><td class="sheet-results">{{duration}}</td></tr>
+            <tr class="sheet-spellrow"><td><span class="sheet-tcat">Range: </span></td><td class="sheet-results">{{range}}</td></tr>
             <tr class="sheet-spellrow"><td colspan="2"><span class="sheet-tcat">Description: </span>{{description}}</td></tr>
         {{/spell}}
         {{#hireroll}}
-            <tr><td class="sheet-subheader">Hiring Roll</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Result: </span>{{hireroll}}</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Hiring Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{hireroll}}</td></tr>
             {{#rollLess() hireroll 0}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Refuse and Slander!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Refuse and Slander!</b></td></tr>
             {{/rollLess() hireroll 0}}
             {{#rollBetween() hireroll 0 2}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Refuse and Slander!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Refuse and Slander!</b></td></tr>
             {{/rollBetween() hireroll 0 2}}
             {{#rollBetween() hireroll 3 5}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Refuse.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Refuse.</b></td></tr>
             {{/rollBetween() hireroll 3 5}}
             {{#rollBetween() hireroll 6 8}}
-                    <tr><td class="sheet-subfooter" style="color:yellow;"><b>Try Again.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:yellow;"><b>Try Again.</b></td></tr>
             {{/rollBetween() hireroll 6 8}}
             {{#rollBetween() hireroll 9 11}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Accept.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Accept.</b></td></tr>
             {{/rollBetween() hireroll 9 11}}
             {{#rollGreater() hireroll 11}}
-                    <tr><td class="sheet-subfooter" style="color:limegreen;"><b>Accept with elan!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:limegreen;"><b>Accept with elan!</b></td></tr>
             {{/rollGreater() hireroll 11}}
         {{/hireroll}}
         {{#loyaltyroll}}
-            <tr><td class="sheet-subheader">Loyalty Roll</td></tr>
-            <tr><th>{{name}}</th></tr>
-            <tr><td><span class="sheet-tcat">Result: </span>{{loyaltyroll}}</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">Loyalty Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{loyaltyroll}}</td></tr>
             {{#rollLess() loyaltyroll 0}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Hostility!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Hostility!</b></td></tr>
             {{/rollLess() loyaltyroll 0}}
             {{#rollBetween() loyaltyroll 0 2}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Hostility!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Hostility!</b></td></tr>
             {{/rollBetween() loyaltyroll 0 2}}
             {{#rollBetween() loyaltyroll 3 5}}
-                    <tr><td class="sheet-subfooter" style="color:red;"><b>Resignation.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Resignation.</b></td></tr>
             {{/rollBetween() loyaltyroll 3 5}}
             {{#rollBetween() loyaltyroll 6 8}}
-                    <tr><td class="sheet-subfooter" style="color:yellow;"><b>Grudging Loyalty.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:yellow;"><b>Grudging Loyalty.</b></td></tr>
             {{/rollBetween() loyaltyroll 6 8}}
             {{#rollBetween() loyaltyroll 9 11}}
-                    <tr><td class="sheet-subfooter" style="color:green;"><b>Loyalty.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Loyalty.</b></td></tr>
             {{/rollBetween() loyaltyroll 9 11}}
             {{#rollGreater() loyaltyroll 11}}
-                    <tr><td class="sheet-subfooter" style="color:limegreen;"><b>Fanatic Loyalty!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:limegreen;"><b>Fanatic Loyalty!</b></td></tr>
             {{/rollGreater() loyaltyroll 11}}
         {{/loyaltyroll}}
         {{#type}}
-            <tr><td class="sheet-subheader">{{type}}</td></tr>
-            <tr><th>{{name}}</th></tr>
+            <tr><td colspan="2" class="sheet-subheader">{{type}}</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
             {{#allprops() type name}}
-                <tr><td><span class="tcat">{{key}}: </span>{{value}}</td></tr>
+                <tr><td><span class="tcat">{{key}}: </span></td><td class="sheet-results">{{value}}</td></tr>
             {{/allprops() type name}}
         {{/type}}
     </table>
