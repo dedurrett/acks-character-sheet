@@ -767,12 +767,22 @@ input.sheet-is-effects:checked + span.sheet-show-effects {
 
 
 /* sheet roll template */
+.sheet-rolltemplate-acks_template table>thead>tr>th, 
+.sheet-rolltemplate-acks_template table>tbody>tr>th, 
+.sheet-rolltemplate-acks_template table>tfoot>tr>th, 
+.sheet-rolltemplate-acks_template table>thead>tr>td, 
+.sheet-rolltemplate-acks_template table>tbody>tr>td, 
+.sheet-rolltemplate-acks_template table>tfoot>tr>td {
+    padding: 1px;
+    border: none; 
+}
 .sheet-rolltemplate-acks_template table {
     width: 100%;
     line-height: 1em;
     font-size: 1em;
     border-collapse: separate;
     border: solid black 1px;
+    margin: 0px;
 }
 .sheet-rolltemplate-acks_template th {
     background-color: #555555;
@@ -783,6 +793,7 @@ input.sheet-is-effects:checked + span.sheet-show-effects {
     font-family: Rockwell, "Courier Bold", Courier, Georgia, Times, "Times New Roman", serif;
     font-variant: small-caps;
     border-top: none;
+    text-align: center;
 }
 .sheet-rolltemplate-acks_template .sheet-subheader {
     background-color: #555555;
@@ -795,7 +806,7 @@ input.sheet-is-effects:checked + span.sheet-show-effects {
     border: none;
 }
 .sheet-rolltemplate-acks_template .sheet-subfooter {
-    background-color: #dcdcdc;
+    background-color: #bababa;
     color: #000;
     line-height: 0.9em;
     font-size: 0.9em;
@@ -811,40 +822,49 @@ input.sheet-is-effects:checked + span.sheet-show-effects {
 .sheet-rolltemplate-acks_template td {
     padding: 5px;
     border: 1px solid black;
-    text-align: center;
+    /*text-align: right;*/
+    text-align: left;
 }
+/*
+.sheet-rolltemplate-acks_template .sheet-results {
+    text-align: left;
+}
+*/
 .sheet-rolltemplate-acks_template tr:nth-child(odd) {
     background-color: #fefefe;
 }
 .sheet-rolltemplate-acks_template tr:nth-child(even) {
-    /*background-color: #dcdcdc;*/
-    background-color: #fefefe;
+    background-color: #dcdcdc;
+    /*background-color: #fefefe;*/
 }
 .sheet-rolltemplate-acks_template .inlinerollresult {
     display: inline-block;
     min-width: 1.5em;
     text-align: center;
-    border: 2px solid #a7a8aa; /*Cool Gray 6 C*/
-    background-color: #c5c6c7; /*Cool Gray 6 C*/
+    border: none;
+    background-color: transparent;
+    color: black;
 }
 .sheet-rolltemplate-acks_template .sheet-subfooter .inlinerollresult {
     display: inline-block;
     min-width: 1.5em;
     text-align: center;
-    border: none; /*Cool Gray 6 C*/
-    background-color: #dcdcdc; /*Cool Gray 6 C*/
+    border: none;
+    background-color: transparent;
+    color: black;
 }
 .sheet-rolltemplate-acks_template .inlinerollresult.fullcrit {
-    background-color: #3FB315;
-    color: white;
+    background-color: transparent;
+    color: black;
 }
 .sheet-rolltemplate-acks_template .inlinerollresult.fullfail {
-    background-color: #B31515;
-    color: white;
+    background-color: transparent;
+    color: black;
 }
 .sheet-rolltemplate-acks_template .inlinerollresult.importantroll {
-    background-color: #4A57ED;
-    color: white;
+    border: none;
+    background-color: transparent;
+    color: black;
 }
 .sheet-rolltemplate-acks_template .sheet-damageoutput .inlinerollresult.fullcrit,
 .sheet-rolltemplate-acks_template .sheet-damageoutput .inlinerollresult.fullfail,
@@ -852,9 +872,9 @@ input.sheet-is-effects:checked + span.sheet-show-effects {
     display: inline-block;
     min-width: 1.5em;
     text-align: center;
-    border: 2px solid #a7a8aa; /*Cool Gray 6 C*/
-    color: #000;
-    background-color: #c5c6c7; /*Cool Gray 6 C*/
+    border: none;
+    background-color: transparent;
+    color: black;
 }
 .sheet-rolltemplate-acks_template div {
     width: 100%;
