@@ -195,6 +195,9 @@ input[type=number]::-webkit-inner-spin-button {
 .sheet-subtext {
     width: 138px;
 }
+.sheet-abilblock {
+    width: 60%;
+}
 input[type=number].sheet-ability-value {
     width: 40px;
     height: 40px;
@@ -220,7 +223,7 @@ input[type=number].sheet-ability-modifier {
 .sheet-svbtitle {
     font-size: 16px;
     display: block;
-    height: 34px;
+    min-height: 40px;
 }
 .sheet-statstitle {
     font-size: 16px;
@@ -231,7 +234,7 @@ input[type=number].sheet-ability-modifier {
     font-size: 11px;
     width: 90%;
     margin: 10px auto;
-    min-height: 40px;
+    min-height: 32px;
     display: block;
 }
 input[type=number].sheet-numbubble {
@@ -244,12 +247,6 @@ input[type=number].sheet-numbubble {
     text-align: center;
     padding: 0;
     margin: 5px auto;
-}
-.repitem {
-    display: flex;
-    align-items: center;
-    margin-bottom: 3px;
-    justify-content: space-between;
 }
 
 button[type="roll"]{
@@ -270,6 +267,7 @@ button[type="roll"]{
 button[type="roll"]:hover{
     font-weight: bold;
 }
+
 /* EQUIPMENT */
 .sheet-equipment {
     display: flex;
@@ -286,6 +284,12 @@ button[type="roll"]:hover{
 }
 .sheet-equipment h3 {
     order: 1;
+}
+.sheet-equipment .repitem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+    justify-content: space-between;
 }
 .sheet-equipment .repcontrol {
     order: 4;
@@ -360,16 +364,16 @@ input[type=number].sheet-total-encumbrance {
     text-align: center;
 }
 
-.charsheet div[class^="sheet-weapontype"] {
+div[class^="sheet-weapontype"] {
   display: none;
 }
-.charsheet input.sheet-meleecheck:checked ~ div.sheet-weapontype-melee,
-.charsheet input.sheet-rangedcheck:checked ~ div.sheet-weapontype-ranged,
-.charsheet input.sheet-finessecheck:checked ~ div.sheet-weapontype-finesse {
+input.sheet-meleecheck:checked ~ div.sheet-weapontype-melee,
+input.sheet-rangedcheck:checked ~ div.sheet-weapontype-ranged,
+input.sheet-finessecheck:checked ~ div.sheet-weapontype-finesse {
   display: block;
 }
-.sheet-attackbonus,
-input[type=number].sheet-attackbonus {
+
+.sheet-attackbonus {
     width: 6%;
     text-align: center;
 }
@@ -824,6 +828,9 @@ input.sheet-is-effects:checked + span.sheet-show-effects {
     border: 1px solid black;
     /*text-align: right;*/
     text-align: left;
+}
+.sheet-rolltemplate-acks_template .sheet-spelltext {
+    text-align: justify;
 }
 /*
 .sheet-rolltemplate-acks_template .sheet-results {
