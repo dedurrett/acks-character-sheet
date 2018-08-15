@@ -1680,6 +1680,9 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "WARMISTRESS":
                 //Fighter Progression
                 switch (parseInt(values.level)) {
+                    case 0:
+                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        break;
                     case 1:
                         setAttrs({
                             attackthrow: 10,
@@ -1796,6 +1799,9 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "WARLOCK":
                 //Mage Progression
                 switch (parseInt(values.level)) {
+                    case 0:
+                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        break;
                     case 1:
                     case 2:
                     case 3:
@@ -1869,6 +1875,9 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "WITCH":
                 //Cleric Progression
                 switch (parseInt(values.level)) {
+                    case 0:
+                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        break;
                     case 1:
                     case 2:
                         setAttrs({
@@ -1966,6 +1975,9 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "BURGLAR":
                 //Thief Progression
                 switch (parseInt(values.level)) {
+                    case 0:
+                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        break;
                     case 1:
                     case 2:
                         setAttrs({
@@ -2058,6 +2070,9 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "GLADIATOR":
                 //Monster Progression
                 switch (parseInt(values.level)) {
+                    case 0:
+                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        break;
                     case 1:
                         setAttrs({ attackthrow: 10 });
                         break;
@@ -2104,6 +2119,9 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "WITCH":
                 //Mage Progression
                 switch (parseInt(values.level)) {
+                    case 0:
+                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        break;
                     case 1:
                     case 2:
                     case 3:
@@ -2136,6 +2154,9 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "TRICKSTER":
                 //Thief and Cleric Progression
                 switch (parseInt(values.level)) {
+                    case 0:
+                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        break;
                     case 1:
                     case 2:
                         setAttrs({ attackthrow: 10 });
