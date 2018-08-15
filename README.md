@@ -3,10 +3,10 @@ Roll20 Character Sheet made for Adventurer Conqueror King System
 
 Sheet Design inspired by the [Lamentations of the Flame Princess sheet by Toni Ruiz](https://github.com/Roll20/roll20-character-sheets/tree/master/Lotfp).
 
-Attack throws, saving throws, and movement rates are calculated automatically based on race, class, level and encumbrance entered on the sheet. Many, if not all of these can be adjusted via modifier fields that can be entered by the user. Common adventuring proficiency throws are included by default, and target numbers can be entered manually to include modifiers from race, additional proficiency, etc.
+Attack throws, saving throws, and movement rates are calculated automatically based on race, class, level and encumbrance entered on the sheet. Many, if not all, of these can be adjusted via modifier fields that can be entered by the user. Common adventuring proficiency throws are included by default, and target numbers can be entered manually to include modifiers from race, additional proficiency, etc.
 
 House Rules Included:
-* Wisdom modifier applies to all Saving Throws, rather than just Saves vs Magic.
+* Wisdom modifier can be toggled to apply to all Saving Throws, rather than just Saves vs Spells.
 * Trained and Untrained Skills Throws are present and automatically calculated based on character level. [This progression was taken from here.](http://www.autarch.co/comment/9485#comment-9485)
 
 Proficiency Throws whose outcome may affect player decisions can be entered in the GMRoll Actions section. This section functions by outputting a button for the GM to press, keeping the result hidden. This does not have to be used; these skills could be added in the regular Action section underneath.
