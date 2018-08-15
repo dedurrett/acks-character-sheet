@@ -84,7 +84,11 @@
                     </div>
                     <div class="sheet-ability-column-modifier sheet-flex-between">
                         <input type="number" class="sheet-ability-modifier" name="attr_wisdomMod" value="0" readonly>
-                        <span class="sheet-subtext">Saving Throws</span>
+                        <div class="sheet-abilblock">
+                            <span class="sheet-subtext">Saving Throws<br/>
+                            <input type="radio" name="attr_wisAllSaves" value="0" checked>vs Spells<br/>
+                            <input type="radio" name="attr_wisAllSaves" value="1">vs All</span>
+                        </div>
                     </div>
                 </div>
                 <div class="sheet-flex">
@@ -152,31 +156,31 @@
                 <div class="sheet-flex">
                   <div class="sheet-svblock">
                     <span class="sheet-svbtitle">Petrify & Paralysis</span>
-                    <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{paralyzeSave}]]}}" name="roll_paralyzeSaveThrow" title="Saving Throw vs Petrify & Paralysis"></button>
+                    <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{paralyzeSave}]]}}" name="roll_paralyzeSaveThrow" title="Saving Throw vs Petrify & Paralysis"></button>
                     <input type="number" class="sheet-numbubble" name="attr_paralyzeSave" value="20" readonly>
                     <span class="sheet-svnsubtext">Rendered Immobile</span>
                   </div>
                   <div class="sheet-svblock">
                     <span class="sheet-svbtitle">Poison & Death</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{poisonSave}]]}}" name="roll_poisonSaveThrow" title="Saving Throw vs Poison & Death"></button>
+                      <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{poisonSave}]]}}" name="roll_poisonSaveThrow" title="Saving Throw vs Poison & Death"></button>
                       <input type="number" class="sheet-numbubble" name="attr_poisonSave" value="20" readonly>
                       <span class="sheet-svnsubtext">Death or Incapacitation</span>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Blast & Breath</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{breathSave}]]}}" name="roll_breathSaveThrow" title="Saving Throw vs Blast & Breath"></button>
+                      <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{breathSave}]]}}" name="roll_breathSaveThrow" title="Saving Throw vs Blast & Breath"></button>
                       <input type="number" class="sheet-numbubble" name="attr_breathSave" value="20" readonly>
                       <span class="sheet-svnsubtext">Area Effects</span>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Staffs & Wands</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{deviceSave}]]}}" name="roll_deviceSaveThrow" title="Saving Throw vs Staffs & Wands"></button>
+                      <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{deviceSave}]]}}" name="roll_deviceSaveThrow" title="Saving Throw vs Staffs & Wands"></button>
                       <input type="number" class="sheet-numbubble" name="attr_deviceSave" value="20" readonly>
                       <span class="sheet-svnsubtext">Effects from Items</span>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Spells</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{magicSave}]]}}" name="roll_magicSaveThrow" title="Saving Throw vs Spells"></button>
+                      <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{magicSave}]]}}" name="roll_magicSaveThrow" title="Saving Throw vs Spells"></button>
                       <input type="number" class="sheet-numbubble" name="attr_magicSave" value="20" readonly>
                       <span class="sheet-svnsubtext">Effects from Spells</span>
                   </div>
@@ -255,16 +259,20 @@
                 <h2>Movement</h2>
                 <div class=" sheet-flex-between">
                     <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Carry Mod</span>
-                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMod"  value="0">
-                    </div>
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Max Carry</span>
-                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMax"  value="20" readonly>
-                    </div>
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Explore/Run</span>
+                        <span class="sheet-statstitle">Explore</span>
                         <input type="number" class="sheet-numbubble" name="attr_moveExplore" value="120" readonly>
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Run/Charge</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveExplore" value="120" readonly>
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Stealth</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveStealth" value="20" readonly>
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Climb</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveClimb" value="10" readonly>
                     </div>
                     <div class="sheet-svblock">
                         <span class="sheet-statstitle">March</span>
@@ -302,14 +310,14 @@
             <fieldset class="repeating_weapons">
                 <div class="sheet-weaponcontainer">
                     <input type="text" name="attr_weaponname" class="sheet-no-border sheet-weapon-name" placeholder="Weapon Name">
+                    <input class="sheet-hide-it sheet-meleecheck" type="checkbox" name="attr_weapontype" value="1" checked>
+                    <input class="sheet-hide-it sheet-rangedcheck" type="checkbox" name="attr_weapontype" value="2">
+                    <input class="sheet-hide-it sheet-finessecheck" type="checkbox" name="attr_weapontype" value="3">
                     <select name="attr_weapontype" class="sheet-no-border sheet-weapon-type">
                         <option value="1" selected>Melee</option>
                         <option value="2">Missile</option>
                         <option value="3">Finesse</option>
                     </select>
-                    <input class="sheet-hide-it sheet-meleecheck" type="checkbox" name="attr_weapontype" value="1" checked>
-                    <input class="sheet-hide-it sheet-rangedcheck" type="checkbox" name="attr_weapontype" value="2">
-                    <input class="sheet-hide-it sheet-finessecheck" type="checkbox" name="attr_weapontype" value="3">
                     <select name="attr_weapondamage" class="sheet-no-border sheet-damage">
                         <option value="1d2" >1d2</option>
                         <option value="1d3" >1d3</option>
@@ -329,13 +337,13 @@
                     </select>
                     <input type="text" name="attr_multiplier" class="sheet-no-border sheet-attackbonus" value="1">
                     <div class="sheet-weapontype-melee">
-                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrowMelee" title="Melee Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name} Melee}} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrowMelee" title="Melee Attack Throw"></button>
                     </div>
                     <div class="sheet-weapontype-ranged">
-                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{weaponranges=@{shortrange}/@{mediumrange}/@{longrange}}}{{attackthrow=[[1d20+@{attackbonus}-?{Range|0-@{shortrange},0|@{shortrange}-@{mediumrange},2|@{mediumrange}-@{longrange},5}+(?{Additional Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrowMissile" title="Missile Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name} Missile}} {{name=@{weaponname}}} {{weaponranges=@{shortrange}/@{mediumrange}/@{longrange}}}{{attackthrow=[[1d20+@{attackbonus}-?{Range|0-@{shortrange},0|@{shortrange}-@{mediumrange},2|@{mediumrange}-@{longrange},5}+(?{Additional Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrowMissile" title="Missile Attack Throw"></button>
                     </div>
                     <div class="sheet-weapontype-finesse">
-                        <button type="roll" value="&{template:acks_template} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrowFinesse" title="Finesse Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name} Finesse}} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrowFinesse" title="Finesse Attack Throw"></button>
                     </div>
                     <input type="text" name="attr_weapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description">
                 </div>
@@ -381,41 +389,41 @@
                     </div>
                 </fieldset>
             </div>
-            <div class="sheet-col-right sheet-thick-border">
+            <div class="sheet-col-right sheet-thick-border sheet-actions">
                 <h2>GMRoll Actions</h2>
                 <input type="text" name="attr_DSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Detect Secret" readonly>
                 <input type="number" name="attr_DSskillvalue" class="sheet-skillvalue" value="18">
                 <button type="roll" value="[@{character_name} Detect Secret](~@{character_id}|gmDSThrow)" name="roll_DSThrow" title="Detect Secret Skill Throw"></button>
-                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{DSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{DSskillvalue}]]}}" name="roll_gmDSThrow"></button>
+                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{char=@{character_name}}} {{name=@{DSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{DSskillvalue}]]}}" name="roll_gmDSThrow"></button>
                 <input type="text" name="attr_HNskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Hear Noise" readonly>
                 <input type="number" name="attr_HNskillvalue" class="sheet-skillvalue" value="18">
                 <button type="roll" value="[@{character_name} Hear Noise](~@{character_id}|gmHNThrow)" name="roll_HNThrow" title="Hear Noise Skill Throw"></button>
-                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{HNskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{HNskillvalue}]]}}" name="roll_gmHNThrow"></button>
+                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{char=@{character_name}}} {{name=@{HNskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{HNskillvalue}]]}}" name="roll_gmHNThrow"></button>
                 <input type="text" name="attr_FTskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Find Traps" readonly>
                 <input type="number" name="attr_FTskillvalue" class="sheet-skillvalue" value="18">
                 <button type="roll" value="[@{character_name} Find Traps](~@{character_id}|gmFTThrow)" name="roll_FTThrow" title="Find Traps Skill Throw"></button>
-                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{FTskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{FTskillvalue}]]}}" name="roll_gmFTThrow"></button>
+                <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{char=@{character_name}}} {{name=@{FTskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{FTskillvalue}]]}}" name="roll_gmFTThrow"></button>
                 <fieldset class="repeating_gmskills">
                     <input type="text" name="attr_gmskillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
                     <input type="number" name="attr_gmskillvalue" class="sheet-skillvalue" value="18">
-                    <input type="hidden" name="attr_gmskillRollvalue" readonly>
+                    <input type="hidden" name="attr_gmskillRollvalue" class="sheet-hide-it" readonly>
                     <button type="roll" value="@{gmskillRollvalue}" name="roll_GMThrow" title="Secret Skill Throw"></button>
-                    <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{name=@{gmskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{gmskillvalue}]]}}" name="roll_gmGMThrow"></button>
+                    <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{char=@{character_name}}} {{name=@{gmskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{gmskillvalue}]]}}" name="roll_gmGMThrow"></button>
                 </fieldset>
                 <h2>Actions</h2>
                 <input type="text" name="attr_ODskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Open Door" readonly>
                 <input type="number" name="attr_ODskillvalue" class="sheet-skillvalue" value="18">
-                <button type="roll" value="&{template:acks_template} {{name=@{ODskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{ODskillvalue}]]}}" name="roll_ODThrow" title="Open Doors Skill Throw"></button>
+                <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{ODskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{ODskillvalue}]]}}" name="roll_ODThrow" title="Open Doors Skill Throw"></button>
                 <input type="text" name="attr_TSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Trained Skill" readonly>
                 <input type="number" name="attr_TSskillvalue" class="sheet-skillvalue" value="18" readonly>
-                <button type="roll" value="&{template:acks_template} {{name=@{TSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{TSskillvalue}]]}}" name="roll_TSThrow" title="Trained Skill Throw"></button>
+                <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{TSskillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{TSskillvalue}]]}}" name="roll_TSThrow" title="Trained Skill Throw"></button>
                 <input type="text" name="attr_USskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Untrained Skill" readonly>
                 <input type="number" name="attr_USskillvalue" class="sheet-skillvalue" value="18" readonly>
-                <button type="roll" value="&{template:acks_template} {{name=@{USskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{USskillvalue}]]}}" name="roll_USThrow" title="Untrained Skill Throw"></button>
+                <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{USskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{USskillvalue}]]}}" name="roll_USThrow" title="Untrained Skill Throw"></button>
                 <fieldset class="repeating_skills">
                     <input type="text" name="attr_skillname" class="sheet-bottom-line sheet-skillname" placeholder="Action Name">
                     <input type="number" name="attr_skillvalue" class="sheet-skillvalue" value="18">
-                    <button type="roll" value="&{template:acks_template} {{name=@{skillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{skillvalue}]]}}" name="roll_skillThrow" title="Skill Throw"></button>
+                    <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{skillname}}} {{skillthrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{skillvalue}]]}}" name="roll_skillThrow" title="Skill Throw"></button>
                 </fieldset>
             </div>
         </div>
@@ -446,11 +454,26 @@
                   <input type="number" step=any name="attr_encumbranceTotal" class="sheet-total-encumbrance" value="0" readonly>
                 </div>
             </div>
-            <div class="sheet-col-right sheet-thick-border sheet-equipment">
+            <div class="sheet-col-right sheet-thick-border">
+                <h2>Encumbrance</h2>
+                <div class=" sheet-flex-between">
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Max Carry</span>
+                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMax"  value="20" readonly>
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Carry Mod</span>
+                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMisc"  value="0">
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Move Mod</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveMisc"  value="0">
+                    </div>
+                </div>
                 <h2>Unencumbering</h2>
                 <fieldset class="repeating_banked">
                     <div class="sheet-othercontainer">
-                        <input type="text" name="attr_bankheader" class="sheet-no-border sheet-othername">
+                        <input type="text" name="attr_bankheader" class="sheet-no-border sheet-othername" placeholder="Title">
                         <div class="sheet-bottom-line sheet-auto-expand">
                         	<span name="attr_bankdescr"></span>
                         	<textarea spellcheck="false" name="attr_bankdescr" placeholder="Description"></textarea>
@@ -593,7 +616,7 @@
                         <span># cast: </span>
                         <input type="number" name="attr_spellcast" class="sheet-bottom-line sheet-spell-prepared" value="0" min="0">
                     </div>
-                    <button type="roll" value="&{template:acks_template} {{spell=1}} {{name=@{spellname}}} {{caster=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_spellcast" title="Cast Spell"></button>
+                    <button type="roll" value="&{template:acks_template} {{spell=1}} {{char=@{character_name}}} {{name=@{spellname}}} {{caster=@{spelltype}}} {{level=@{spelllevel}}} {{duration=@{spellduration}}} {{range=@{spellrange}}} {{description=@{spelldescription}}}" name="roll_spellcast" title="Cast Spell"></button>
                     <div class="sheet-othercontainer sheet-auto-expand">
                     	<span name="attr_spelldescription"></span>
                     	<textarea spellcheck="false" name="attr_spelldescription" placeholder="Description"></textarea>
@@ -619,7 +642,7 @@
                         <input type="text" name="attr_retainermove" class="sheet-bottom-line sheet-retainer-small">
                         <input type="text" name="attr_retainerattack" class="sheet-bottom-line sheet-retainer-med">
                         <input type="text" name="attr_retainerdamage" class="sheet-bottom-line sheet-retainer-med">
-                        <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[{@{retainerdamage}, 1d1}k1]]}} {{critdamageroll=[[{@{retainerdamage}, 1d1}k1]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[{@{retainerdamage}, 1d1}k1]]}} {{critdamageroll=[[{@{retainerdamage}, 1d1}k1]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
                         <span class="sheet-retainer-large">Name</span>
                         <span class="sheet-retainer-small">AC</span>
                         <span class="sheet-retainer-small">HP</span>
@@ -635,7 +658,7 @@
                         <input type="text" name="attr_retainerwage" class="sheet-bottom-line sheet-retainer-small">
                         <input type="text" name="attr_retainershare" class="sheet-bottom-line sheet-retainer-small">
                         <input type="text" name="attr_retainerloyalty" class="sheet-bottom-line sheet-retainer-small">
-                        <button type="roll" value="&{template:acks_template} {{name=@{retainerposition}: @{retainername}}} {{loyaltyroll=[[2d6+(@{charismaMod})+(@{moraleMisc})+(@{retainerloyalty})]]}}" name="roll_loyaltyRoll" title="Hireling Loyalty Roll"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{retainerposition}: @{retainername}}} {{loyaltyroll=[[2d6+(@{charismaMod})+(@{moraleMisc})+(@{retainerloyalty})]]}}" name="roll_loyaltyRoll" title="Hireling Loyalty Roll"></button>
                         <span class="sheet-retainer-large">Class and Level</span>
                         <span class="sheet-retainer-med">Position</span>
                         <span class="sheet-retainer-med">XP</span>
@@ -806,33 +829,33 @@
                 <div class="sheet-flex">
                   <div class="sheet-svblock">
                     <span class="sheet-svbtitle">Petrify & Paralysis</span>
+                    <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MparalyzeSave}]]}}" name="roll_mParalyzeSaveThrow" title="Monster Saving Throw vs Petrify & Paralysis"></button>
                     <input type="number" class="sheet-numbubble" name="attr_MparalyzeSave" readonly>
                     <span class="sheet-svnsubtext">Rendered Immobile</span>
-                    <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MparalyzeSave}]]}}" name="roll_mParalyzeSaveThrow" title="Monster Saving Throw vs Petrify & Paralysis"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Poison & Death</span>
+                      <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MpoisonSave}]]}}" name="roll_mPoisonSaveThrow" title="Monster Saving Throw vs Poison & Death"></button>
                       <input type="number" class="sheet-numbubble" name="attr_MpoisonSave" readonly>
                       <span class="sheet-svnsubtext">Death or Incapacitation</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MpoisonSave}]]}}" name="roll_mPoisonSaveThrow" title="Monster Saving Throw vs Poison & Death"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Blast & Breath</span>
+                      <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MbreathSave}]]}}" name="roll_mBreathSaveThrow" title="Monster Saving Throw vs Blast & Breath"></button>
                       <input type="number" class="sheet-numbubble" name="attr_MbreathSave" readonly>
                       <span class="sheet-svnsubtext">Area Effects</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MbreathSave}]]}}" name="roll_mBreathSaveThrow" title="Monster Saving Throw vs Blast & Breath"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Staffs & Wands</span>
+                      <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MdeviceSave}]]}}" name="roll_mDeviceSaveThrow" title="Monster Saving Throw vs Staffs & Wands"></button>
                       <input type="number" class="sheet-numbubble" name="attr_MdeviceSave" readonly>
                       <span class="sheet-svnsubtext">Effects from Items</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MdeviceSave}]]}}" name="roll_mDeviceSaveThrow" title="Monster Saving Throw vs Staffs & Wands"></button>
                   </div>
                   <div class="sheet-svblock">
                       <span class="sheet-svbtitle">Spells</span>
+                      <button type="roll" value="&{template:acks_template} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MmagicSave}]]}}" name="roll_mMagicSaveThrow" title="Monster Saving Throw vs Spells"></button>
                       <input type="number" class="sheet-numbubble" name="attr_MmagicSave" readonly>
                       <span class="sheet-svnsubtext">Effects from Spells</span>
-                      <button type="roll" value="&{template:acks_template} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{MmagicSave}]]}}" name="roll_mMagicSaveThrow" title="Monster Saving Throw vs Spells"></button>
                   </div>
                 </div>
             </div>
@@ -882,10 +905,10 @@
             <tr><th colspan="2">{{name}}</th></tr>
             <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{surpriseroll}}</td></tr>
             {{#rollLess() surpriseroll 3}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Suprised!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Suprised!</b></td></tr>
             {{/rollLess() surpriseroll 3}}
             {{#rollGreater() surpriseroll 2}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Not Surprised.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Not Surprised.</b></td></tr>
             {{/rollGreater() surpriseroll 2}}
         {{/surpriseroll}}
         {{#initiativeroll}}
@@ -904,13 +927,13 @@
                     <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Hostile!</b></td></tr>
             {{/rollBetween() reactionroll 0 2}}
             {{#rollBetween() reactionroll 3 5}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:orange;"><b>Unfriendly.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Unfriendly.</b></td></tr>
             {{/rollBetween() reactionroll 3 5}}
             {{#rollBetween() reactionroll 6 8}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:yellow;"><b>Uncertain.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:gold;"><b>Uncertain.</b></td></tr>
             {{/rollBetween() reactionroll 6 8}}
             {{#rollBetween() reactionroll 9 11}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Uninterested.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Uninterested.</b></td></tr>
             {{/rollBetween() reactionroll 9 11}}
             {{#rollGreater() reactionroll 11}}
                     <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Friendly!</b></td></tr>
@@ -927,34 +950,34 @@
                     <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Retreat!</b></td></tr>
             {{/rollBetween() moraleroll 0 2}}
             {{#rollBetween() moraleroll 3 5}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:orange;"><b>Fighting Withdrawl.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Fighting Withdrawl.</b></td></tr>
             {{/rollBetween() moraleroll 3 5}}
             {{#rollBetween() moraleroll 6 8}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:yellow;"><b>Fight On.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:gold;"><b>Fight On.</b></td></tr>
             {{/rollBetween() moraleroll 6 8}}
             {{#rollBetween() moraleroll 9 11}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Advance and Pursue.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Advance and Pursue.</b></td></tr>
             {{/rollBetween() moraleroll 9 11}}
             {{#rollGreater() moraleroll 11}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:limegreen;"><b>Victory or Death!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Victory or Death!</b></td></tr>
             {{/rollGreater() moraleroll 11}}
         {{/moraleroll}}
         {{#savethrow}}
-            <tr><td colspan="2" class="sheet-subheader">Saving Throw</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">{{char}} Saving Throw</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
             <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{savethrow}} vs {{target}}+</td></tr>
             {{#rollLess() savethrow target}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Failure.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Failure.</b></td></tr>
             {{/rollLess() savethrow target}}
             {{#rollTotal() savethrow target}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Success!</b></td></tr>
             {{/rollTotal() savethrow target}}
             {{#rollGreater() savethrow target}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Success!</b></td></tr>
             {{/rollGreater() savethrow target}}
         {{/savethrow}}
         {{#attackthrow}}
-            <tr><td colspan="2" class="sheet-subheader">Attack Throw</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">{{char}} Attack Throw</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
             {{#weaponranges}}
                 <tr><td><span class="sheet-tcat">Weapon Range: </span></td><td class="sheet-results">{{weaponranges}}</td></tr>
@@ -970,39 +993,39 @@
                 {{/rollWasCrit() attackthrow}}
                 {{#^rollWasCrit() attackthrow}}
                     {{#rollLess() attackthrow 0}}
-                            <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Miss.</b></td></tr>
+                            <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Miss.</b></td></tr>
                     {{/rollLess() attackthrow 0}}
                     {{#rollTotal() attackthrow 0}}
                             <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{damageroll}}</td></tr>
-                            <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
+                            <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Hit AC: {{attackthrow}}</b></td></tr>
                     {{/rollTotal() attackthrow 0}}
                     {{#rollGreater() attackthrow 0}}
                             <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{damageroll}}</td></tr>
-                            <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Hit AC: {{attackthrow}}</b></td></tr>
+                            <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Hit AC: {{attackthrow}}</b></td></tr>
                     {{/rollGreater() attackthrow 0}}
                 {{/^rollWasCrit() attackthrow}}
             {{/^rollWasFumble() attackthrow}}
         {{/attackthrow}}
         {{#skillthrow}}
-            <tr><td colspan="2" class="sheet-subheader">Skill Throw</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">{{char}} Skill Throw</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
             <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{skillthrow}} vs {{target}}+ </td></tr>
             {{#rollLess() skillthrow target}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Failure.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Failure.</b></td></tr>
             {{/rollLess() skillthrow target}}
             {{#rollTotal() skillthrow target}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Success!</b></td></tr>
             {{/rollTotal() skillthrow target}}
             {{#rollGreater() skillthrow target}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Success!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Success!</b></td></tr>
             {{/rollGreater() skillthrow target}}
         {{/skillthrow}}
         {{#spell}}
-            <tr><td colspan="2" class="sheet-subheader">Level {{level}} {{caster}} Spell</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">{{char}} Level {{level}} {{caster}} Spell</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
             <tr class="sheet-spellrow"><td><span class="sheet-tcat">Duration: </span></td><td class="sheet-results">{{duration}}</td></tr>
             <tr class="sheet-spellrow"><td><span class="sheet-tcat">Range: </span></td><td class="sheet-results">{{range}}</td></tr>
-            <tr class="sheet-spellrow"><td colspan="2"><span class="sheet-tcat">Description: </span>{{description}}</td></tr>
+            <tr class="sheet-spellrow"><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">Description:</span><br/>{{description}}</td></tr>
         {{/spell}}
         {{#hireroll}}
             <tr><td colspan="2" class="sheet-subheader">Hiring Roll</td></tr>
@@ -1015,20 +1038,20 @@
                     <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Refuse and Slander!</b></td></tr>
             {{/rollBetween() hireroll 0 2}}
             {{#rollBetween() hireroll 3 5}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Refuse.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Refuse.</b></td></tr>
             {{/rollBetween() hireroll 3 5}}
             {{#rollBetween() hireroll 6 8}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:yellow;"><b>Try Again.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:gold;"><b>Try Again.</b></td></tr>
             {{/rollBetween() hireroll 6 8}}
             {{#rollBetween() hireroll 9 11}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Accept.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Accept.</b></td></tr>
             {{/rollBetween() hireroll 9 11}}
             {{#rollGreater() hireroll 11}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:limegreen;"><b>Accept with elan!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Accept with elan!</b></td></tr>
             {{/rollGreater() hireroll 11}}
         {{/hireroll}}
         {{#loyaltyroll}}
-            <tr><td colspan="2" class="sheet-subheader">Loyalty Roll</td></tr>
+            <tr><td colspan="2" class="sheet-subheader">{{char}} Loyalty Roll</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
             <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{loyaltyroll}}</td></tr>
             {{#rollLess() loyaltyroll 0}}
@@ -1038,16 +1061,16 @@
                     <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Hostility!</b></td></tr>
             {{/rollBetween() loyaltyroll 0 2}}
             {{#rollBetween() loyaltyroll 3 5}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Resignation.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Resignation.</b></td></tr>
             {{/rollBetween() loyaltyroll 3 5}}
             {{#rollBetween() loyaltyroll 6 8}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:yellow;"><b>Grudging Loyalty.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:gold;"><b>Grudging Loyalty.</b></td></tr>
             {{/rollBetween() loyaltyroll 6 8}}
             {{#rollBetween() loyaltyroll 9 11}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Loyalty.</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Loyalty.</b></td></tr>
             {{/rollBetween() loyaltyroll 9 11}}
             {{#rollGreater() loyaltyroll 11}}
-                    <tr><td colspan="2" class="sheet-subfooter" style="color:limegreen;"><b>Fanatic Loyalty!</b></td></tr>
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Fanatic Loyalty!</b></td></tr>
             {{/rollGreater() loyaltyroll 11}}
         {{/loyaltyroll}}
         {{#type}}
@@ -1131,9 +1154,9 @@ on('change:repeating_equipment remove:repeating_equipment change:coinsCP change:
 });
 
 //Max Encumbrance
-on('change:race change:strengthMod change:encumbranceMod', function() {
+on('change:race change:strengthMod change:encumbranceMisc', function() {
     var racialLimit = 20;
-    getAttrs(["race","strengthMod","encumbranceMod"], function(values) {
+    getAttrs(["race","strengthMod","encumbranceMisc"], function(values) {
         switch (values.race.toUpperCase()) {
             case "HALFLING":
             case "HOBBIT":
@@ -1141,59 +1164,43 @@ on('change:race change:strengthMod change:encumbranceMod', function() {
                 break;
             default:
         }
-        setAttrs({ encumbranceMax: racialLimit+parseInt(values.strengthMod)+parseInt(values.encumbranceMod)});
+        setAttrs({ encumbranceMax: racialLimit+parseInt(values.strengthMod)+parseInt(values.encumbranceMisc)});
     });
 });
 
 // Movement Rate
-on('change:race change:encumbranceTotal change:encumbranceMax', function() {
-    getAttrs(["race","encumbranceTotal","encumbranceMax"], function(values) {
+on('change:race change:encumbranceTotal change:encumbranceMax change:moveMisc', function() {
+    getAttrs(["race","encumbranceTotal","encumbranceMax", "moveMisc"], function(values) {
+        var baseRate= 120+parseInt(values.moveMisc);
+        var rate1 = baseRate*0.75;
+        var rate2 = baseRate*0.5;
+        var rate3 = baseRate*0.25;
         switch (values.race.toUpperCase()) {
             case "HALFLING":
             case "HOBBIT":
                 if(values.encumbranceTotal > values.encumbranceMax) {
-                    setAttrs({ moveWilderness: 0});
-                    setAttrs({ moveExplore: 0});
-                    setAttrs({ moveCombat: 0});
+                    setAttrs({ moveExplore: 0, moveCombat: 0, moveWilderness: 0, moveStealth: 0, moveClimb: 0 });
                 } else if(values.encumbranceTotal > 7) {
-                    setAttrs({ moveWilderness: 6});
-                    setAttrs({ moveExplore: 30});
-                    setAttrs({ moveCombat: 10});
+                    setAttrs({ moveExplore: Math.round(rate3), moveCombat: Math.round(rate3/3), moveWilderness: Math.round(rate3/5), moveStealth: Math.round(rate3/6), moveClimb: Math.round(rate3/12) });
                 } else if(values.encumbranceTotal > 5) {
-                    setAttrs({ moveWilderness: 12});
-                    setAttrs({ moveExplore: 60});
-                    setAttrs({ moveCombat: 20});
+                    setAttrs({ moveExplore: Math.round(rate2), moveCombat: Math.round(rate2/3), moveWilderness: Math.round(rate2/5), moveStealth: Math.round(rate2/6), moveClimb: Math.round(rate2/12) });
                 } else if(values.encumbranceTotal > 4) {
-                    setAttrs({ moveWilderness: 18});
-                    setAttrs({ moveExplore: 90});
-                    setAttrs({ moveCombat: 30});
+                    setAttrs({ moveExplore: Math.round(rate1), moveCombat: Math.round(rate1/3), moveWilderness: Math.round(rate1/5), moveStealth: Math.round(rate1/6), moveClimb: Math.round(rate1/12) });
                 } else {
-                    setAttrs({ moveWilderness: 24});
-                    setAttrs({ moveExplore: 120});
-                    setAttrs({ moveCombat: 40});
+                    setAttrs({ moveExplore: Math.round(baseRate), moveCombat: Math.round(baseRate/3), moveWilderness: Math.round(baseRate/5), moveStealth: Math.round(baseRate/6), moveClimb: Math.round(baseRate/12) });
                 }
                 break;
             default:
                 if(values.encumbranceTotal > values.encumbranceMax) {
-                    setAttrs({ moveWilderness: 0});
-                    setAttrs({ moveExplore: 0});
-                    setAttrs({ moveCombat: 0});
+                    setAttrs({ moveExplore: 0, moveCombat: 0, moveWilderness: 0, moveStealth: 0, moveClimb: 0 });
                 } else if(values.encumbranceTotal > 10) {
-                    setAttrs({ moveWilderness: 6});
-                    setAttrs({ moveExplore: 30});
-                    setAttrs({ moveCombat: 10});
+                    setAttrs({ moveExplore: Math.round(rate3), moveCombat: Math.round(rate3/3), moveWilderness: Math.round(rate3/5), moveStealth: Math.round(rate3/6), moveClimb: Math.round(rate3/12) });
                 } else if(values.encumbranceTotal > 7) {
-                    setAttrs({ moveWilderness: 12});
-                    setAttrs({ moveExplore: 60});
-                    setAttrs({ moveCombat: 20});
+                    setAttrs({ moveExplore: Math.round(rate2), moveCombat: Math.round(rate2/3), moveWilderness: Math.round(rate2/5), moveStealth: Math.round(rate2/6), moveClimb: Math.round(rate2/12) });
                 } else if(values.encumbranceTotal > 5) {
-                    setAttrs({ moveWilderness: 18});
-                    setAttrs({ moveExplore: 90});
-                    setAttrs({ moveCombat: 30});
+                    setAttrs({ moveExplore: Math.round(rate1), moveCombat: Math.round(rate1/3), moveWilderness: Math.round(rate1/5), moveStealth: Math.round(rate1/6), moveClimb: Math.round(rate1/12) });
                 } else {
-                    setAttrs({ moveWilderness: 24});
-                    setAttrs({ moveExplore: 120});
-                    setAttrs({ moveCombat: 40});
+                    setAttrs({ moveExplore: Math.round(baseRate), moveCombat: Math.round(baseRate/3), moveWilderness: Math.round(baseRate/5), moveStealth: Math.round(baseRate/6), moveClimb: Math.round(baseRate/12) });
                 }
         }
     });
@@ -1602,14 +1609,15 @@ on('change:mrawBlock', function(eventInfo) {
 
 // Calculating Character Trained/Untrained Skill Throws, Saving Throws and Attack Throw
 // Classes with Split Progression: trickster (atk thief sv fighter) gladiator (atk monster sv fighter) Priest/ess Witch (atk mage sv cleric)
-on('change:race change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc change:breathSaveMisc change:deviceSaveMisc change:magicSaveMisc change:wisdomMod', function() {
+on('change:race change:class change:level change:paralyzeSaveMisc change:poisonSaveMisc change:breathSaveMisc change:deviceSaveMisc change:magicSaveMisc change:wisdomMod change:wisAllSaves', function() {
     var racialParalyze = 0;
     var racialPoison = 0;
     var racialBreath = 0;
     var racialDevice = 0;
     var racialMagic = 0;
-    getAttrs(["race","class","level","paralyzeSaveMisc","poisonSaveMisc","breathSaveMisc","deviceSaveMisc","magicSaveMisc","wisdomMod"], function(values) {
 
+    getAttrs(["race","class","level","paralyzeSaveMisc","poisonSaveMisc","breathSaveMisc","deviceSaveMisc","magicSaveMisc","wisdomMod", "wisAllSaves"], function(values) {
+        var applyWisMod = parseInt(values.wisdomMod)*parseInt(values.wisAllSaves);
         setAttrs({
             TSskillvalue: 15-parseInt(values.level),
             USskillvalue: 19-Math.ceil(parseInt(values.level)/2)
@@ -1633,10 +1641,19 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 racialBreath = 3;
                 racialDevice = 4;
                 racialMagic = 4;
+                break;
             default:
         }
         
         switch (values.class.toUpperCase()) {
+            case "NORMAL MAN":
+            case "NORMAL WOMAN":
+            case "NORMAL":
+                switch (parseInt(values.level)) {
+                    default:
+                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                }
+                break;
             case "FIGHTER":
             case "ASSASSIN":
             case "DWARVEN VAULTGUARD":
@@ -1660,15 +1677,16 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "PALADIN":
             case "HALFLING BOUNDER":
             case "BOUNDER":
+            case "WARMISTRESS":
                 //Fighter Progression
                 switch (parseInt(values.level)) {
                     case 1:
                         setAttrs({
                             attackthrow: 10,
-                            paralyzeSave: 15-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 14-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod)-racialBreath,
-                            deviceSave: 16-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 15-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 14-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 16-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 16-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 17-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1676,20 +1694,20 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 3:
                         setAttrs({
                             attackthrow: 9,
-                            paralyzeSave: 14-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 15-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 14-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 15-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 15-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 16-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 4:
                         setAttrs({
                             attackthrow: 8,
-                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 14-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 14-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 14-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1697,20 +1715,20 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 6:
                         setAttrs({
                             attackthrow: 7,
-                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 13-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 7:
                         setAttrs({
                             attackthrow: 6,
-                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 12-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1718,20 +1736,20 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 9:
                         setAttrs({
                             attackthrow: 5,
-                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 11-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 10:
                         setAttrs({
                             attackthrow: 4,
-                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 10-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1739,30 +1757,30 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 12:
                         setAttrs({
                             attackthrow: 3,
-                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 9-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 9-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 13:
                         setAttrs({
                             attackthrow: 2,
-                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 6-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 8-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 6-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 8-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
                     case 14:
                         setAttrs({
                             attackthrow: 1,
-                            paralyzeSave: 6-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 5-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 7-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 6-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 5-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 7-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 8-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1783,10 +1801,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 3:
                         setAttrs({
                             attackthrow: 10,
-                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 15-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1795,10 +1813,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 6:
                         setAttrs({
                             attackthrow: 9,
-                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 14-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1807,10 +1825,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 9:
                         setAttrs({
                             attackthrow: 8,
-                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 13-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1819,10 +1837,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 12:
                         setAttrs({
                             attackthrow: 7,
-                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 12-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1830,10 +1848,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 14:
                         setAttrs({
                             attackthrow: 6,
-                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 11-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 8-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1855,10 +1873,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 2:
                         setAttrs({
                             attackthrow: 10,
-                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 16-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1866,10 +1884,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 4:
                         setAttrs({
                             attackthrow: 9,
-                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 15-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1877,10 +1895,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 6:
                         setAttrs({
                             attackthrow: 8,
-                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 14-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1888,10 +1906,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 8:
                         setAttrs({
                             attackthrow: 7,
-                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 13-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1900,10 +1918,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 10:
                         setAttrs({
                             attackthrow: 6,
-                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 6-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 6-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 12-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1911,10 +1929,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 12:
                         setAttrs({
                             attackthrow: 5,
-                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 5-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 5-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 11-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1922,10 +1940,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 14:
                         setAttrs({
                             attackthrow: 4,
-                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 4-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 7-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 4-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 10-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 7-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1952,10 +1970,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 2:
                         setAttrs({
                             attackthrow: 10,
-                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 13-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 16-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 14-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 13-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 13-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 16-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 14-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 15-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1963,10 +1981,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 4:
                         setAttrs({
                             attackthrow: 9,
-                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 12-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 15-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 13-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 12-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 12-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 15-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 13-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 14-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1974,10 +1992,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 6:
                         setAttrs({
                             attackthrow: 8,
-                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 11-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 14-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 12-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 11-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 11-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 14-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 12-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 13-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1985,10 +2003,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 8:
                         setAttrs({
                             attackthrow: 7,
-                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 10-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 13-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 11-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 10-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 10-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 13-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 11-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 12-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -1997,10 +2015,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 10:
                         setAttrs({
                             attackthrow: 6,
-                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 9-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 12-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 10-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 9-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 9-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 12-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 10-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 11-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -2008,10 +2026,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 12:
                         setAttrs({
                             attackthrow: 5,
-                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 8-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 11-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 9-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 8-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 8-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 11-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 9-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 10-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
@@ -2019,10 +2037,10 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                     case 14:
                         setAttrs({
                             attackthrow: 4,
-                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-parseInt(values.wisdomMod)-racialParalyze,
-                            poisonSave: 7-parseInt(values.poisonSaveMisc)-parseInt(values.wisdomMod)-racialPoison,
-                            breathSave: 10-parseInt(values.breathSaveMisc)-parseInt(values.wisdomMod),
-                            deviceSave: 8-parseInt(values.deviceSaveMisc)-parseInt(values.wisdomMod)-racialDevice,
+                            paralyzeSave: 7-parseInt(values.paralyzeSaveMisc)-applyWisMod-racialParalyze,
+                            poisonSave: 7-parseInt(values.poisonSaveMisc)-applyWisMod-racialPoison,
+                            breathSave: 10-parseInt(values.breathSaveMisc)-applyWisMod-racialBreath,
+                            deviceSave: 8-parseInt(values.deviceSaveMisc)-applyWisMod-racialDevice,
                             magicSave: 9-parseInt(values.magicSaveMisc)-parseInt(values.wisdomMod)-racialMagic
                         });
                         break;
