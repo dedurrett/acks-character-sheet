@@ -390,8 +390,11 @@ input.sheet-finessecheck:checked ~ div.sheet-weapontype-finesse {
     width: 24px;
     margin-left: 3px;
 }
+.sheet-show-weapon-description {
+    width: 3%;
+}
 .sheet-weapon-description {
-    width: 100%;
+    width: 96.5%;
     resize: vertical;
     box-sizing: border-box;
     border-radius: 0;
@@ -664,6 +667,18 @@ input[type=text].sheet-numbubble-hd {
 .sheet-mtiny {
     width: 10%;
     text-align: center;
+}
+.sheet-show-mweapon-description {
+    width: 6.5%;
+}
+.sheet-mweapon-description {
+    width: 92%;
+    resize: vertical;
+    box-sizing: border-box;
+    border-radius: 0;
+    height: 30px;
+    margin-bottom: 0;
+    min-height: 30px;
 }
 /* displays */
 
