@@ -337,15 +337,17 @@
                     </select>
                     <input type="text" name="attr_multiplier" class="sheet-no-border sheet-attackbonus" value="1">
                     <div class="sheet-weapontype-melee">
-                        <button type="roll" value="&{template:acks_template} {{char=@{character_name} Melee}} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}}" name="roll_attackThrowMelee" title="Melee Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMelee}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}+@{strengthMod}, 1d1}k1]]}} @{weapondescr_toggle}" name="roll_attackThrowMelee" title="Melee Attack Throw"></button>
                     </div>
                     <div class="sheet-weapontype-ranged">
-                        <button type="roll" value="&{template:acks_template} {{char=@{character_name} Missile}} {{name=@{weaponname}}} {{weaponranges=@{shortrange}/@{mediumrange}/@{longrange}}}{{attackthrow=[[1d20+@{attackbonus}-?{Range|0-@{shortrange},0|@{shortrange}-@{mediumrange},2|@{mediumrange}-@{longrange},5}+(?{Additional Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}}" name="roll_attackThrowMissile" title="Missile Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{weaponname}}} {{weaponranges=@{shortrange}/@{mediumrange}/@{longrange}}}{{attackthrow=[[1d20+@{attackbonus}-?{Range|0-@{shortrange},0|@{shortrange}-@{mediumrange},2|@{mediumrange}-@{longrange},5}+(?{Additional Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+@{damagebonus}, 1d1}k1]]}} @{weapondescr_toggle}" name="roll_attackThrowMissile" title="Missile Attack Throw"></button>
                     </div>
                     <div class="sheet-weapontype-finesse">
-                        <button type="roll" value="&{template:acks_template} {{char=@{character_name} Finesse}} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}}" name="roll_attackThrowFinesse" title="Finesse Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{weaponname}}} {{attackthrow=[[1d20+@{attackbonus}+(?{Modifier|0})-@{attackthrowMissile}]]}} {{damageroll=[[{(@{multiplier}*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} {{critdamageroll=[[{((@{multiplier}+@{weaponfocus})*@{weapondamage})+[[@{damagebonus}+(0*@{dexterityMod})]], 1d1}k1]]}} @{weapondescr_toggle}" name="roll_attackThrowFinesse" title="Finesse Attack Throw"></button>
                     </div>
                     <input type="text" name="attr_weapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description">
+                    <input type="hidden" name="attr_weapondescr_var" value={{attackdescription=@{weapondescr}}}>
+                    <input type="checkbox" name="attr_weapondescr_toggle" class="sheet-show-weapon-description" value="@{weapondescr_var}">
                 </div>
             </fieldset>
         </div>
@@ -877,8 +879,10 @@
                         <input type="text" name="attr_Mshortrange" class="sheet-no-border sheet-mtiny">
                         <input type="text" name="attr_Mmediumrange" class="sheet-no-border sheet-mtiny">
                         <input type="text" name="attr_Mlongrange" class="sheet-no-border sheet-mtiny">
-                        <button type="roll" value="&{template:acks_template} {{name=@{Mweaponname}}} {{attackthrow=[[1d20+(?{Modifier|0})-(@{Mattackthrow})]]}} {{damageroll=[[{@{Mweapondamage}, 1d1}k1]]}} {{critdamageroll=[[{@{Mweapondamage}, 1d1}k1]]}}" name="roll_mAttackThrow" title="Monster Attack Throw"></button>
-                        <input type="text" name="attr_Mweapondescr" class="sheet-bottom-line sheet-weapon-description" placeholder="Description">
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{Mweaponname}}} {{attackthrow=[[1d20+(?{Modifier|0})-(@{Mattackthrow})]]}} {{damageroll=[[@{Mweapondamage}]]}} {{critdamageroll=[[@{Mweapondamage}]]}} @{Mweapondescr_toggle}" name="roll_mAttackThrow" title="Monster Attack Throw"></button>
+                        <input type="text" name="attr_Mweapondescr" class="sheet-bottom-line sheet-mweapon-description" placeholder="Description">
+                        <input type="hidden" name="attr_Mweapondescr_var" value={{attackdescription=@{Mweapondescr}}}>
+                        <input type="checkbox" name="attr_Mweapondescr_toggle" class="sheet-show-mweapon-description" value="@{Mweapondescr_var}">
                     </div>
                 </fieldset>
             </div>
@@ -988,7 +992,10 @@
             {{/rollWasFumble() attackthrow}}
             {{#^rollWasFumble() attackthrow}}
                 {{#rollWasCrit() attackthrow}}
-                        <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{critdamageroll}}</td></tr>                
+                        <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{critdamageroll}}</td></tr>
+                        {{#attackdescription}}
+                            <tr><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">Description:</span><br/>{{attackdescription}}</td></tr>
+                        {{/attackdescription}}
                         <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Critical Hit!</b></td></tr>
                 {{/rollWasCrit() attackthrow}}
                 {{#^rollWasCrit() attackthrow}}
@@ -997,10 +1004,16 @@
                     {{/rollLess() attackthrow 0}}
                     {{#rollTotal() attackthrow 0}}
                             <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{damageroll}}</td></tr>
+                            {{#attackdescription}}
+                                <tr><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">Description:</span><br/>{{attackdescription}}</td></tr>
+                            {{/attackdescription}}
                             <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Hit AC: {{attackthrow}}</b></td></tr>
                     {{/rollTotal() attackthrow 0}}
                     {{#rollGreater() attackthrow 0}}
                             <tr><td class="sheet-damageoutput"><span class="sheet-tcat">Damage: </span></td><td class="sheet-results">{{damageroll}}</td></tr>
+                            {{#attackdescription}}
+                                <tr><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">Description:</span><br/>{{attackdescription}}</td></tr>
+                            {{/attackdescription}}
                             <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Hit AC: {{attackthrow}}</b></td></tr>
                     {{/rollGreater() attackthrow 0}}
                 {{/^rollWasCrit() attackthrow}}
