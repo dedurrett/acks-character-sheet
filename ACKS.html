@@ -33,6 +33,7 @@
                      <span class="sheet-info3">XP for Level Up</span>
                 </div>
             </div>
+            <div class="sheet-tiny-spacer"></div>
             <div class="sheet-thick-border">
                 <!-- ABILITY SCORES -->
                 <h2>Ability Scores</h2>
@@ -286,6 +287,7 @@
     <span>&nbsp;&nbsp;&nbsp;</span>
     <input class="sheet-is-weapons" type="checkbox" name="attr_show_weapons" value="1" checked><span class="sheet-show-weapons"></span>
     <input class="sheet-is-actions" type="checkbox" name="attr_show_actions" value="1" checked><span class="sheet-show-actions"></span>
+    <input class="sheet-is-proficiencies" type="checkbox" name="attr_show_proficiencies" value="1" checked><span class="sheet-show-proficiencies"></span>
     <input class="sheet-is-equipment" type="checkbox" name="attr_show_equipment" value="1" checked><span class="sheet-show-equipment"></span>
     <input class="sheet-is-spells" type="checkbox" name="attr_show_spells" value="1" checked><span class="sheet-show-spells"></span>
     <input class="sheet-is-hirelings" type="checkbox" name="attr_show_hirelings" value="1" checked><span class="sheet-show-hirelings"></span>
@@ -352,46 +354,10 @@
             </fieldset>
         </div>
     </div>
-    <!-- SKILLS AND EQUIPMENT -->
+    <!-- ACTIONS AND PROFICIENCIES -->
     <div class="sheet-actions-tab">
-        <div class="sheet-flex-between">
-            <div class="sheet-col-left sheet-thick-border">
-                <h2>Features</h2>
-                <div class="sheet-othercontainer">
-                    <input type="text" name="attr_featureLanguage" class="sheet-no-border sheet-othername" value="Languages">
-                    <div class="sheet-bottom-line sheet-auto-expand">
-                    	<span name="attr_featuredescrLanguage"></span>
-                    	<textarea spellcheck="false" name="attr_featuredescrLanguage" placeholder="Common"></textarea>
-                    </div>
-                </div>
-                <fieldset class="repeating_features">
-                    <div class="sheet-othercontainer">
-                        <input type="text" name="attr_featurename" class="sheet-no-border sheet-othername" placeholder="Ability Name">
-                        <div class="sheet-bottom-line sheet-auto-expand">
-                        	<span name="attr_featuredescr"></span>
-                        	<textarea spellcheck="false" name="attr_featuredescr" placeholder="Description"></textarea>
-                        </div>
-                    </div>
-                </fieldset>
-                <h2>Proficiencies</h2>
-                <div class="sheet-othercontainer">
-                    <input type="text" name="attr_proficiencyAdventuring" class="sheet-no-border sheet-othername" value="Adventuring">
-                    <div class="sheet-bottom-line sheet-special-auto">
-                    	<span name="attr_proficiencydescrAdventuring"></span>
-                    	<textarea spellcheck="false" name="attr_proficiencydescrAdventuring" placeholder="This character is well-equipped for a life of adventure. They know how to clean and sharpen weapons, saddle and ride a horse, set up a camp, and search for a secret door. They have a rough idea of the value of common coins, trade goods, gems, and jewelry. All player characters are assumed to have Adventuring for purposes of the proficiency throws of standard adventuring tasks."></textarea>
-                    </div>
-                </div>
-                <fieldset class="repeating_proficiencies">
-                    <div class="sheet-othercontainer">
-                        <input type="text" name="attr_proficiencyname" class="sheet-no-border sheet-othername" placeholder="Proficiency Name">
-                        <div class="sheet-bottom-line sheet-auto-expand">
-                        	<span name="attr_proficiencydescr"></span>
-                        	<textarea spellcheck="false" name="attr_proficiencydescr" placeholder="Description"></textarea>
-                        </div>
-                    </div>
-                </fieldset>
-            </div>
-            <div class="sheet-col-right sheet-thick-border sheet-actions">
+        <div class="sheet-flex-between sheet-thick-border sheet-actions">
+            <div class="sheet-col-left">
                 <h2>GMRoll Actions</h2>
                 <input type="text" name="attr_DSskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Detect Secret" readonly>
                 <input type="number" name="attr_DSskillvalue" class="sheet-skillvalue" value="18">
@@ -412,6 +378,8 @@
                     <button type="roll" value="@{gmskillRollvalue}" name="roll_GMThrow" title="Secret Skill Throw"></button>
                     <button class="sheet-hide-it" type="roll" value="/w gm &{template:acks_template} {{char=@{character_name}}} {{name=@{gmskillname}}} {{skillthrow=[[(1d20+?{Modifier|0})]]}} {{target=[[@{gmskillvalue}]]}}" name="roll_gmGMThrow"></button>
                 </fieldset>
+            </div>
+            <div class="sheet-col-right">
                 <h2>Actions</h2>
                 <input type="text" name="attr_ODskillname" class="sheet-bottom-line sheet-skillname" value="Adventuring Open Door" readonly>
                 <input type="number" name="attr_ODskillvalue" class="sheet-skillvalue" value="18">
@@ -430,9 +398,72 @@
             </div>
         </div>
     </div>
+    <div class="sheet-proficiencies-tab">
+        <div class="sheet-flex-between sheet-thick-border sheet-proficiencies">
+            <div class="sheet-col-left">
+                <h2>Features</h2>
+                <div class="sheet-othercontainer">
+                    <input type="text" name="attr_featureLanguage" class="sheet-no-border sheet-othername" value="Languages">
+                    <div class="sheet-bottom-line sheet-auto-expand">
+                    	<span name="attr_featuredescrLanguage"></span>
+                    	<textarea spellcheck="false" name="attr_featuredescrLanguage" placeholder="Common"></textarea>
+                    </div>
+                </div>
+                <fieldset class="repeating_features">
+                    <div class="sheet-othercontainer">
+                        <input type="text" name="attr_featurename" class="sheet-no-border sheet-othername" placeholder="Ability Name">
+                        <div class="sheet-bottom-line sheet-auto-expand">
+                        	<span name="attr_featuredescr"></span>
+                        	<textarea spellcheck="false" name="attr_featuredescr" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="sheet-col-right">
+                <h2>Proficiencies</h2>
+                <div class="sheet-othercontainer">
+                    <input type="text" name="attr_proficiencyAdventuring" class="sheet-no-border sheet-othername" value="Adventuring">
+                    <div class="sheet-bottom-line sheet-special-auto">
+                    	<span name="attr_proficiencydescrAdventuring"></span>
+                    	<textarea spellcheck="false" name="attr_proficiencydescrAdventuring" placeholder="This character is well-equipped for a life of adventure. They know how to clean and sharpen weapons, saddle and ride a horse, set up a camp, and search for a secret door. They have a rough idea of the value of common coins, trade goods, gems, and jewelry. All player characters are assumed to have Adventuring for purposes of the proficiency throws of standard adventuring tasks."></textarea>
+                    </div>
+                </div>
+                <fieldset class="repeating_proficiencies">
+                    <div class="sheet-othercontainer">
+                        <input type="text" name="attr_proficiencyname" class="sheet-no-border sheet-othername" placeholder="Proficiency Name">
+                        <div class="sheet-bottom-line sheet-auto-expand">
+                        	<span name="attr_proficiencydescr"></span>
+                        	<textarea spellcheck="false" name="attr_proficiencydescr" placeholder="Description"></textarea>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <!-- EQUIPMENT -->
     <div class="sheet-equipment-tab">
-        <div class="sheet-flex-between">
-            <div class="sheet-col-left sheet-thick-border sheet-equipment">
+        <div class="sheet-flex-between sheet-thick-border sheet-equipment">
+            <div class="sheet-col-left">
+                <h2>Encumbrance</h2>
+                <div class=" sheet-flex-between">
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Base Move</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveExplore"  value="120" readonly>
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Move Mod</span>
+                        <input type="number" class="sheet-numbubble" name="attr_moveMisc"  value="0">
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Max Carry</span>
+                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMax"  value="20" readonly>
+                    </div>
+                    <div class="sheet-svblock">
+                        <span class="sheet-statstitle">Carry Mod</span>
+                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMisc"  value="0">
+                    </div>
+                </div>
+                <div class="sheet-medium-spacer"></div>
                 <h2>Equipment</h2>
                 <fieldset class="repeating_equipment">
                      <input type="number" name="attr_itemcount" placeholder="#" class="sheet-encumbrance sheet-bottom-line" min="0">
@@ -456,22 +487,7 @@
                   <input type="number" step=any name="attr_encumbranceTotal" class="sheet-total-encumbrance" value="0" readonly>
                 </div>
             </div>
-            <div class="sheet-col-right sheet-thick-border">
-                <h2>Encumbrance</h2>
-                <div class=" sheet-flex-between">
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Max Carry</span>
-                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMax"  value="20" readonly>
-                    </div>
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Carry Mod</span>
-                        <input type="number" class="sheet-numbubble" name="attr_encumbranceMisc"  value="0">
-                    </div>
-                    <div class="sheet-svblock">
-                        <span class="sheet-statstitle">Move Mod</span>
-                        <input type="number" class="sheet-numbubble" name="attr_moveMisc"  value="0">
-                    </div>
-                </div>
+            <div class="sheet-col-right">
                 <h2>Unencumbering</h2>
                 <fieldset class="repeating_banked">
                     <div class="sheet-othercontainer">
