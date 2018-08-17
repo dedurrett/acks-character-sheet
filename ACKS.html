@@ -644,7 +644,7 @@
                         <input type="text" name="attr_retainermove" class="sheet-bottom-line sheet-retainer-small">
                         <input type="text" name="attr_retainerattack" class="sheet-bottom-line sheet-retainer-med">
                         <input type="text" name="attr_retainerdamage" class="sheet-bottom-line sheet-retainer-med">
-                        <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[{@{retainerdamage}, 1d1}k1]]}} {{critdamageroll=[[{@{retainerdamage}, 1d1}k1]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
+                        <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=@{retainerposition}: @{retainername}}} {{attackthrow=[[1d20+(?{Modifier|0})-@{retainerattack}]]}} {{damageroll=[[@{retainerdamage}]]}} {{critdamageroll=[[@{retainerdamage}]]}}" name="roll_retainerAttackThrow" title="Hireling Attack Throw"></button>
                         <span class="sheet-retainer-large">Name</span>
                         <span class="sheet-retainer-small">AC</span>
                         <span class="sheet-retainer-small">HP</span>
