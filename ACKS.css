@@ -223,7 +223,7 @@ input[type=number].sheet-ability-modifier {
 .sheet-svbtitle {
     font-size: 16px;
     display: block;
-    min-height: 40px;
+    min-height: 43px;
 }
 .sheet-statstitle {
     font-size: 16px;
@@ -632,6 +632,9 @@ input[type=text].sheet-numbubble-hd {
     margin: 10px auto;
 }
 /* MONSTER PAGE*/
+.sheet-rawblock {
+    height: 214px;
+}
 .sheet-statblock-column {
     display: block;
     width: 90%;
