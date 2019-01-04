@@ -50,27 +50,6 @@
                 </div>
                 <div class="sheet-flex">
                     <div class="sheet-ability-column-value">
-                        <span>Dexterity</span>
-                        <input type="number" class="sheet-ability-value" name="attr_dexterity" value="10">
-                    </div>
-                    <div class="sheet-ability-column-modifier sheet-flex-between">
-                        <input type="number" class="sheet-ability-modifier" name="attr_dexterityMod" value="0" readonly>
-                        <span class="sheet-subtext">Missile Attack Throws, Armor Class, Initiative</span>
-                    </div>
-                </div>
-                <div class="sheet-flex">
-                    <div class="sheet-ability-column-value">
-                        <span>Constitution</span>
-                        <input type="number" class="sheet-ability-value" name="attr_constitution" value="10">
-                    </div>
-                    <div class="sheet-ability-column-modifier sheet-flex-between">
-                        <input type="number" class="sheet-ability-modifier" name="attr_constitutionMod" value="0" readonly>
-                        <span class="sheet-subtext">Hit Points</span>
-                    </div>
-    
-                </div>
-                <div class="sheet-flex">
-                    <div class="sheet-ability-column-value">
                         <span>Intelligence</span>
                         <input type="number" class="sheet-ability-value" name="attr_intelligence" value="10">
                     </div>
@@ -93,6 +72,26 @@
                         </div>
                     </div>
                 </div>
+                <div class="sheet-flex">
+                    <div class="sheet-ability-column-value">
+                        <span>Dexterity</span>
+                        <input type="number" class="sheet-ability-value" name="attr_dexterity" value="10">
+                    </div>
+                    <div class="sheet-ability-column-modifier sheet-flex-between">
+                        <input type="number" class="sheet-ability-modifier" name="attr_dexterityMod" value="0" readonly>
+                        <span class="sheet-subtext">Missile Attack Throws, Armor Class, Initiative</span>
+                    </div>
+                </div>
+                <div class="sheet-flex">
+                    <div class="sheet-ability-column-value">
+                        <span>Constitution</span>
+                        <input type="number" class="sheet-ability-value" name="attr_constitution" value="10">
+                    </div>
+                    <div class="sheet-ability-column-modifier sheet-flex-between">
+                        <input type="number" class="sheet-ability-modifier" name="attr_constitutionMod" value="0" readonly>
+                        <span class="sheet-subtext">Hit Points</span>
+                    </div>
+                    </div>
                 <div class="sheet-flex">
                     <div class="sheet-ability-column-value">
                         <span>Charisma</span>
@@ -787,7 +786,7 @@
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">AC</span>
-                    <input type="number" class="sheet-numbubble" name="attr_armorclass">
+                    <input type="number" class="sheet-numbubble" name="attr_armor">
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">AT</span>
@@ -802,22 +801,22 @@
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Initiative</span>
                     <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{initiativeroll=[[1d6+(@{initiative})&{tracker}]]}}" name="roll_MinitiativeRoll" title="Monster Initiative Roll"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_initiative">
+                    <input type="number" class="sheet-numbubble" name="attr_initiativeMisc">
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Surprise</span>
                     <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{surpriseroll=[[1d6+(@{surprise})]]}}" name="roll_MsurpriseRoll" title="Monster Surprise Roll"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_surprise">
+                    <input type="number" class="sheet-numbubble" name="attr_surpriseMisc">
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Reaction</span>
                     <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{reactionroll=[[2d6+(@{reaction})]]}}" name="roll_MreactionRoll" title="Monster Reaction Roll"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_reaction">
+                    <input type="number" class="sheet-numbubble" name="attr_reactionMisc">
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Morale</span>
                     <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{moraleroll=[[2d6+(@{morale})]]}}" name="roll_MmoraleRoll" title="Monster Morale Roll"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_morale">
+                    <input type="number" class="sheet-numbubble" name="attr_moraleMisc">
                 </div>
             </div>
             <!-- FIGHTS AND SAVES AS -->
@@ -829,6 +828,7 @@
                     <option value="MAG">Mage</option>
                     <option value="CLR">Cleric</option>
                     <option value="THF">Thief</option>
+                    <option value="NM">Normal Man</option>
                 </select>
                 <input type="number" name="attr_fightlevel" value="0">
             </div>
@@ -1241,6 +1241,26 @@ on('sheet:opened change:race change:encumbranceTotal change:encumbranceMax chang
     });
 });
 
+//If you switch tabs, I want to dump these attributes because the interaction between the tabs is wonky.
+//It's meant to be one or the other when the sheet is configured, and never changed thereafter.
+//I need to disable this for players though.....
+/*on('change:is_monster', function() {
+    setAttrs({
+        strength: 10,
+        dexterity: 10,
+        constitution: 10,
+        intelligence: 10,
+        wisdom: 10,
+        charisma: 10,
+        armor: 0,
+        armorMisc: 0,
+        initiativeMisc: 0,
+        surpriseMisc: 0,
+        reactionMisc: 0,
+        moraleMisc: 0
+    });
+});*/
+
 // Ability modifiers
 ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'].forEach(ability => {
   on(`sheet:opened change:${ability.toLowerCase()}`, () => {
@@ -1289,6 +1309,8 @@ on('change:fightas change:fightlevel', function() {
             case "MST":
                 switch (parseInt(values.fightlevel)) {
                     case 0:
+                        setAttrs({ attackthrow: 11 });
+                        break;
                     case 1:
                         setAttrs({ attackthrow: 10 });
                         break;
@@ -1345,6 +1367,8 @@ on('change:fightas change:fightlevel', function() {
             case "FTR":
                 switch (parseInt(values.fightlevel)) {
                     case 0:
+                        setAttrs({ attackthrow: 11 });
+                        break;
                     case 1:
                         setAttrs({ attackthrow: 10 });
                         break;
@@ -1386,6 +1410,8 @@ on('change:fightas change:fightlevel', function() {
             case "MAG":
                 switch (parseInt(values.fightlevel)) {
                     case 0:
+                        setAttrs({ attackthrow: 11 });
+                        break;
                     case 1:
                     case 2:
                     case 3:
@@ -1418,6 +1444,8 @@ on('change:fightas change:fightlevel', function() {
             case "THF":
                 switch (parseInt(values.fightlevel)) {
                     case 0:
+                        setAttrs({ attackthrow: 11 });
+                        break;
                     case 1:
                     case 2:
                         setAttrs({ attackthrow: 10 });
@@ -1449,6 +1477,9 @@ on('change:fightas change:fightlevel', function() {
                     default:
                         setAttrs({ attackthrow: 20});
                 }
+                break;
+            case "NM":
+                setAttrs({ attackthrow: 11 });
                 break;
             default:
                 setAttrs({ attackthrow: 20});
@@ -1714,7 +1745,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "NORMAL":
                 switch (parseInt(values.level)) {
                     default:
-                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                 }
                 break;
             case "FIGHTER":
@@ -1744,7 +1775,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 //Fighter Progression
                 switch (parseInt(values.level)) {
                     case 0:
-                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                         break;
                     case 1:
                         setAttrs({
@@ -1863,7 +1894,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 //Mage Progression
                 switch (parseInt(values.level)) {
                     case 0:
-                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                         break;
                     case 1:
                     case 2:
@@ -1941,7 +1972,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 //Cleric Progression
                 switch (parseInt(values.level)) {
                     case 0:
-                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                         break;
                     case 1:
                     case 2:
@@ -2046,7 +2077,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 //Thief Progression
                 switch (parseInt(values.level)) {
                     case 0:
-                        setAttrs({ attackthrow: 10, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
+                        setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                         break;
                     case 1:
                     case 2:
@@ -2141,7 +2172,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 //Monster Progression
                 switch (parseInt(values.level)) {
                     case 0:
-                        setAttrs({ attackthrow: 10 });
+                        setAttrs({ attackthrow: 11 });
                         break;
                     case 1:
                         setAttrs({ attackthrow: 10 });
@@ -2191,7 +2222,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 //Fighter Progression
                 switch (parseInt(values.level)) {
                     case 0:
-                        setAttrs({ attackthrow: 10 });
+                        setAttrs({ attackthrow: 11 });
                         break;
                     case 1:
                         setAttrs({ attackthrow: 10 });
@@ -2273,7 +2304,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 //Thief and Cleric Progression
                 switch (parseInt(values.level)) {
                     case 0:
-                        setAttrs({ attackthrow: 10 });
+                        setAttrs({ attackthrow: 11 });
                         break;
                     case 1:
                     case 2:
@@ -2312,4 +2343,173 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
         }
     });
 });
+/*
+var convertFromOldSheet = function () {
+    return;
+    // Non-repeating attributes to rename
+    let conversionData = {
+        "attr_name" : "attr_character_name",
+        "attr_class_title" : "attr_title",
+        "attr_gp" : "attr_coinsGP",
+        "attr_hp" : "attr_hitpoints",
+        "attr_hp_max" : "attr_hitpoints_max",
+        "attr_init_bns" : "attr_initiativeMisc",
+        "attr_str" : "attr_strength",
+        "attr_int" : "attr_intelligence",
+        "attr_wis" : "attr_wisdom",
+        "attr_dex" : "attr_dexterity",
+        "attr_con" : "attr_constitution",
+        "attr_chr" : "attr_charisma",
+        "attr_pet_par_bns" : "attr_paralyzeSaveMisc",
+        "attr_psn_dth_bns" : "attr_poisonSaveMisc",
+        "attr_blst_brth_bns" : "attr_breathSaveMisc",
+        "attr_stvs_wnds_bns" : "attr_deviceSaveMisc",
+        "attr_spells_bns" : "attr_magicSaveMisc",
+        "attr_armor_ac" : "attr_armor",
+        "attr_spell_level_1_max" : "attr_spells_l1_max",
+        "attr_spell_level_2_max" : "attr_spells_l2_max",
+        "attr_spell_level_3_max" : "attr_spells_l3_max",
+        "attr_spell_level_4_max" : "attr_spells_l4_max",
+        "attr_spell_level_5_max" : "attr_spells_l5_max",
+        "attr_spell_level_6_max" : "attr_spells_l6_max",
+        "attr_spell_level_1" : "attr_spells_l1",
+        "attr_spell_level_2" : "attr_spells_l2",
+        "attr_spell_level_3" : "attr_spells_l3",
+        "attr_spell_level_4" : "attr_spells_l4",
+        "attr_spell_level_5" : "attr_spells_l5",
+        "attr_spell_level_6" : "attr_spells_l6",
+
+//go into repeating section now....
+        "attr_gen_att_bns" : "",
+        "attr_gen_dmg_bns" : "",
+        "attr_melee_bns" : "",
+        "attr_ranged_bns" : "",
+    };
+    // Non-repeating attribute renaming
+    getAttrs(Object.keys(conversionData), function (values) {
+        let setting = {};
+        Object.keys(conversionData).forEach(function (oldAttr) {
+            if (values[oldAttr] != null) {
+                // set value of new attribute to the old one
+                setting[conversionData[oldAttr]] = values[oldAttr];
+                setting[oldAttr] = '';
+            }
+        });
+        console.log("Setting non-repeating attributes.");
+        setAttrs(setting);
+    });
+
+    //Special Case to bring over the two note fields into one notes field here.
+    getAttrs(["notey","noob"], function(values) {
+        setAttrs({lootnotes: (values.notey + "\n" + values.noob)});
+    });
+    
+	getSectionIDs('repeating_meleeattacks', function (idArray) {
+	    console.log("Setting repeating_meleeattacks attributes.");
+		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleeweaponname`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_meleeattacks_${id}_melee_weaponname`] = values[`repeating_meleeattacks_${id}_meleeweaponname`];
+			});
+			setAttrs(setting);
+		});
+		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleemagic`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`class_hitbonus`] = values[`repeating_meleeattacks_${id}_meleemagic`];
+			});
+			setAttrs(setting);
+		});
+		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleemisc`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_meleeattacks_${id}_melee_hitbonus`] = values[`repeating_meleeattacks_${id}_meleemisc`];
+				setting[`repeating_meleeattacks_${id}_melee_dmgbonus`] = values[`repeating_meleeattacks_${id}_meleemisc`];
+			});
+			setAttrs(setting);
+		});
+		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleedmg`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_meleeattacks_${id}_melee_dmgbase`] = values[`repeating_meleeattacks_${id}_meleedmg`];
+			});
+			setAttrs(setting);
+		});
+		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleeacbonus`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_meleeattacks_${id}_melee_description`] = values[`repeating_meleeattacks_${id}_meleeacbonus`];
+			});
+			setAttrs(setting);
+		});
+	});
+	
+	getSectionIDs('repeating_rangedattacks', function (idArray) {
+	    console.log("Setting repeating_rangedattacks attributes.");
+		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangeweaponname`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_rangedattacks_${id}_range_weaponname`] = values[`repeating_rangedattacks_${id}_rangeweaponname`];
+			});
+			setAttrs(setting);
+		});
+		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangemisc`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_rangedattacks_${id}_range_hitbonus`] = values[`repeating_rangedattacks_${id}_rangemisc`];
+				setting[`repeating_rangedattacks_${id}_range_dmgbonus`] = values[`repeating_rangedattacks_${id}_rangemisc`];
+			});
+			setAttrs(setting);
+		});
+		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangedmg`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_rangedattacks_${id}_range_dmgbase`] = values[`repeating_rangedattacks_${id}_rangedmg`];
+			});
+			setAttrs(setting);
+		});
+		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangeacbonus`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_rangedattacks_${id}_range_distance`] = values[`repeating_rangedattacks_${id}_rangeacbonus`];
+			});
+			setAttrs(setting);
+		});
+		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangesaves`), function (values) {
+			let setting = {};
+			idArray.forEach(function (id) {
+				setting[`repeating_rangedattacks_${id}_range_description`] = values[`repeating_rangedattacks_${id}_rangesaves`];
+			});
+			setAttrs(setting);
+		});
+	});
+};
+on('sheet:opened', function () {
+    return;
+    let currentVersion = '2.0';
+    getAttrs(['version','name'], function (values) {
+        if (!values.version) {
+            //Special Case to check if the custom sheet was already in use prior to adding version control logic
+            if (!values.name) {
+                console.log("Special Case: No Translation Necessary");
+            }
+            else{
+                console.log("Translating Old Sheet to New Sheet");
+                convertFromOldSheet();
+            }
+        }
+        else{
+            switch (values.version) {
+                case 2.1:
+                    // upgrade v2.1 to next version
+                    // fallthrough, continue
+                case 3.0:
+                    //etc
+            }
+        }
+        setAttrs({
+            version: currentVersion
+        });
+    });
+});*/
 </script>
