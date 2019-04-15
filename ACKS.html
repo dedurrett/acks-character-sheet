@@ -285,6 +285,7 @@
     </div>
     <!-- TAB SELECTION -->
     <span>&nbsp;&nbsp;&nbsp;</span>
+    <input class="sheet-is-domainsatwar" type="checkbox" name="attr_show_domainsatwar" value="1"><span class="sheet-show-domainsatwar"></span>
     <input class="sheet-is-weapons" type="checkbox" name="attr_show_weapons" value="1" checked><span class="sheet-show-weapons"></span>
     <input class="sheet-is-actions" type="checkbox" name="attr_show_actions" value="1" checked><span class="sheet-show-actions"></span>
     <input class="sheet-is-proficiencies" type="checkbox" name="attr_show_proficiencies" value="1" checked><span class="sheet-show-proficiencies"></span>
@@ -292,6 +293,79 @@
     <input class="sheet-is-spells" type="checkbox" name="attr_show_spells" value="1" checked><span class="sheet-show-spells"></span>
     <input class="sheet-is-hirelings" type="checkbox" name="attr_show_hirelings" value="1" checked><span class="sheet-show-hirelings"></span>
     <input class="sheet-is-effects" type="checkbox" name="attr_show_effects" value="1" checked><span class="sheet-show-effects"></span>
+    <!-- DOMAINS AT WAR -->
+    <div class="sheet-domainsatwar-tab">
+        <div class="sheet-thick-border">
+            <h2>Domains at War</h2>
+            <div class="sheet-flex">
+                <div class="sheet-warfare-column">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Leadership Ability</span>
+                </div>
+                <div class="sheet-warfare-column">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Zone of Control</span>
+                </div>
+                <div class="sheet-warfare-column">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Strategic Ability</span>
+                </div>
+                <div class="sheet-warfare-column">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Morale Modifier</span>
+                    <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{warfaremoraleroll=[[2d6+@{morale}+(?{Modifier|0})]]}}" name="roll_warfareMoraleRoll" title="Unit Morale Roll"></button>
+                    <!--class="sheet-hide-it"--><button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{warfareshockroll=[[2d6+@{morale}+(?{Modifier|0})]]}}" name="roll_warfareShockRoll" title="Unit Shock Roll"></button>
+                </div>
+            </div>
+            <div class="sheet-flex-between">
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <div class="sheet-flex-between">
+                    <div>
+                        <input type="number" class="sheet-warfare-value" name="attr_leadership" value="0" readonly>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Score</span>
+                    </div>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <div>
+                        <input type="number" class="sheet-warfare-modifier" name="attr_leadershipMisc" value="0">
+                        <span>&nbsp;&nbsp;Misc</span>
+                    </div>
+                </div>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <div class="sheet-flex-between">
+                    <div>
+                        <input type="number" class="sheet-warfare-value" name="attr_zoc" value="0" readonly>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Score</span>
+                    </div>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <div>
+                        <input type="number" class="sheet-warfare-modifier" name="attr_zocMisc" value="0">
+                        <span>&nbsp;&nbsp;Misc</span>
+                    </div>
+                </div>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <div class="sheet-flex-between">
+                    <div>
+                        <input type="number" class="sheet-warfare-value" name="attr_strategy" value="0" readonly>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Score</span>
+                    </div>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <div>
+                        <input type="number" class="sheet-warfare-modifier" name="attr_strategyMisc" value="0">
+                        <span>&nbsp;&nbsp;Misc</span>
+                    </div>
+                </div>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+                <div class="sheet-flex-between">
+                    <div>
+                        <input type="number" class="sheet-warfare-value" name="attr_morale" value="0" readonly>
+                        <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Score</span>
+                    </div>
+                    <span>&nbsp;&nbsp;&nbsp;</span>
+                    <div>
+                        <input type="number" class="sheet-warfare-modifier" name="attr_moraleMisc" value="0">
+                        <span>&nbsp;&nbsp;Misc</span>
+                    </div>
+                </div>
+                <span>&nbsp;&nbsp;&nbsp;</span>
+            </div>
+        </div>
+    </div>
     <!-- WEAPONS -->
     <div class="sheet-weapons-tab">
         <div class="sheet-thick-border">
@@ -695,7 +769,7 @@
     </div>
     <div class="sheet-effects-tab">
         <div class="sheet-thick-border sheet-equipment">
-            <h2>Permanent Injuries and other Notes</h2>
+            <h2>Permanent Injuries and Notes</h2>
             <fieldset class="repeating_notes">
                 <div class="sheet-othercontainer">
                     <input type="text" name="attr_notesheader" class="sheet-no-border sheet-othername" placeholder="Title">
@@ -848,36 +922,36 @@
                     <!-- Saving Throws -->
                     <h2>Saving Throws</h2>
                     <div class="sheet-flex">
-                      <div class="sheet-svblock">
-                        <span class="sheet-svbtitle">Petrify & Paralysis</span>
-                        <button type="roll" value="&{template:acks_template} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{paralyzeSave}]]}}" name="roll_MparalyzeSaveThrow" title="Monster Saving Throw vs Petrify & Paralysis"></button>
-                        <input type="number" class="sheet-numbubble" name="attr_paralyzeSave" readonly>
-                        <span class="sheet-svnsubtext">Rendered Immobile</span>
-                      </div>
-                      <div class="sheet-svblock">
-                          <span class="sheet-svbtitle">Poison & Death</span>
-                          <button type="roll" value="&{template:acks_template} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{poisonSave}]]}}" name="roll_MpoisonSaveThrow" title="Monster Saving Throw vs Poison & Death"></button>
-                          <input type="number" class="sheet-numbubble" name="attr_poisonSave" readonly>
-                          <span class="sheet-svnsubtext">Death or Incapacitation</span>
-                      </div>
-                      <div class="sheet-svblock">
-                          <span class="sheet-svbtitle">Blast & Breath</span>
-                          <button type="roll" value="&{template:acks_template} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{breathSave}]]}}" name="roll_MbreathSaveThrow" title="Monster Saving Throw vs Blast & Breath"></button>
-                          <input type="number" class="sheet-numbubble" name="attr_breathSave" readonly>
-                          <span class="sheet-svnsubtext">Area Effects</span>
-                      </div>
-                      <div class="sheet-svblock">
-                          <span class="sheet-svbtitle">Staffs & Wands</span>
-                          <button type="roll" value="&{template:acks_template} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{deviceSave}]]}}" name="roll_MdeviceSaveThrow" title="Monster Saving Throw vs Staffs & Wands"></button>
-                          <input type="number" class="sheet-numbubble" name="attr_deviceSave" readonly>
-                          <span class="sheet-svnsubtext">Effects from Items</span>
-                      </div>
-                      <div class="sheet-svblock">
-                          <span class="sheet-svbtitle">Spells</span>
-                          <button type="roll" value="&{template:acks_template} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{magicSave}]]}}" name="roll_MmagicSaveThrow" title="Monster Saving Throw vs Spells"></button>
-                          <input type="number" class="sheet-numbubble" name="attr_magicSave" readonly>
-                          <span class="sheet-svnsubtext">Effects from Spells</span>
-                      </div>
+                        <div class="sheet-svblock">
+                            <span class="sheet-svbtitle">Petrify & Paralysis</span>
+                            <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Petrify & Paralysis}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{paralyzeSave}]]}}" name="roll_MparalyzeSaveThrow" title="Monster Saving Throw vs Petrify & Paralysis"></button>
+                            <input type="number" class="sheet-numbubble" name="attr_paralyzeSave" readonly>
+                            <span class="sheet-svnsubtext">Rendered Immobile</span>
+                        </div>
+                        <div class="sheet-svblock">
+                            <span class="sheet-svbtitle">Poison & Death</span>
+                            <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Poison & Death}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{poisonSave}]]}}" name="roll_MpoisonSaveThrow" title="Monster Saving Throw vs Poison & Death"></button>
+                            <input type="number" class="sheet-numbubble" name="attr_poisonSave" readonly>
+                            <span class="sheet-svnsubtext">Death or Incapacitation</span>
+                        </div>
+                        <div class="sheet-svblock">
+                            <span class="sheet-svbtitle">Blast & Breath</span>
+                            <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Blast & Breath}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{breathSave}]]}}" name="roll_MbreathSaveThrow" title="Monster Saving Throw vs Blast & Breath"></button>
+                            <input type="number" class="sheet-numbubble" name="attr_breathSave" readonly>
+                            <span class="sheet-svnsubtext">Area Effects</span>
+                        </div>
+                        <div class="sheet-svblock">
+                            <span class="sheet-svbtitle">Staffs & Wands</span>
+                            <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Staffs & Wands}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{deviceSave}]]}}" name="roll_MdeviceSaveThrow" title="Monster Saving Throw vs Staffs & Wands"></button>
+                            <input type="number" class="sheet-numbubble" name="attr_deviceSave" readonly>
+                            <span class="sheet-svnsubtext">Effects from Items</span>
+                        </div>
+                        <div class="sheet-svblock">
+                            <span class="sheet-svbtitle">Spells</span>
+                            <button type="roll" value="&{template:acks_template} {{char=@{character_name}}} {{name=Spells}} {{savethrow=[[1d20+(?{Modifier|0})]]}} {{target=[[@{magicSave}]]}}" name="roll_MmagicSaveThrow" title="Monster Saving Throw vs Spells"></button>
+                            <input type="number" class="sheet-numbubble" name="attr_magicSave" readonly>
+                            <span class="sheet-svnsubtext">Effects from Spells</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -988,6 +1062,49 @@
                     <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Victory or Death!</b></td></tr>
             {{/rollGreater() moraleroll 11}}
         {{/moraleroll}}
+        {{#warfaremoraleroll}}
+            <tr><td colspan="2" class="sheet-subheader">Warfare Unit Morale Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{warfaremoraleroll}}</td></tr>
+            {{#rollLess() warfaremoraleroll 0}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Rout!</b></td></tr>
+            {{/rollLess() warfaremoraleroll 0}}
+            {{#rollBetween() warfaremoraleroll 0 2}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Rout!</b></td></tr>
+            {{/rollBetween() warfaremoraleroll 0 2}}
+            {{#rollBetween() warfaremoraleroll 3 5}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Flee.</b></td></tr>
+            {{/rollBetween() warfaremoraleroll 3 5}}
+            {{#rollBetween() warfaremoraleroll 6 8}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:gold;"><b>Waver.</b></td></tr>
+            {{/rollBetween() warfaremoraleroll 6 8}}
+            {{#rollBetween() warfaremoraleroll 9 11}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Stand Firm.</b></td></tr>
+            {{/rollBetween() warfaremoraleroll 9 11}}
+            {{#rollGreater() warfaremoraleroll 11}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:green;"><b>Rally!</b></td></tr>
+            {{/rollGreater() warfaremoraleroll 11}}
+        {{/warfaremoraleroll}}
+        {{#warfareshockroll}}
+            <tr><td colspan="2" class="sheet-subheader">Warfare Unit Shock Roll</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+            <tr><td><span class="sheet-tcat">Result: </span></td><td class="sheet-results">{{warfareshockroll}}</td></tr>
+            {{#rollLess() warfareshockroll 0}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Rout!</b></td></tr>
+            {{/rollLess() warfareshockroll 0}}
+            {{#rollBetween() warfareshockroll 0 2}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:red;"><b>Rout!</b></td></tr>
+            {{/rollBetween() warfareshockroll 0 2}}
+            {{#rollBetween() warfareshockroll 3 5}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:firebrick;"><b>Flee.</b></td></tr>
+            {{/rollBetween() warfareshockroll 3 5}}
+            {{#rollBetween() warfareshockroll 6 8}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:gold;"><b>Recoil.</b></td></tr>
+            {{/rollBetween() warfareshockroll 6 8}}
+            {{#rollGreater() warfareshockroll 8}}
+                    <tr><td colspan="2" class="sheet-subfooter" style="color:darkgreen;"><b>Stand Firm.</b></td></tr>
+            {{/rollGreater() warfareshockroll 8}}
+        {{/warfareshockroll}}
         {{#savethrow}}
             <tr><td colspan="2" class="sheet-subheader">{{char}} Saving Throw</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
@@ -1111,9 +1228,10 @@
         {{#type}}
             <tr><td colspan="2" class="sheet-subheader">{{type}}</td></tr>
             <tr><th colspan="2">{{name}}</th></tr>
-            {{#allprops() type name}}
+            {{#allprops() type name description}}
                 <tr><td><span class="tcat">{{key}}: </span></td><td class="sheet-spelltext">{{value}}</td></tr>
-            {{/allprops() type name}}
+            {{/allprops() type name description}}
+            <tr class="sheet-spellrow"><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">Description:</span><br/>{{description}}</td></tr>
         {{/type}}
     </table>
 </rolltemplate>
@@ -1241,26 +1359,6 @@ on('sheet:opened change:race change:encumbranceTotal change:encumbranceMax chang
     });
 });
 
-//If you switch tabs, I want to dump these attributes because the interaction between the tabs is wonky.
-//It's meant to be one or the other when the sheet is configured, and never changed thereafter.
-//I need to disable this for players though.....
-/*on('change:is_monster', function() {
-    setAttrs({
-        strength: 10,
-        dexterity: 10,
-        constitution: 10,
-        intelligence: 10,
-        wisdom: 10,
-        charisma: 10,
-        armor: 0,
-        armorMisc: 0,
-        initiativeMisc: 0,
-        surpriseMisc: 0,
-        reactionMisc: 0,
-        moraleMisc: 0
-    });
-});*/
-
 // Ability modifiers
 ['strength', 'dexterity', 'constitution', 'intelligence', 'wisdom', 'charisma'].forEach(ability => {
   on(`sheet:opened change:${ability.toLowerCase()}`, () => {
@@ -1280,14 +1378,20 @@ on('sheet:opened change:race change:encumbranceTotal change:encumbranceMax chang
 });
 
 // Derived Statistics
-on('sheet:opened change:armor change:armorMisc change:initiativeMisc change:surpriseMisc change:reactionMisc change:moraleMisc change:dexterityMod change:charismaMod', function() {
-    getAttrs(["armor","armorMisc","initiativeMisc","surpriseMisc","reactionMisc","moraleMisc","dexterityMod","charismaMod"], function(values) {
+on('sheet:opened change:armor change:armorMisc change:initiativeMisc change:surpriseMisc change:reactionMisc change:moraleMisc change:dexterityMod change:intelligenceMod change:wisdomMod change:charismaMod change:leadershipMisc change:zocMisc change:strategyMisc', function() {
+    getAttrs(["armor","armorMisc","initiativeMisc","surpriseMisc","reactionMisc","moraleMisc","dexterityMod","intelligenceMod","wisdomMod","charismaMod","leadershipMisc","zocMisc","strategyMisc"], function(values) {
+        var intMod=parseInt(values.intelligenceMod);
+        var wisMod=parseInt(values.wisdomMod);
+        var chaMod=parseInt(values.charismaMod);
         setAttrs({
             armorclass: parseInt(values.armor)+parseInt(values.armorMisc)+parseInt(values.dexterityMod),
             initiative: parseInt(values.dexterityMod)+parseInt(values.initiativeMisc),
             surprise: parseInt(values.surpriseMisc),
-            reaction: parseInt(values.charismaMod)+parseInt(values.reactionMisc),
-            morale: parseInt(values.charismaMod)+parseInt(values.moraleMisc)
+            reaction: chaMod+parseInt(values.reactionMisc),
+            morale: chaMod+parseInt(values.moraleMisc),
+            leadership: 4+chaMod+parseInt(values.leadershipMisc),
+            zoc: Math.ceil((4+chaMod+parseInt(values.leadershipMisc))/2)+parseInt(values.zocMisc),
+            strategy: Math.max(0,intMod,wisMod)+Math.min(0,intMod,wisMod)+parseInt(values.strategyMisc)
         });
     });
 });
@@ -1772,6 +1876,8 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "HALFLING BOUNDER":
             case "BOUNDER":
             case "WARMISTRESS":
+            case "DWARVEN MULESKINNER":
+            case "MULESKINNER":
                 //Fighter Progression
                 switch (parseInt(values.level)) {
                     case 0:
@@ -2343,7 +2449,7 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
         }
     });
 });
-/*
+
 var convertFromOldSheet = function () {
     return;
     // Non-repeating attributes to rename
@@ -2511,5 +2617,5 @@ on('sheet:opened', function () {
             version: currentVersion
         });
     });
-});*/
+});
 </script>
