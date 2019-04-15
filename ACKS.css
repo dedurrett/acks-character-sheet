@@ -215,6 +215,30 @@ input[type=number].sheet-ability-modifier {
     padding: 0;
 }
 
+/* WARFARE */
+.sheet-warfare-column {
+    width: 25%;
+    text-align: center;
+    font-weight: bold;
+}
+
+input[type=number].sheet-warfare-value {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    margin: 0px 20px 0px 20px;
+}
+input[type=number].sheet-warfare-modifier {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 20px;
+    text-align: center;
+    display: block;
+    /*margin: 0px 40px 0px 30px;*/
+}
 /* SAVING THROWS */
 .sheet-svblock {
     width: 25%;
@@ -689,6 +713,7 @@ div.sheet-weapons-tab,
 div.sheet-actions-tab,
 div.sheet-proficiencies-tab,
 div.sheet-equipment-tab,
+div.sheet-domainsatwar-tab,
 div.sheet-spells-tab,
 div.sheet-hirelings-tab,
 div.sheet-effects-tab {
@@ -698,6 +723,7 @@ input.sheet-is-weapons:checked ~ div.sheet-weapons-tab,
 input.sheet-is-actions:checked ~ div.sheet-actions-tab,
 input.sheet-is-proficiencies:checked ~ div.sheet-proficiencies-tab,
 input.sheet-is-equipment:checked ~ div.sheet-equipment-tab,
+input.sheet-is-domainsatwar:checked ~ div.sheet-domainsatwar-tab,
 input.sheet-is-spells:checked ~ div.sheet-spells-tab,
 input.sheet-is-hirelings:checked ~ div.sheet-hirelings-tab,
 input.sheet-is-effects:checked ~ div.sheet-effects-tab {
@@ -707,6 +733,7 @@ input.sheet-is-weapons,
 input.sheet-is-actions,
 input.sheet-is-proficiencies,
 input.sheet-is-equipment,
+input.sheet-is-domainsatwar,
 input.sheet-is-spells,
 input.sheet-is-hirelings,
 input.sheet-is-effects {
@@ -722,30 +749,33 @@ input.sheet-is-weapons,
 input.sheet-is-actions,
 input.sheet-is-proficiencies,
 input.sheet-is-equipment,
+input.sheet-is-domainsatwar,
 input.sheet-is-spells,
 input.sheet-is-hirelings {
-	width: 11.5%;
+	width: 10%;
 }
 span.sheet-show-weapons,
 span.sheet-show-actions,
 span.sheet-show-proficiencies,
 span.sheet-show-equipment,
+span.sheet-show-domainsatwar, 
 span.sheet-show-spells,
 span.sheet-show-hirelings {
-    width: 11.5%;
-    margin-left: -11.5%
+    width: 10%;
+    margin-left: -10%
 }
 input.sheet-is-effects {
-	width: 25%;
+	width: 21%;
 }
 span.sheet-show-effects {
-    width: 25%;
-	margin-left: -25%
+    width: 21%;
+	margin-left: -21%
 }
 span.sheet-show-weapons,
 span.sheet-show-actions,
 span.sheet-show-proficiencies,
 span.sheet-show-equipment,
+span.sheet-show-domainsatwar,
 span.sheet-show-spells,
 span.sheet-show-hirelings,
 span.sheet-show-effects {
@@ -770,6 +800,9 @@ span.sheet-show-proficiencies::after {
 span.sheet-show-equipment::after {
     content: "Inventory";
 }
+span.sheet-show-domainsatwar::after {
+    content: "Warfare";
+}
 span.sheet-show-spells::after {
     content: "Spellbook";
 }
@@ -777,13 +810,14 @@ span.sheet-show-hirelings::after {
     content: "Hirelings";
 }
 span.sheet-show-effects::after {
-    content: "Permanent Injuries and other Notes";
+    content: "Permanent Injuries and Notes";
 }
 
 input.sheet-is-weapons:checked + span.sheet-show-weapons,
 input.sheet-is-actions:checked + span.sheet-show-actions,
 input.sheet-is-proficiencies:checked + span.sheet-show-proficiencies,
 input.sheet-is-equipment:checked + span.sheet-show-equipment,
+input.sheet-is-domainsatwar:checked + span.sheet-show-domainsatwar,
 input.sheet-is-spells:checked + span.sheet-show-spells,
 input.sheet-is-hirelings:checked + span.sheet-show-hirelings,
 input.sheet-is-effects:checked + span.sheet-show-effects {
