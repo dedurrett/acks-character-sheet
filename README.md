@@ -11,7 +11,7 @@ House Rules Included:
 
 Proficiency Throws whose outcome may affect player decisions can be entered in the GMRoll Actions section. This section functions by outputting a button for the GM to press, keeping the result hidden. This does not have to be used; these skills could be added in the adjacent regular Action section.
 
-Also included is a toggle to change the sheet over for monster statblocks. A monster statblock copied in the same format as the core rulebook will automatically be parsed, and the data can be quickly copied over to a small sheet which includes roll buttons for monster initiative, morale, saves and attacks. Entering the monsters full notation hit dice (eg. 1d8, or 3d8+3) in the attribute Mhitdice and using the [API script MonsterHitDice](https://wiki.roll20.net/Script:Monster_Hit_Dice) will enable automatic hitpoint rolling for tokens generated from the sheet.
+Also included is a toggle to change the sheet over for monster statblocks. A monster statblock copied in the same format as the core rulebook will automatically be parsed, and the data can be quickly copied over to a small sheet which includes roll buttons for monster initiative, morale, saves and attacks. Entering the monsters full notation hit dice (eg. 1d8, or 3d8+3) in the attribute hitdice and using the [API script MonsterHitDice](https://wiki.roll20.net/Script:Monster_Hit_Dice) will enable automatic hitpoint rolling for tokens generated from the sheet.
 
 Lastly, a roll template has been implemented and is used by the sheet roll buttons. A custom output can be created using the format:
 
