@@ -1231,7 +1231,9 @@
             {{#allprops() type name description}}
                 <tr><td><span class="tcat">{{key}}: </span></td><td class="sheet-spelltext">{{value}}</td></tr>
             {{/allprops() type name description}}
-            <tr class="sheet-spellrow"><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">Description:</span><br/>{{description}}</td></tr>
+            {{#description}}
+                <tr class="sheet-spellrow"><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">Description:</span><br/>{{description}}</td></tr>
+            {{/description}}
         {{/type}}
     </table>
 </rolltemplate>
