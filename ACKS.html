@@ -860,7 +860,7 @@
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">AC</span>
-                    <input type="number" class="sheet-numbubble" name="attr_armor">
+                    <input type="number" class="sheet-numbubble" name="attr_armorclass">
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">AT</span>
@@ -875,22 +875,22 @@
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Initiative</span>
                     <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{initiativeroll=[[1d6+(@{initiative})&{tracker}]]}}" name="roll_MinitiativeRoll" title="Monster Initiative Roll"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_initiativeMisc">
+                    <input type="number" class="sheet-numbubble" name="attr_initiative">
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Surprise</span>
                     <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{surpriseroll=[[1d6+(@{surprise})]]}}" name="roll_MsurpriseRoll" title="Monster Surprise Roll"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_surpriseMisc">
+                    <input type="number" class="sheet-numbubble" name="attr_surprise">
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Reaction</span>
                     <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{reactionroll=[[2d6+(@{reaction})]]}}" name="roll_MreactionRoll" title="Monster Reaction Roll"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_reactionMisc">
+                    <input type="number" class="sheet-numbubble" name="attr_reaction">
                 </div>
                 <div class="sheet-topblock">
                     <span class="sheet-toptitle">Morale</span>
                     <button type="roll" value="&{template:acks_template} {{name=@{character_name}}} {{moraleroll=[[2d6+(@{morale})]]}}" name="roll_MmoraleRoll" title="Monster Morale Roll"></button>
-                    <input type="number" class="sheet-numbubble" name="attr_moraleMisc">
+                    <input type="number" class="sheet-numbubble" name="attr_morale">
                 </div>
             </div>
             <!-- FIGHTS AND SAVES AS -->
@@ -1235,10 +1235,56 @@
                 <tr class="sheet-spellrow"><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">Description:</span><br/>{{description}}</td></tr>
             {{/description}}
         {{/type}}
+		{{#chatmenu}}
+            <tr><td colspan="2" class="sheet-subheader">Universal Chat Menu</td></tr>
+            <tr><th colspan="2">{{name}}</th></tr>
+			{{#allprops() chatmenu name}}
+				<tr class="sheet-spellrow"><td colspan="2" class="sheet-spelltext"><span class="sheet-tcat">{{key}}:</span><br/>{{value}}</td></tr>
+			{{/allprops() chatmenu name}}
+		{{/chatmenu}}
     </table>
 </rolltemplate>
 <!-- Sheet workers -->
 <script type="text/worker">
+function repeatingSum (destination, section, fieldsum, fieldmult, totalcoins){
+    // destination = the name of the attribute that stores the total weight
+    // section = name forof repeating fieldset, without the repeating_
+    // fieldsum = the name of the "weight" field to be summed
+    // fieldmult = the name of quantity field, that multiplies weight. 
+    //      Leave as "false" if ignored. If using a checkbox rather than a number input, set its value to 1.
+    
+	var repSection = "repeating_"+section;
+	let multiplier = true;
+	if (fieldmult === undefined || fieldmult === false || fieldmult === 'false') multiplier = false;
+	getSectionIDs(repSection, function(idArray) {
+		//Construct Array of fields to get attributes for...
+		var sumFields = [];
+		var multFields = [];
+		for (var a=0; a< idArray.length; a++) {
+			sumFields[sumFields.length] = repSection + "_" + idArray[a] + "_" + fieldsum;
+			if(multiplier) multFields[multFields.length] = repSection + "_" + idArray[a] + "_" + fieldmult;
+		}
+		
+		getAttrs(sumFields.concat(multFields), function(v) {
+			console.log("%%% values of v: "+ JSON.stringify(v) +" %%%");
+			let sumTotal = 0;
+			let tempSum = 0;
+			for(a=0; a<idArray.length; a++){
+			    tempSum = parseFloat(v[sumFields[a]]) || 0;
+			    if(multiplier) {
+			        tempSum = tempSum * parseFloat(v[multFields[a]]) || 0;
+			    }
+				sumTotal += tempSum;
+				console.log("$$$ sumTotal: " + sumTotal + " $$$");
+			}
+			var setSumValue = {};
+			sumTotal = (sumTotal*100) + Math.round(totalcoins/10);
+			setSumValue[destination]=Math.round(sumTotal)/100;
+			//setSumValue[destination]=sumTotal;
+			setAttrs(setSumValue);	
+		});
+	});
+}
 
 // Spells Cast
 on('change:repeating_spells remove:repeating_spells', () => {
@@ -1267,8 +1313,8 @@ on('change:repeating_spells remove:repeating_spells', () => {
 
 // Equipment counter
 on('change:repeating_equipment remove:repeating_equipment change:coinsCP change:coinsSP change:coinsEP change:coinsGP change:coinsPP', function() {
+	
     var totalCoins=0;
-    var totalEnc=0;
     getAttrs(["coinsCP","coinsSP","coinsEP","coinsGP","coinsPP"], function(values) {
         for(val in values) {
             if( values.hasOwnProperty( val ) ) {
@@ -1276,35 +1322,7 @@ on('change:repeating_equipment remove:repeating_equipment change:coinsCP change:
                 totalCoins += value;
             }
         }
-        totalEnc += Math.round(totalCoins/1000);
-        getSectionIDs("repeating_equipment", function(idArray)  {
-            var enc_id = "";
-            var cnt_id = "";
-            for(var i=0; i < idArray.length; i++) {
-                var id = idArray[i];
-                enc_id = "repeating_equipment_" + id + "_encumbrance";
-                cnt_id = "repeating_equipment_" + id + "_itemcount";
-                getAttrs([enc_id,cnt_id], function(values) {
-                    var adg = 0;
-                    var num = 0;
-                    for(val in values) {
-                        if( values.hasOwnProperty( val ) ) {
-                            var value = parseFloat( values[val] );
-                            if(adg == 0) {
-                                adg += value;
-                            } else {
-                                adg *= value;
-                            }
-                            num++;
-                        }
-                    }
-                    if(num == 2) {
-                        totalEnc += adg;
-                        setAttrs({ encumbranceTotal: Math.round((totalEnc) * 100) / 100 });
-                    }
-                });
-            }
-        });
+		repeatingSum("encumbranceTotal","equipment","encumbrance","itemcount", totalCoins);
     });
 });
 
@@ -1325,39 +1343,41 @@ on('change:race change:strengthMod change:encumbranceMisc', function() {
 
 // Movement Rate
 on('sheet:opened change:race change:encumbranceTotal change:encumbranceMax change:moveMisc', function() {
-    getAttrs(["race","encumbranceTotal","encumbranceMax", "moveMisc"], function(values) {
-        var baseRate= 120+parseInt(values.moveMisc);
-        var rate1 = baseRate*0.75;
-        var rate2 = baseRate*0.5;
-        var rate3 = baseRate*0.25;
-        switch (values.race.toUpperCase()) {
-            case "HALFLING":
-            case "HOBBIT":
-                if(values.encumbranceTotal > values.encumbranceMax) {
-                    setAttrs({ moveExplore: 0, moveCombat: 0, moveWilderness: 0, moveStealth: 0, moveClimb: 0 });
-                } else if(values.encumbranceTotal > 7) {
-                    setAttrs({ moveExplore: Math.round(rate3), moveCombat: Math.round(rate3/3), moveWilderness: Math.round(rate3/5), moveStealth: Math.round(rate3/6), moveClimb: Math.round(rate3/12) });
-                } else if(values.encumbranceTotal > 5) {
-                    setAttrs({ moveExplore: Math.round(rate2), moveCombat: Math.round(rate2/3), moveWilderness: Math.round(rate2/5), moveStealth: Math.round(rate2/6), moveClimb: Math.round(rate2/12) });
-                } else if(values.encumbranceTotal > 4) {
-                    setAttrs({ moveExplore: Math.round(rate1), moveCombat: Math.round(rate1/3), moveWilderness: Math.round(rate1/5), moveStealth: Math.round(rate1/6), moveClimb: Math.round(rate1/12) });
-                } else {
-                    setAttrs({ moveExplore: Math.round(baseRate), moveCombat: Math.round(baseRate/3), moveWilderness: Math.round(baseRate/5), moveStealth: Math.round(baseRate/6), moveClimb: Math.round(baseRate/12) });
-                }
-                break;
-            default:
-                if(values.encumbranceTotal > values.encumbranceMax) {
-                    setAttrs({ moveExplore: 0, moveCombat: 0, moveWilderness: 0, moveStealth: 0, moveClimb: 0 });
-                } else if(values.encumbranceTotal > 10) {
-                    setAttrs({ moveExplore: Math.round(rate3), moveCombat: Math.round(rate3/3), moveWilderness: Math.round(rate3/5), moveStealth: Math.round(rate3/6), moveClimb: Math.round(rate3/12) });
-                } else if(values.encumbranceTotal > 7) {
-                    setAttrs({ moveExplore: Math.round(rate2), moveCombat: Math.round(rate2/3), moveWilderness: Math.round(rate2/5), moveStealth: Math.round(rate2/6), moveClimb: Math.round(rate2/12) });
-                } else if(values.encumbranceTotal > 5) {
-                    setAttrs({ moveExplore: Math.round(rate1), moveCombat: Math.round(rate1/3), moveWilderness: Math.round(rate1/5), moveStealth: Math.round(rate1/6), moveClimb: Math.round(rate1/12) });
-                } else {
-                    setAttrs({ moveExplore: Math.round(baseRate), moveCombat: Math.round(baseRate/3), moveWilderness: Math.round(baseRate/5), moveStealth: Math.round(baseRate/6), moveClimb: Math.round(baseRate/12) });
-                }
-        }
+    getAttrs(["is_monster","race","encumbranceTotal","encumbranceMax", "moveMisc"], function(values) {
+        if (values.is_monster==0) {
+			var baseRate= 120+parseInt(values.moveMisc);
+			var rate1 = baseRate*0.75;
+			var rate2 = baseRate*0.5;
+			var rate3 = baseRate*0.25;
+			switch (values.race.toUpperCase()) {
+				case "HALFLING":
+				case "HOBBIT":
+					if(values.encumbranceTotal > values.encumbranceMax) {
+						setAttrs({ moveExplore: 0, moveCombat: 0, moveWilderness: 0, moveStealth: 0, moveClimb: 0 });
+					} else if(values.encumbranceTotal > 7) {
+						setAttrs({ moveExplore: Math.round(rate3), moveCombat: Math.round(rate3/3), moveWilderness: Math.round(rate3/5), moveStealth: Math.round(rate3/6), moveClimb: Math.round(rate3/12) });
+					} else if(values.encumbranceTotal > 5) {
+						setAttrs({ moveExplore: Math.round(rate2), moveCombat: Math.round(rate2/3), moveWilderness: Math.round(rate2/5), moveStealth: Math.round(rate2/6), moveClimb: Math.round(rate2/12) });
+					} else if(values.encumbranceTotal > 4) {
+						setAttrs({ moveExplore: Math.round(rate1), moveCombat: Math.round(rate1/3), moveWilderness: Math.round(rate1/5), moveStealth: Math.round(rate1/6), moveClimb: Math.round(rate1/12) });
+					} else {
+						setAttrs({ moveExplore: Math.round(baseRate), moveCombat: Math.round(baseRate/3), moveWilderness: Math.round(baseRate/5), moveStealth: Math.round(baseRate/6), moveClimb: Math.round(baseRate/12) });
+					}
+					break;
+				default:
+					if(values.encumbranceTotal > values.encumbranceMax) {
+						setAttrs({ moveExplore: 0, moveCombat: 0, moveWilderness: 0, moveStealth: 0, moveClimb: 0 });
+					} else if(values.encumbranceTotal > 10) {
+						setAttrs({ moveExplore: Math.round(rate3), moveCombat: Math.round(rate3/3), moveWilderness: Math.round(rate3/5), moveStealth: Math.round(rate3/6), moveClimb: Math.round(rate3/12) });
+					} else if(values.encumbranceTotal > 7) {
+						setAttrs({ moveExplore: Math.round(rate2), moveCombat: Math.round(rate2/3), moveWilderness: Math.round(rate2/5), moveStealth: Math.round(rate2/6), moveClimb: Math.round(rate2/12) });
+					} else if(values.encumbranceTotal > 5) {
+						setAttrs({ moveExplore: Math.round(rate1), moveCombat: Math.round(rate1/3), moveWilderness: Math.round(rate1/5), moveStealth: Math.round(rate1/6), moveClimb: Math.round(rate1/12) });
+					} else {
+						setAttrs({ moveExplore: Math.round(baseRate), moveCombat: Math.round(baseRate/3), moveWilderness: Math.round(baseRate/5), moveStealth: Math.round(baseRate/6), moveClimb: Math.round(baseRate/12) });
+					}
+			}
+		}
     });
 });
 
@@ -1381,20 +1401,22 @@ on('sheet:opened change:race change:encumbranceTotal change:encumbranceMax chang
 
 // Derived Statistics
 on('sheet:opened change:armor change:armorMisc change:initiativeMisc change:surpriseMisc change:reactionMisc change:moraleMisc change:dexterityMod change:intelligenceMod change:wisdomMod change:charismaMod change:leadershipMisc change:zocMisc change:strategyMisc', function() {
-    getAttrs(["armor","armorMisc","initiativeMisc","surpriseMisc","reactionMisc","moraleMisc","dexterityMod","intelligenceMod","wisdomMod","charismaMod","leadershipMisc","zocMisc","strategyMisc"], function(values) {
-        var intMod=parseInt(values.intelligenceMod);
-        var wisMod=parseInt(values.wisdomMod);
-        var chaMod=parseInt(values.charismaMod);
-        setAttrs({
-            armorclass: parseInt(values.armor)+parseInt(values.armorMisc)+parseInt(values.dexterityMod),
-            initiative: parseInt(values.dexterityMod)+parseInt(values.initiativeMisc),
-            surprise: parseInt(values.surpriseMisc),
-            reaction: chaMod+parseInt(values.reactionMisc),
-            morale: chaMod+parseInt(values.moraleMisc),
-            leadership: 4+chaMod+parseInt(values.leadershipMisc),
-            zoc: Math.ceil((4+chaMod+parseInt(values.leadershipMisc))/2)+parseInt(values.zocMisc),
-            strategy: Math.max(0,intMod,wisMod)+Math.min(0,intMod,wisMod)+parseInt(values.strategyMisc)
-        });
+    getAttrs(["is_monster","armor","armorMisc","initiativeMisc","surpriseMisc","reactionMisc","moraleMisc","dexterityMod","intelligenceMod","wisdomMod","charismaMod","leadershipMisc","zocMisc","strategyMisc"], function(values) {
+        if (values.is_monster==0) {
+			var intMod=parseInt(values.intelligenceMod);
+			var wisMod=parseInt(values.wisdomMod);
+			var chaMod=parseInt(values.charismaMod);
+			setAttrs({
+				armorclass: parseInt(values.armor)+parseInt(values.armorMisc)+parseInt(values.dexterityMod),
+				initiative: parseInt(values.dexterityMod)+parseInt(values.initiativeMisc),
+				surprise: parseInt(values.surpriseMisc),
+				reaction: chaMod+parseInt(values.reactionMisc),
+				morale: chaMod+parseInt(values.moraleMisc),
+				leadership: 4+chaMod+parseInt(values.leadershipMisc),
+				zoc: Math.ceil((4+chaMod+parseInt(values.leadershipMisc))/2)+parseInt(values.zocMisc),
+				strategy: Math.max(0,intMod,wisMod)+Math.min(0,intMod,wisMod)+parseInt(values.strategyMisc)
+			});
+		}
     });
 });
 //Update GMRoll Skills buttons sometimes I guess
@@ -1415,8 +1437,6 @@ on('change:fightas change:fightlevel', function() {
             case "MST":
                 switch (parseInt(values.fightlevel)) {
                     case 0:
-                        setAttrs({ attackthrow: 11 });
-                        break;
                     case 1:
                         setAttrs({ attackthrow: 10 });
                         break;
@@ -1815,6 +1835,8 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
     var racialBreath = 0;
     var racialDevice = 0;
     var racialMagic = 0;
+	var racialAttackOffset = 0;
+	var racialSaveOffset = 0;
 
     getAttrs(["race","class","level","paralyzeSaveMisc","poisonSaveMisc","breathSaveMisc","deviceSaveMisc","magicSaveMisc","wisdomMod", "wisAllSaves"], function(values) {
         var applyWisMod = parseInt(values.wisdomMod)*parseInt(values.wisAllSaves);
@@ -1835,19 +1857,50 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 racialMagic = 1;
                 break;
             case "DWARF":
-            case "DWARVEN":
+			case "DWARFEN":
+			case "DWARFIN":
+			case "DWARVEN":
+            case "DWARVIN":
                 racialParalyze = 4;
                 racialPoison = 4;
                 racialBreath = 3;
                 racialDevice = 4;
                 racialMagic = 4;
                 break;
+			case "DRAGON":
+            case "DRAGON INCARNATE":
+			case "DRAGONBORN":
+			case "DRAGONBLOOD":
+			case "DRAGONSOUL":
+				racialParalyze = 2;
+                racialPoison = 2;
+                racialBreath = 2;
+                racialDevice = 2;
+                racialMagic = 2;
+                break;
+			case "REVENANT":
+				racialParalyze = 1;
+				break;
+			case "BUGBEAR":
+			// This is the only case I have seen this. Functionality is built out for any value.
+			// Really only works when attack and save have the same offset or follow different progressions.
+				racialAttackOffset = 3;
+				racialSaveOffset = 2;
+				break;
+			case "KOBOLD":
+				racialParalyze = -1;
+                racialPoison = -1;
+                racialBreath = -1;
+                racialDevice = -1;
+                racialMagic = -1;
+				break;
             default:
         }
         
         switch (values.class.toUpperCase()) {
             case "NORMAL MAN":
             case "NORMAL WOMAN":
+			case "NORMAL PERSON":
             case "NORMAL":
                 switch (parseInt(values.level)) {
                     default:
@@ -1875,13 +1928,46 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "GLADIATOR":
             case "MYSTIC":
             case "PALADIN":
+			case "BEASTMASTER":
+			case "BERSERKER":
+			case "CHOSEN":
             case "HALFLING BOUNDER":
             case "BOUNDER":
+			case "NOBIRAN CHAMPION":
+			case "CHAMPION":
+			case "THRASSIAN DEATHCHANTER":
+            case "DEATHCHANTER":
             case "WARMISTRESS":
-            case "DWARVEN MULESKINNER":
-            case "MULESKINNER":
+			case "BUGMAN PRAETOR":
+			case "PRAETOR":
+			case "DEEP ONE HYBRID":
+			case "DRAGON INCARNATE":
+			case "LIZARDMAN GLADIATOR":
+			case "LIZARDMAN WARRIOR":
+			case "WARRIOR":
+			case "MOK BRUTE":
+			case "BRUTE":
+			case "TERRAN COSMONAUT":
+			case "COSMONAUT":
+			case "ELVEN WARLORD":
+            case "WARLORD":
+			case "FLAGELLANT":
+			case "REVENANT":
+			case "NOBIRAN VEILDANCER":
+			case "VEILDANCER":
+			case "FOOL":
+			case "ORC WARRIOR":
+			case "ORCISH WARRIOR":
+			case "BUGBEAR WARRIOR":
+			case "KOBOLD WARRIOR":
+			case "DWARVEN MULESKINNER":
+			case "MULESKINNER":
+			case "ORCISH ASSASSIN":
+			case "ORC ASSASSIN":
+			case "VARANGIAN":
+			case "VALKYRIE":
                 //Fighter Progression
-                switch (parseInt(values.level)) {
+                switch (parseInt(values.level) + racialSaveOffset) {
                     case 0:
                         setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                         break;
@@ -1999,8 +2085,23 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "NOBIRAN WONDERWORKER":
             case "WONDERWORKER":
             case "WARLOCK":
+			case "NOBIRAN WIZARD":
+            case "WIZARD":
+			case "LIZARDMAN WITCH-DOCTOR":
+			case "WITCH-DOCTOR":
+			case "NEPHIL":
+			case "ELVEN CULTIST":
+			case "ELVEN HIEROPHANT":
+            case "HIEROPHANT":
+			case "ELVEN WIZARD":
+			case "ILLUSIONIST":
+			case "GRIM SORCERER":
+			case "MAGUS":
+			case "OCCULTIST WARLOCK":
+			case "ELVEN SAGE":
+            case "SAGE":
                 //Mage Progression
-                switch (parseInt(values.level)) {
+                switch (parseInt(values.level) + racialSaveOffset) {
                     case 0:
                         setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                         break;
@@ -2075,10 +2176,26 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "PRIESTESS":
             case "SHAMAN":
             case "WITCH":
-            case "GNOMISH PILGRIM":
-            case "PILGRIM":
+			case "ECCLESIASTIC":
+			case "ELVEN SPELLSLINGER":
+			case "SPELLSINGER":
+			case "LOREMASTER":
+			case "OCCULTIST":
+			case "RUNEMAKER":
+			case "ZAHARAN DARKLORD":
+			case "DARKLORD":
+			case "ZAHARAN SORCERER":
+			case "SORCERER":
+			case "BLESSED UNDERTAKER":
+			case "GECKOMAN SPIRIT-TALKER":
+			case "SPIRIT-TALKER":
+			case "LIZARDMAN PRIESTESS":
+			case "NECROMANCER":
+			case "TEMPLAR":
+			case "PRIESTESS OF NASGA":
+			case "ASSASSIN-PRIEST":
                 //Cleric Progression
-                switch (parseInt(values.level)) {
+                switch (parseInt(values.level) + racialSaveOffset) {
                     case 0:
                         setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                         break;
@@ -2182,8 +2299,22 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "WAYFARER":
             case "HALFLING BURGLAR":
             case "BURGLAR":
+			case "BUGMAN DREDGER":
+			case "DREDGER":
+			case "BUGMAN OVATE":
+			case "OVATE":
+			case "KANAHU CULTIST":
+			case "CULTIST":
+			case "GECKOMAN STALKER":
+			case "STALKER":
+			case "LIZARDMAN HUNTER":
+			case "HUNTER":
+			case "TERRAN STARMAN":
+			case "STARMAN":
+			case "PUGILIST":
+			case "MOUNTEBANK":
                 //Thief Progression
-                switch (parseInt(values.level)) {
+                switch (parseInt(values.level) + racialSaveOffset) {
                     case 0:
                         setAttrs({ attackthrow: 11, paralyzeSave: 16, poisonSave: 15, breathSave: 17, deviceSave: 17, magicSave: 18 });
                         break;
@@ -2273,15 +2404,22 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 //NO PROGRESSION
                 setAttrs({ attackthrow: 20, paralyzeSave: 20, poisonSave: 20, breathSave: 20, deviceSave: 20, magicSave: 20 });
         }
-        //Change Fight Progression trickster(atk thief) gladiator (atk monster) Priest/ess Witch (atk mage)
+        //Change Attack Progression, (attack progression is different from save progression)
         switch (values.class.toUpperCase()) {
             case "THRASSIAN GLADIATOR":
             case "GLADIATOR":
+			case "BUGMAN PRAETOR":
+			case "PRAETOR":
+			case "LIZARDMAN GLADIATOR":
+			case "MOK BRUTE":
+			case "BRUTE":
+			case "ORC WARRIOR":
+			case "ORCISH WARRIOR":
+			case "BUGBEAR WARRIOR":
+			case "ORCISH ASSASSIN":
                 //Monster Progression
-                switch (parseInt(values.level)) {
+                switch (parseInt(values.level) + racialAttackOffset) {
                     case 0:
-                        setAttrs({ attackthrow: 11 });
-                        break;
                     case 1:
                         setAttrs({ attackthrow: 10 });
                         break;
@@ -2322,13 +2460,53 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                         //DONT DO A DAMN THING
                 }
                 break;
+			case "KOBOLD WARRIOR":
+				// Fucking weird kobold progression different from anyone else.
+				switch (parseInt(values.level) + racialAttackOffset) {
+                    case 0:
+						setAttrs({ attackthrow: 11 });
+                        break;
+                    case 1:
+					case 2:
+                        setAttrs({ attackthrow: 10 });
+                        break;
+                    case 3:
+                    case 4:
+						setAttrs({ attackthrow: 9 });
+                        break;
+                    case 5:
+                        setAttrs({ attackthrow: 8 });
+                        break;
+                    case 6:
+                        setAttrs({ attackthrow: 7 });
+                        break;
+                    case 7:
+                        setAttrs({ attackthrow: 6 });
+                        break;
+                    case 8:
+						setAttrs({ attackthrow: 5 });
+                        break;
+                    case 9:
+                        setAttrs({ attackthrow: 4 });
+                        break;
+                    case 10:
+                    case 11:
+                        setAttrs({ attackthrow: 3 });
+                        break;
+                    case 12:
+                        setAttrs({ attackthrow: 2 });
+                        break;
+                    default:
+                        //DONT DO A DAMN THING
+                }
+				break;
             case "FREEBOOTER":
             case "EXPEDITIONARY":
             case "RUFFIAN":
             case "SCOUNDREL":
             case "WAYFARER":
                 //Fighter Progression
-                switch (parseInt(values.level)) {
+                switch (parseInt(values.level) + racialAttackOffset) {
                     case 0:
                         setAttrs({ attackthrow: 11 });
                         break;
@@ -2374,8 +2552,16 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             case "PRIESTESS":
             case "SHAMAN":
             case "WITCH":
+			case "ECCLESIASTIC":
+			case "ELVEN SPELLSLINGER":
+			case "SPELLSINGER":
+			case "LOREMASTER":
+			case "OCCULTIST":
+			case "ZAHARAN SORCERER":
+			case "SORCERER":
+			case "PRIESTESS OF NASGA":
                 //Mage Progression
-                switch (parseInt(values.level)) {
+                switch (parseInt(values.level) + racialAttackOffset) {
                     case 0:
                         setAttrs({ attackthrow: 10 });
                         break;
@@ -2409,8 +2595,11 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
                 break;
             case "GNOMISH TRICKSTER":
             case "TRICKSTER":
+			case "LIZARDMAN WITCH-DOCTOR":
+			case "WITCH-DOCTOR":
+			case "NEPHIL":
                 //Thief and Cleric Progression
-                switch (parseInt(values.level)) {
+                switch (parseInt(values.level) + racialAttackOffset) {
                     case 0:
                         setAttrs({ attackthrow: 11 });
                         break;
@@ -2449,175 +2638,6 @@ on('change:race change:class change:level change:paralyzeSaveMisc change:poisonS
             default: 
                 //DONT DO A DAMN THING
         }
-    });
-});
-
-var convertFromOldSheet = function () {
-    return;
-    // Non-repeating attributes to rename
-    let conversionData = {
-        "attr_name" : "attr_character_name",
-        "attr_class_title" : "attr_title",
-        "attr_gp" : "attr_coinsGP",
-        "attr_hp" : "attr_hitpoints",
-        "attr_hp_max" : "attr_hitpoints_max",
-        "attr_init_bns" : "attr_initiativeMisc",
-        "attr_str" : "attr_strength",
-        "attr_int" : "attr_intelligence",
-        "attr_wis" : "attr_wisdom",
-        "attr_dex" : "attr_dexterity",
-        "attr_con" : "attr_constitution",
-        "attr_chr" : "attr_charisma",
-        "attr_pet_par_bns" : "attr_paralyzeSaveMisc",
-        "attr_psn_dth_bns" : "attr_poisonSaveMisc",
-        "attr_blst_brth_bns" : "attr_breathSaveMisc",
-        "attr_stvs_wnds_bns" : "attr_deviceSaveMisc",
-        "attr_spells_bns" : "attr_magicSaveMisc",
-        "attr_armor_ac" : "attr_armor",
-        "attr_spell_level_1_max" : "attr_spells_l1_max",
-        "attr_spell_level_2_max" : "attr_spells_l2_max",
-        "attr_spell_level_3_max" : "attr_spells_l3_max",
-        "attr_spell_level_4_max" : "attr_spells_l4_max",
-        "attr_spell_level_5_max" : "attr_spells_l5_max",
-        "attr_spell_level_6_max" : "attr_spells_l6_max",
-        "attr_spell_level_1" : "attr_spells_l1",
-        "attr_spell_level_2" : "attr_spells_l2",
-        "attr_spell_level_3" : "attr_spells_l3",
-        "attr_spell_level_4" : "attr_spells_l4",
-        "attr_spell_level_5" : "attr_spells_l5",
-        "attr_spell_level_6" : "attr_spells_l6",
-
-//go into repeating section now....
-        "attr_gen_att_bns" : "",
-        "attr_gen_dmg_bns" : "",
-        "attr_melee_bns" : "",
-        "attr_ranged_bns" : "",
-    };
-    // Non-repeating attribute renaming
-    getAttrs(Object.keys(conversionData), function (values) {
-        let setting = {};
-        Object.keys(conversionData).forEach(function (oldAttr) {
-            if (values[oldAttr] != null) {
-                // set value of new attribute to the old one
-                setting[conversionData[oldAttr]] = values[oldAttr];
-                setting[oldAttr] = '';
-            }
-        });
-        console.log("Setting non-repeating attributes.");
-        setAttrs(setting);
-    });
-
-    //Special Case to bring over the two note fields into one notes field here.
-    getAttrs(["notey","noob"], function(values) {
-        setAttrs({lootnotes: (values.notey + "\n" + values.noob)});
-    });
-    
-	getSectionIDs('repeating_meleeattacks', function (idArray) {
-	    console.log("Setting repeating_meleeattacks attributes.");
-		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleeweaponname`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_meleeattacks_${id}_melee_weaponname`] = values[`repeating_meleeattacks_${id}_meleeweaponname`];
-			});
-			setAttrs(setting);
-		});
-		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleemagic`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`class_hitbonus`] = values[`repeating_meleeattacks_${id}_meleemagic`];
-			});
-			setAttrs(setting);
-		});
-		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleemisc`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_meleeattacks_${id}_melee_hitbonus`] = values[`repeating_meleeattacks_${id}_meleemisc`];
-				setting[`repeating_meleeattacks_${id}_melee_dmgbonus`] = values[`repeating_meleeattacks_${id}_meleemisc`];
-			});
-			setAttrs(setting);
-		});
-		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleedmg`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_meleeattacks_${id}_melee_dmgbase`] = values[`repeating_meleeattacks_${id}_meleedmg`];
-			});
-			setAttrs(setting);
-		});
-		getAttrs(idArray.map(id => `repeating_meleeattacks_${id}_meleeacbonus`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_meleeattacks_${id}_melee_description`] = values[`repeating_meleeattacks_${id}_meleeacbonus`];
-			});
-			setAttrs(setting);
-		});
-	});
-	
-	getSectionIDs('repeating_rangedattacks', function (idArray) {
-	    console.log("Setting repeating_rangedattacks attributes.");
-		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangeweaponname`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_rangedattacks_${id}_range_weaponname`] = values[`repeating_rangedattacks_${id}_rangeweaponname`];
-			});
-			setAttrs(setting);
-		});
-		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangemisc`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_rangedattacks_${id}_range_hitbonus`] = values[`repeating_rangedattacks_${id}_rangemisc`];
-				setting[`repeating_rangedattacks_${id}_range_dmgbonus`] = values[`repeating_rangedattacks_${id}_rangemisc`];
-			});
-			setAttrs(setting);
-		});
-		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangedmg`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_rangedattacks_${id}_range_dmgbase`] = values[`repeating_rangedattacks_${id}_rangedmg`];
-			});
-			setAttrs(setting);
-		});
-		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangeacbonus`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_rangedattacks_${id}_range_distance`] = values[`repeating_rangedattacks_${id}_rangeacbonus`];
-			});
-			setAttrs(setting);
-		});
-		getAttrs(idArray.map(id => `repeating_rangedattacks_${id}_rangesaves`), function (values) {
-			let setting = {};
-			idArray.forEach(function (id) {
-				setting[`repeating_rangedattacks_${id}_range_description`] = values[`repeating_rangedattacks_${id}_rangesaves`];
-			});
-			setAttrs(setting);
-		});
-	});
-};
-on('sheet:opened', function () {
-    return;
-    let currentVersion = '2.0';
-    getAttrs(['version','name'], function (values) {
-        if (!values.version) {
-            //Special Case to check if the custom sheet was already in use prior to adding version control logic
-            if (!values.name) {
-                console.log("Special Case: No Translation Necessary");
-            }
-            else{
-                console.log("Translating Old Sheet to New Sheet");
-                convertFromOldSheet();
-            }
-        }
-        else{
-            switch (values.version) {
-                case 2.1:
-                    // upgrade v2.1 to next version
-                    // fallthrough, continue
-                case 3.0:
-                    //etc
-            }
-        }
-        setAttrs({
-            version: currentVersion
-        });
     });
 });
 </script>
